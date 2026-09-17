@@ -132,27 +132,63 @@ details.card>summary::before{content:"▸ ";}details.card[open]>summary::before{
 .quick label{display:flex;flex-direction:column;gap:3px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;flex:1 1 200px;min-width:0}
 .quick select,.quick input{width:100%;min-width:0}
 .quick label .small{text-transform:none;letter-spacing:0;font-size:11px;margin-top:1px}
+/* ---- titulares de sección ---- */
+.sec{margin-top:22px}
+.sechead{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:7px}
+.sechead h2{font-family:"Barlow Condensed",sans-serif;font-size:21px;letter-spacing:.05em;color:var(--gold);text-transform:uppercase;line-height:1.15}
+.sec>.small{margin-top:4px;display:block}
+/* ---- titular del día ---- */
+.hero{background:linear-gradient(145deg,var(--surface),var(--surface2));border:1px solid var(--gold2);border-radius:14px;padding:13px 16px;margin-top:12px;box-shadow:var(--glow)}
+.hero .big{font:700 34px "Barlow Condensed",sans-serif;line-height:1.05;color:var(--good);margin:1px 0}
+.hero .small{display:block}
+/* ---- bono del día ---- */
+.bonusbar{border:1px dashed var(--gold2);border-radius:12px;background:var(--surface);padding:9px 13px;margin-top:10px}
+.bonusbar[open]{border-style:solid}
+.bonusbar>summary{cursor:pointer;list-style:none;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px;line-height:1.35}
+.bonusbar>summary::-webkit-details-marker{display:none}
+.bonusbar .lnk{margin-left:auto;color:var(--accent);font-weight:600;white-space:nowrap}
+.bbody{margin-top:10px;display:grid;gap:10px}
+.brow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.brow select{flex:1 1 220px}
+.chipset{display:flex;flex-wrap:wrap;gap:6px}
+.chipset button{font:600 12px "IBM Plex Sans",sans-serif;background:var(--surface2);border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer;color:var(--ink);white-space:nowrap}
+.chipset button:hover{border-color:var(--gold2)}
+.chipset button.on{background:var(--gold);color:#1A1206;border-color:transparent}
 /* ---- tarjetas de respuesta ---- */
-.sec{margin-top:20px}
-.sec>h2{font-family:"Barlow Condensed",sans-serif;font-size:21px;letter-spacing:.04em;color:var(--gold);text-transform:uppercase;line-height:1.15}
-.deals{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));margin-top:10px}
-.deal{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}
-.deal:hover{border-color:var(--gold2);background:var(--row-hover)}
-.deal>header{display:flex;gap:10px;align-items:flex-start}
+.deals{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(345px,1fr));margin-top:12px}
+.deal{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:13px 14px;cursor:pointer;min-width:0;transition:border-color .15s,transform .15s}
+.deal:hover{border-color:var(--gold);transform:translateY(-1px)}
+.deal.lead{border-color:var(--gold2)}
+.deal>header{display:flex;gap:9px;align-items:flex-start}
+.deal .rk{width:23px;height:23px;border-radius:7px;background:var(--surface2);border:1px solid var(--line);color:var(--muted);font:700 12px "IBM Plex Mono",monospace;display:flex;align-items:center;justify-content:center;flex:none;margin-top:6px}
+.deal.lead .rk{background:linear-gradient(180deg,var(--gold),var(--gold2));color:#1A1206;border-color:transparent}
 .deal .t{flex:1;min-width:0}
-.deal .t b{font-size:15px;line-height:1.2;display:block}
+.deal .t b{font-size:14.5px;line-height:1.22;display:block}
+.deal .t .small{display:block;margin-top:1px}
 .deal .p{text-align:right;white-space:nowrap}
-.deal .p b{font:700 21px "Barlow Condensed",sans-serif;line-height:1}
-.deal .p .small{font-size:11px}
-.steps{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
-.steps li{display:grid;grid-template-columns:22px 1fr;gap:9px;align-items:start;font-size:13.5px;line-height:1.35}
-.steps .n{width:22px;height:22px;border-radius:50%;background:var(--surface2);border:1px solid var(--line);color:var(--gold);font:700 12px "IBM Plex Mono",monospace;display:flex;align-items:center;justify-content:center}
-.steps .k{color:var(--muted);text-transform:uppercase;font:600 11px "Barlow Condensed",sans-serif;letter-spacing:.11em;display:block}
-.deal>footer{margin-top:10px;padding-top:9px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:13px;flex-wrap:wrap}
+.deal .p .small{display:block;margin-top:2px;font-size:11px}
+.pv{display:inline-block;background:var(--good-bg);color:var(--good);border-radius:8px;padding:3px 9px;font:700 19px "Barlow Condensed",sans-serif;line-height:1.15}
+.bdgs{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.bdg{display:inline-flex;align-items:center;gap:3px;font:600 10px "Barlow Condensed",sans-serif;letter-spacing:.09em;text-transform:uppercase;border-radius:5px;padding:2px 6px;border:1px solid currentColor;line-height:1.5}
+.bdg.fire{color:var(--warn)}.bdg.city{color:var(--accent)}.bdg.fast{color:var(--good)}
+/* ruta: comprar -> fabricar -> vender */
+.route{display:grid;grid-template-columns:minmax(0,1fr) 13px minmax(0,1fr) 13px minmax(0,1fr);gap:5px;margin-top:11px}
+.route.two{grid-template-columns:minmax(0,1fr) 13px minmax(0,1fr)}
+.route .st{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:7px 6px;min-width:0;text-align:center}
+.route .st .k{display:block;font:600 9.5px "Barlow Condensed",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.route .st b{display:block;font-size:12.5px;line-height:1.2;margin-top:2px;overflow-wrap:anywhere}
+.route .st .v{display:block;font:500 11px "IBM Plex Mono",monospace;color:var(--muted);margin-top:2px;overflow-wrap:anywhere}
+.route .st.hot{border-color:var(--gold2);background:linear-gradient(160deg,var(--warn-bg),var(--surface2))}
+.route .ar{display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:15px;font-weight:700}
+.mats{margin-top:9px;font-size:12.5px;line-height:1.35;color:var(--ink)}
+.deal>footer{margin-top:10px;padding-top:9px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:13px;flex-wrap:wrap}
+.deal>footer>span:first-child{min-width:0;flex:1 1 auto}
 /* ---- listas compactas (sin scroll horizontal) ---- */
 .lite{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:10px}
 .lite .r{display:flex;gap:10px;align-items:center;background:var(--surface);padding:9px 11px;cursor:pointer}
 .lite .r:hover{background:var(--row-hover)}
+.lite .r.plain{cursor:default}
+.lite .r.plain:hover{background:var(--surface)}
 .lite .r .n{flex:1;min-width:0}
 .lite .r .n b{display:block;font-size:13.5px;line-height:1.25}
 .lite .r .v{text-align:right;white-space:nowrap;font-size:12px;color:var(--muted)}
@@ -172,9 +208,18 @@ details.card>summary::before{content:"▸ ";}details.card[open]>summary::before{
   .quick{padding:8px 10px;gap:8px;margin-top:8px}
   .quick label{flex:1 1 100%}
   #acctWrap{padding:8px 12px;margin-top:8px}
-  .sec{margin-top:16px}
+  .sec{margin-top:18px}
+  .sechead h2{font-size:19px}
+  .hero{padding:11px 13px;border-radius:12px}
+  .hero .big{font-size:30px}
   .deals{grid-template-columns:1fr}
-  .deal>header{align-items:center}
+  .deal{padding:12px}
+  .route{gap:4px;grid-template-columns:minmax(0,1fr) 11px minmax(0,1fr) 11px minmax(0,1fr)}
+  .route .st{padding:6px 4px}
+  .route .st b{font-size:11.5px}
+  .route .st .v{font-size:10px}
+  .bonusbar .lnk{margin-left:0}
+  .chipset button{font-size:11.5px;padding:4px 9px}
   .grid.g2>div>h4{margin-top:10px}
 }
 </style>
@@ -1007,7 +1052,9 @@ function renderDaily() {
 }
 
 /* ---------- HOY: la respuesta directa, sin configurar nada ---------- */
-const TODAY = { rows: null, key: null, flips: null };
+const TODAY = { rows: null, key: null, flips: null, sort: 'total' };
+const DAILY_CAT_ES = { 'Cloth Armor': 'Armadura de tela', 'Cloth Helmets': 'Cascos de tela', 'Cloth Shoes': 'Zapatos de tela', 'Leather Armor': 'Armadura de cuero', 'Leather Helmets': 'Cascos de cuero', 'Leather Shoes': 'Zapatos de cuero', 'Plate Armor': 'Armadura de placas', 'Plate Helmets': 'Cascos de placas', 'Plate Shoes': 'Zapatos de placas', Swords: 'Espadas', Axes: 'Hachas', Maces: 'Mazas', Hammers: 'Martillos', 'War Gloves': 'Guantes de guerra', Crossbows: 'Ballestas', Bows: 'Arcos', Spears: 'Lanzas', Daggers: 'Dagas', Quarterstaffs: 'Bastones', 'Fire Staffs': 'Bastones de fuego', 'Holy Staffs': 'Bastones sagrados', 'Arcane Staffs': 'Bastones arcanos', 'Frost Staffs': 'Bastones de escarcha', 'Cursed Staffs': 'Bastones malditos', 'Nature Staffs': 'Bastones de naturaleza', 'Shapeshifter Staffs': 'Bastones de cambiaformas', 'Off-Hands': 'Objetos de mano izquierda', Bags: 'Bolsas', Capes: 'Capas', Potions: 'Pociones', Food: 'Comida', Tools: 'Herramientas', 'Gathering Gear': 'Equipo de recolección', 'Refining: Cloth': 'Refinar tela', 'Refining: Leather': 'Refinar cuero', 'Refining: Planks': 'Refinar tablones', 'Refining: Metal Bars': 'Refinar barras', 'Refining: Stone Blocks': 'Refinar piedra' };
+const dcName = c => LANG === 'es' ? (DAILY_CAT_ES[c] || c) : c;
 function scanDaily() {
   const f = { q: '', tier: '', ench: '', cat: '', art: '1', demand: 1 }; // solo recetas con demanda real (≥ 1 u/día en el historial)
   const uni = scanUniverse(f).filter(([b, e]) => { const pr = MK.prices[key(b, e)]; return pr && Object.keys(pr).length; });
@@ -1030,7 +1077,7 @@ function flipRows(p, limit = 8) {
       const u7 = d.u7 || 0; if (u7 < FLIP_MIN_UNITS7) continue;
       let price, fees, how;
       if (c === BM) { if (!(d.buy > 0)) continue; price = d.buy; fees = price * p.tax; how = T('te lo compran al instante|they buy it instantly'); }
-      else { const a7 = d.a7 || 0; if (!a7) continue; price = (d.sell > 0 && d.sell < a7) ? d.sell - 1 : a7; fees = price * (p.tax + RULES.setupFee); how = T('precio al que se ha vendido de verdad estos días|price it has actually sold for lately'); }
+      else { const a7 = d.a7 || 0; if (!a7) continue; price = (d.sell > 0 && d.sell < a7) ? d.sell - 1 : a7; fees = price * (p.tax + RULES.setupFee); how = T('precio al que se ha vendido estos días|price it has actually sold for lately'); }
       const net = price - fees - bp; if (net <= 0) continue;
       const cand = { city: c, price, net, u7, how, score: net * Math.min(u7 / 7, 30) };
       if (!best || cand.score > best.score) best = cand;
@@ -1045,52 +1092,124 @@ function flipRows(p, limit = 8) {
   out.sort((a, b) => b.score - a.score);
   return out.slice(0, limit);
 }
-const cityTxt = c => c === BM ? `${cn(BM)} <span class="small">(${T('está en Caerleon|it is in Caerleon')})</span>` : esc(c);
-function matLine(mats, qty) { // agrupa los materiales por ciudad donde se compran
+
+/* ---------- el bono diario: el juego no lo publica, lo confirma el jugador ---------- */
+function bonusHead(p) {
+  const d = p.daily, on = d && d.list.some(x => x.pct);
+  if (on) {
+    const r = new Date(); r.setUTCHours(24, 0, 0, 0); const hl = (r - Date.now()) / 36e5;
+    return `<span class="bdg fire">🔥 ${T('Bono de hoy|Today\'s bonus')}</span><b>${d.list.filter(x => x.pct).map(x => `${esc(dcName(x.cat))} +${x.pct}%`).join(' · ')}</b><span class="small">${T('caduca en|expires in')} ${Math.floor(hl)} h ${Math.round(hl % 1 * 60)} min</span><span class="lnk">${T('Cambiar|Change')}</span>`;
+  }
+  return `<span class="bdg fire">🔥</span><b>${T('¿Qué tiene bono hoy?|What has a bonus today?')}</b><span class="lnk">${T('Decirlo|Set it')}</span>`;
+}
+function bonusRow(n, cat, pct) {
+  return `<div class="brow"><select id="bqCat${n}"><option value="">${T('sin bono|no bonus')}</option>${DAILY_CATS.map(c => `<option value="${esc(c)}"${cat === c ? ' selected' : ''}>${esc(dcName(c))}</option>`).join('')}</select>
+  <div class="chipset" id="bqPct${n}">${[10, 20, 30, 40, 50].map(v => `<button data-v="${v}" class="${pct === v ? 'on' : ''}">+${v}%</button>`).join('')}</div></div>`;
+}
+function bonusBar(p) {
+  const l = (p.daily && p.daily.list) || (SET.daily && SET.daily.list) || [];
+  return `<details class="bonusbar" id="bonusBar"><summary>${bonusHead(p)}</summary>
+  <div class="bbody"><span class="small">${T('El juego no publica el bono diario en ninguna parte. Dime qué categorías lo tienen y lo sumo al retorno de materiales en todos los cálculos.|The game publishes the daily bonus nowhere. Tell me which categories have it and I add it to the material return in every calculation.')}</span>${bonusRow(1, (l[0] || {}).cat, (l[0] || {}).pct)}${bonusRow(2, (l[1] || {}).cat, (l[1] || {}).pct)}
+  <div class="controls" style="margin-top:4px"><button class="btn primary" id="bqSave">${T('Confirmar|Confirm')}</button><button class="btn" id="bqClear">${T('Quitar|Clear')}</button>
+  <span class="small">${T('Se borra solo cuando cambia el día (00:00 UTC).|It clears itself at the daily reset (00:00 UTC).')}</span></div></div></details>`;
+}
+function bindBonusBar() {
+  if (!$('#bonusBar')) return;
+  $$('#bonusBar .chipset').forEach(cs => cs.onclick = e => { const b = e.target.closest('button'); if (!b) return; const was = b.classList.contains('on'); cs.querySelectorAll('button').forEach(x => x.classList.remove('on')); if (!was) b.classList.add('on'); });
+  $('#bqSave').onclick = () => {
+    const list = [1, 2].map(n => { const on = $(`#bqPct${n} button.on`); return { cat: $('#bqCat' + n).value, pct: on ? +on.dataset.v : 0 }; }).filter(x => x.cat && x.pct);
+    SET.daily = list.length ? { date: new Date().toISOString().slice(0, 10), list } : null;
+    saveSet(); TODAY.rows = null; rerender();
+    toast(list.length ? T('Bono aplicado a todas las cuentas|Bonus applied to every calculation') : T('Sin bono de hoy|No bonus today'));
+  };
+  $('#bqClear').onclick = () => { SET.daily = null; saveSet(); TODAY.rows = null; rerender(); };
+}
+
+/* ---------- tarjetas ---------- */
+const cityTxt = c => c === BM ? cn(BM) : esc(c);
+function buyCities(mats) { return Array.from(new Set(mats.map(m => m.city))); }
+function matLine(mats, qty) {
   const by = {};
   for (const m of mats) (by[m.city] ||= []).push(`${esc(nameOf(m.mid))} × ${fmt(Math.ceil(m.eff * qty))}`);
   const cs = Object.keys(by);
-  if (cs.length === 1) return `${by[cs[0]].join(' + ')} — ${T('todo en|all of it in')} <b>${esc(cs[0])}</b>`;
-  return cs.map(c => `${by[c].join(' + ')} ${T('en|in')} <b>${esc(c)}</b>`).join('<br>');
+  if (cs.length === 1) return by[cs[0]].join(' + ');
+  return cs.map(c => `${by[c].join(' + ')} <span class="small">(${esc(c)})</span>`).join(' · ');
+}
+function stop(k, name, sub, hot) {
+  return `<div class="st${hot ? ' hot' : ''}"><span class="k">${k}</span><b>${name}</b><span class="v">${sub}</span></div>`;
 }
 function craftCard(r, i, p) {
   const qty = Math.max(1, r.qty);
   const ret = (r.cost.R.rrr * 100).toFixed(0);
-  return `<article class="deal" data-b="${r.base}" data-e="${r.e}">
-  <header>${icon(r.id)}<div class="t"><b>${i + 1}. ${esc(nameOf(r.id))}</b><span class="small">${tierBadge(r.id)} ${esc(catName(DB.items[r.base].cat))}</span></div>
-  <div class="p"><b class="${cls(r.profit)}">${r.profit > 0 ? '+' : ''}${fmt(r.profit)}</b><div class="small">${T('por unidad|per unit')}</div></div></header>
-  <ol class="steps">
-    <li><span class="n">1</span><div><span class="k">${T('Compra|Buy')}</span>${matLine(r.cost.mats, qty)}<span class="small"> · ${S(r.cost.matCost * qty)}</span></div></li>
-    <li><span class="n">2</span><div><span class="k">${T('Craftea|Craft')}</span>${T('en|in')} <b>${esc(r.craftCity)}</b>${r.cost.bonusCity === r.craftCity ? ' — ' + T('aquí te devuelven más material|extra material back here') : ''} <span class="small">(${T('recuperas el|you get back')} ${ret}% ${T('de los materiales|of the materials')})</span></div></li>
-    <li><span class="n">3</span><div><span class="k">${T('Vende|Sell')}</span>${T('en|in')} <b>${cityTxt(r.sellCity)}</b> ${T('a|at')} ${S(r.sell.gross)} ${T('cada uno|each')}${r.demand ? `<span class="small"> · ${T('se venden|about')} ${fmt(r.demand)} ${T('al día ahí|a day there')}</span>` : ''}</div></li>
-  </ol>
-  <footer><span>${r.qty ? `${T('Haz|Make')} <b>${fmt(r.qty)}</b> → ${T('pones|you put in')} ${S(r.invest)} ${T('y ganas|and make')} <b class="${cls(r.total)}">${S(r.total)}</b>` : T('Con tu plata no alcanza ni para una unidad|Not enough silver for a single unit')}</span><span class="btn small">${T('Ver detalle|Details')}</span></footer>
+  const cityBonus = r.cost.bonusCity === r.craftCity, daily = r.cost.R.daily > 0;
+  const bc = buyCities(r.cost.mats);
+  const b = [];
+  if (daily) b.push(`<span class="bdg fire">🔥 ${T('bono de hoy|today\'s bonus')}</span>`);
+  if (cityBonus) b.push(`<span class="bdg city">★ ${T('bono de ciudad|city bonus')}</span>`);
+  if (r.demand >= 20) b.push(`<span class="bdg fast">${T('se vende rápido|sells fast')}</span>`);
+  return `<article class="deal${i < 3 ? ' lead' : ''}" data-b="${r.base}" data-e="${r.e}">
+  <header><span class="rk">${i + 1}</span>${icon(r.id)}
+    <div class="t"><b>${esc(nameOf(r.id))}</b><span class="small">${tierBadge(r.id)} ${esc(catName(DB.items[r.base].cat))}</span></div>
+    <div class="p"><span class="pv">+${fmt(r.profit)}</span><span class="small">${T('por unidad|per unit')}</span></div></header>
+  ${b.length ? `<div class="bdgs">${b.join('')}</div>` : ''}
+  <div class="route">
+    ${stop(T('Compra en|Buy in'), bc.length === 1 ? esc(bc[0]) : `${bc.length} ${T('ciudades|cities')}`, fmt(r.cost.matCost * qty), false)}
+    <span class="ar">›</span>
+    ${stop(T('Fabrica en|Craft in'), esc(r.craftCity), `${T('recuperas|back')} ${ret}%`, cityBonus || daily)}
+    <span class="ar">›</span>
+    ${stop(T('Vende en|Sell in'), cityTxt(r.sellCity), r.sellCity === BM ? `Caerleon · ${fmt(r.sell.gross)}` : fmt(r.sell.gross), false)}
+  </div>
+  <div class="mats">${T('Materiales|Materials')}: ${matLine(r.cost.mats, qty)}${r.demand ? ` · <span class="small">${T('se venden|about')} ${fmt(r.demand)} ${T('al día|a day')}</span>` : ''}</div>
+  <footer><span>${r.qty ? `${T('Haz|Make')} <b>${fmt(r.qty)}</b> · ${T('pones|you put in')} ${fmt(r.invest)} · ${T('ganas|you make')} <b class="pos">${S(r.total)}</b>` : T('Con tu plata no alcanza ni para una unidad|Not enough silver for a single unit')}</span><span class="btn small">${T('Ver detalle|Details')}</span></footer>
   </article>`;
 }
 function flipCard(f, i) {
-  return `<article class="deal" data-item="${esc(f.id)}">
-  <header>${icon(f.id)}<div class="t"><b>${i + 1}. ${esc(nameOf(f.id))}</b><span class="small">${tierBadge(f.id)}</span></div>
-  <div class="p"><b class="pos">+${fmt(f.net)}</b><div class="small">${T('por unidad|per unit')} · ${f.margin.toFixed(0)}%</div></div></header>
-  <ol class="steps">
-    <li><span class="n">1</span><div><span class="k">${T('Compra|Buy')}</span>${T('en|in')} <b>${esc(f.buyCity)}</b> ${T('a|at')} ${S(f.buyPrice)}</div></li>
-    <li><span class="n">2</span><div><span class="k">${T('Vende|Sell')}</span>${T('en|in')} <b>${cityTxt(f.sellCity)}</b> ${T('a|at')} ${S(f.sellPrice)} <span class="small">(${esc(f.how)}) · ${T('se venden|about')} ${fmt(f.perDay)} ${T('al día|a day')}</span></div></li>
-  </ol>
-  <footer><span>${f.qty ? `${T('Lleva|Take')} <b>${fmt(f.qty)}</b> → ${T('ganas|you make')} <b class="pos">${S(f.net * f.qty)}</b>` : ''}</span><span class="small">${T('tienes que transportarlo tú|you carry it yourself')}</span></footer>
+  const b = f.perDay >= 20 ? `<div class="bdgs"><span class="bdg fast">${T('se vende rápido|sells fast')}</span></div>` : '';
+  return `<article class="deal${i < 3 ? ' lead' : ''}" data-item="${esc(f.id)}">
+  <header><span class="rk">${i + 1}</span>${icon(f.id)}
+    <div class="t"><b>${esc(nameOf(f.id))}</b><span class="small">${tierBadge(f.id)} · ${T('margen|margin')} ${f.margin.toFixed(0)}%</span></div>
+    <div class="p"><span class="pv">+${fmt(f.net)}</span><span class="small">${T('por unidad|per unit')}</span></div></header>
+  ${b}
+  <div class="route two">
+    ${stop(T('Compra en|Buy in'), esc(f.buyCity), fmt(f.buyPrice), false)}
+    <span class="ar">›</span>
+    ${stop(T('Vende en|Sell in'), cityTxt(f.sellCity), f.sellCity === BM ? `Caerleon · ${fmt(f.sellPrice)}` : fmt(f.sellPrice), false)}
+  </div>
+  <div class="mats">${esc(f.how)} · <span class="small">${T('se venden|about')} ${fmt(f.perDay)} ${T('al día|a day')}</span></div>
+  <footer><span>${f.qty ? `${T('Lleva|Take')} <b>${fmt(f.qty)}</b> · ${T('ganas|you make')} <b class="pos">${S(f.net * f.qty)}</b>` : ''}</span><span class="small">${T('lo transportas tú|you do the hauling')}</span></footer>
   </article>`;
 }
+function cityBonusRef() {
+  return `<details class="card" style="margin-top:16px"><summary>${T('¿Qué ciudad da bono a qué?|Which city gives a bonus to what?')}</summary>
+  <div class="lite" style="margin-top:8px">${CITIES.map(c => `<div class="r plain"><span class="n"><b>${c}</b><span class="small">${RULES.cityCraft[c].map(x => esc(dcName(x))).join(' · ')}</span></span>${RULES.cityRefine[c] ? `<span class="v"><b>${esc(T(KIND_NAME[RULES.cityRefine[c]]))}</b>${T('al refinar|when refining')}</span>` : ''}</span></div>`).join('')}</div>
+  <div class="note">${T('Fabricar en la ciudad con bono te devuelve un 15% más de materiales; refinar en la suya, un 40% más. El bono de hoy se suma encima.|Crafting in the bonus city returns 15% more materials; refining in its own city, 40% more. Today\'s bonus stacks on top.')}</div></details>`;
+}
+
 function renderToday() {
   const out = $('#todayOut'); const L = DAILY.latest; const p = P();
   if (!L) { out.innerHTML = `<div class="card empty">${T('Cargando los datos del mercado…|Loading market data…')}</div>`; return; }
   if (!TODAY.rows || TODAY.key !== JSON.stringify(p)) { out.innerHTML = `<div class="card empty">${T('Calculando qué te conviene hoy…|Working out what is worth it today…')}</div>`; setTimeout(() => { scanDaily(); TODAY.flips = null; renderToday(); }, 30); return; }
   if (!TODAY.flips) TODAY.flips = flipRows(p);
-  let h = '';
-  const top = TODAY.rows.filter(r => r.profit > 0 && r.qty > 0 && r.demand >= 1).slice(0, 8);
-  h += `<section class="sec"><h2>🛠 ${T('Fabrica esto hoy|Craft this today')}</h2><div class="small">${T('Lo que más plata deja con lo que tienes. Toca una tarjeta para ver los números completos.|What makes the most silver with what you have. Tap a card for the full numbers.')}</div>`;
+
+  const ok = TODAY.rows.filter(r => r.profit > 0 && r.qty > 0 && r.demand >= 1);
+  const cmp = { total: (a, b) => b.total - a.total, unit: (a, b) => b.profit - a.profit, fast: (a, b) => b.demand - a.demand }[TODAY.sort];
+  const top = ok.slice().sort(cmp).slice(0, 8);
+  const bestCraft = ok.length ? Math.max(...ok.map(r => r.total)) : 0;
+  const bestFlip = TODAY.flips.length ? Math.max(...TODAY.flips.map(f => f.net * f.qty)) : 0;
+  const bestAny = Math.max(bestCraft, bestFlip);
+
+  let h = `<div class="hero"><span class="small">${T('Con tus|With your')} <b>${fmt(p.capital)}</b> ${T('de plata, hoy lo mejor deja|in silver, today\'s best move makes')}</span>
+  <div class="big">+${fmt(bestAny)}</div>
+  <span class="small">${bestAny === 0 ? T('nada rentable con los datos de hoy|nothing profitable with today\'s data') : bestCraft >= bestFlip ? T('fabricando; la reventa deja|by crafting; reselling makes') + ' ' + fmt(bestFlip) : T('revendiendo; fabricar deja|by reselling; crafting makes') + ' ' + fmt(bestCraft)}</span></div>`;
+  h += bonusBar(p);
+
+  h += `<section class="sec"><div class="sechead"><h2>🛠 ${T('Fabrica esto hoy|Craft this today')}</h2>
+  <div class="chipset" id="sortChips">${[['total', 'Ganancia total|Total profit'], ['unit', 'Por unidad|Per unit'], ['fast', 'Se vende rápido|Sells fast']].map(([k, l]) => `<button data-s="${k}" class="${TODAY.sort === k ? 'on' : ''}">${T(l)}</button>`).join('')}</div></div>`;
   h += top.length ? `<div class="deals">${top.map((r, i) => craftCard(r, i, p)).join('')}</div>`
     : `<div class="card empty">${T('Hoy no sale rentable fabricar nada con estos datos. Mira la reventa de abajo.|Nothing is worth crafting with today\'s data. Look at the resale list below.')}</div>`;
   h += `</section>`;
 
-  h += `<section class="sec"><h2>🚚 ${T('Compra barato y revende|Buy low, sell high')}</h2><div class="small">${T('Sin fabricar nada: se compra en una ciudad y se vende en otra. Ya se descontó la comisión del mercado; el transporte corre por tu cuenta.|No crafting: buy in one city, sell in another. Market fees already deducted; you do the hauling.')}</div>`;
+  h += `<section class="sec"><div class="sechead"><h2>🚚 ${T('Compra barato y revende|Buy low, sell high')}</h2><span class="small">${T('sin fabricar nada · comisión ya descontada|no crafting · market fee already deducted')}</span></div>`;
   h += TODAY.flips.length ? `<div class="deals">${TODAY.flips.map(flipCard).join('')}</div>`
     : `<div class="card empty">${T('No hay diferencias de precio que valgan la pena hoy.|No price gaps worth the trip today.')}</div>`;
   h += `</section>`;
@@ -1098,16 +1217,19 @@ function renderToday() {
   const liteRow = r => {
     const ch = r.cheapest ? `${esc(r.cheapest[0])} ${fmt(r.cheapest[1])}` : '—';
     const de = r.dearest ? `${esc(r.dearest[0])} ${fmt(r.dearest[1])}` : '—';
-    return `<div class="r" data-item="${esc(r.item)}">${icon(r.item, 'sm')}<span class="n"><b>${esc(nameOf(r.item))}</b><span class="small">${T('más barato en|cheapest in')} ${ch} · ${T('más caro en|dearest in')} ${de}</span></span><span class="v"><b>${fmt(r.u7)}</b>${T('vendidos en 7 días|sold in 7 days')}</span></div>`;
+    return `<div class="r" data-item="${esc(r.item)}">${icon(r.item, 'sm')}<span class="n"><b>${esc(nameOf(r.item))}</b><span class="small">${T('barato en|cheap in')} ${ch} · ${T('caro en|dear in')} ${de}</span></span><span class="v"><b>${fmt(r.u7)}</b>${T('vendidos en 7 días|sold in 7 days')}</span></div>`;
   };
-  const liteRowS = r => `<div class="r" data-item="${esc(r.item)}">${icon(r.item, 'sm')}<span class="n"><b>${esc(nameOf(r.item))}</b><span class="small">${T('se vende sobre todo en|mostly sold in')} ${cn(r.top_city)} · ${fmt(r.avg7)} ${T('cada uno|each')}</span></span><span class="v"><b>${fmt(r.s7)}</b>${T('de plata movida|silver traded')}</span></div>`;
-  h += `<section class="sec"><h2>📦 ${T('Lo que más se mueve|What moves the most')}</h2><div class="grid g2" style="margin-top:10px">
+  const liteRowS = r => `<div class="r" data-item="${esc(r.item)}">${icon(r.item, 'sm')}<span class="n"><b>${esc(nameOf(r.item))}</b><span class="small">${T('sobre todo en|mostly in')} ${cn(r.top_city)} · ${fmt(r.avg7)} ${T('cada uno|each')}</span></span><span class="v"><b>${fmt(r.s7)}</b>${T('de plata movida|silver traded')}</span></div>`;
+  h += `<section class="sec"><div class="sechead"><h2>📦 ${T('Lo que más se mueve|What moves the most')}</h2></div><div class="grid g2" style="margin-top:10px">
   <div><h4>${T('Más unidades vendidas (7 días)|Most units sold (7 days)')}</h4><div class="lite">${L.top_units.slice(0, 8).map(liteRow).join('')}</div></div>
   <div><h4>${T('Donde más plata se mueve (7 días)|Most silver traded (7 days)')}</h4><div class="lite">${L.top_silver.slice(0, 8).map(liteRowS).join('')}</div></div></div></section>`;
 
+  h += cityBonusRef();
   h += `<section class="sec"><div class="controls"><button class="btn" data-go="lab">${T('Buscar un ítem concreto|Look up a specific item')}</button><button class="btn" data-go="daily">${T('Ver los 500 más vendidos|See the top 500')}</button><button class="btn" data-go="method">${T('¿De dónde salen estos datos?|Where does this data come from?')}</button></div>
   <div class="note">${T('Los precios de arriba son del volcado del mercado hasta el|Prices above come from the market dump up to')} <b>${dayTxt(L.data_until)}</b>; ${T('se renueva solo cada mañana. Pulsa <b>Actualizar precios</b> arriba para consultar el mercado de este mismo momento.|it refreshes automatically every morning. Press <b>Refresh prices</b> above to query the market right now.')}</div></section>`;
   out.innerHTML = h;
+  bindBonusBar();
+  const sc = $('#sortChips'); if (sc) sc.onclick = e => { const b = e.target.closest('button'); if (!b) return; TODAY.sort = b.dataset.s; renderToday(); };
   $$('#todayOut .deal[data-b]').forEach(c => c.onclick = () => openLab(c.dataset.b, +c.dataset.e));
   $$('#todayOut [data-item]').forEach(el => el.onclick = () => { const it = el.dataset.item, b = it.split('@')[0]; if (DB.items[b]) openLab(b, +(it.split('@')[1] || 0)); else { $('#dyQ').value = it; showTab('daily'); } });
   $$('#todayOut [data-go]').forEach(b => b.onclick = () => showTab(b.dataset.go));
