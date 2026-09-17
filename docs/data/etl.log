@@ -1,6 +1,4 @@
-# run 35170496184 · 2026-09-17 01:45:38 UTC · conclusión del ETL: failure
-/home/runner/work/albion/albion/etl/build_report.py:24: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  NOW = dt.datetime.utcnow()
+# run 35171970283 · 2026-09-17 02:07:10 UTC · conclusión del ETL: failure
 [etl] índice https://www.albion-online-data.com/database/: 14871 bytes en 0.6s
 [etl] https://www.albion-online-data.com/database/: 111 entradas; 4 db_backup; 75 market_history
 [etl]   db_backup: ('db_backup_2026-09-13T03_01_28.tgz', '13-Sep-2026 03:01', '259822714')
@@ -17,88 +15,15 @@
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   59G   86G  41% /
                total        used        free      shared  buff/cache   available
-Mem:           15989        1602       11815          45        2940       14386
+Mem:           15988        1629       11796          46        2930       14359
 Swap:           3071           0        3071
 [etl] descargando https://www.albion-online-data.com/database/db_backup_2026-09-16T03_01_36.tgz
 [etl] $ curl -fsSL --retry 3 --retry-delay 10 --connect-timeout 60 -A 'Mozilla/5.0 (X11; Linux x86_64) AlbionMarketIntel/1.0 (+github actions)' -o 'db_backup_2026-09-16T03_01_36.tgz' 'https://www.albion-online-data.com/database/db_backup_2026-09-16T03_01_36.tgz'
-[etl] descargado 255 MB en 14 s
+[etl] descargado 255 MB en 15 s
 [etl] $ df -h . || true
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   59G   86G  41% /
 [etl] miembros del tar: ['drwxr-xr-x root/root         0 2026-09-16 03:00 ./', '-rw-r--r-- root/root 1940369878 2026-09-16 03:00 ./backup_2026-09-16T03:00:32Z.sql'] ... total 2
-[etl] cabecera del .sql:
--- MariaDB dump 10.19  Distrib 10.6.12-MariaDB, for Linux (x86_64)
---
--- Host: 172.20.0.1    Database: albion
--- ------------------------------------------------------
--- Server version	10.6.14-MariaDB-1:10.6.14+maria~ubu2004
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Current Database: `albion`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `albion` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-
-USE `albion`;
-
---
--- Table structure for table `ar_internal_metadata`
---
-
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ar_internal_metadata` (
-  `key` varchar(255) NOT NULL,
-  `value` varchar(255) DEFAULT NULL,
-  `created_at` datetime(6) NOT NULL,
-  `updated_at` datetime(6) NOT NULL,
-  PRIMARY KEY (`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ar_internal_metadata`
---
-
-LOCK TABLES `ar_internal_metadata` WRITE;
-/*!40000 ALTER TABLE `ar_internal_metadata` DISABLE KEYS */;
-INSERT INTO `ar_internal_metadata` VALUES ('environment','production','2026-07-05 17:12:12.294821','2026-07-05 17:12:12.294823');
-/*!40000 ALTER TABLE `ar_internal_metadata` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `gold_prices`
---
-
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `gold_prices` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `timestamp` timestamp NULL DEFAULT NULL,
-  `price` int(11) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idx_gold_prices_timestamp` (`timestamp`)
-) ENGINE=InnoDB AUTO_INCREMENT=72243 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `gold_prices`
---
-
-LOCK TABLES `gold_prices` WRITE;
-/*!40000 ALTER TABLE `gold_prices` DISABLE KEYS */;
-INSERT INTO `gold_prices` VALUES (1,'2018-01-09 23:00:00',6370000),(2,'2018-01-09 22:00:00',6420000),(3,'2018-01-09 21:00:00',6420000),(4,'2018-01-09 20:00:00',6380000),(5,'2018-01-09 19:00:00',6370000),(6,'2018-01-09 18:00:00',6360000),(7,'2018-01-09 17:00:00',6310000),(8,'2018-01-09 16:00:00',6300000),(9,'2018-01-09 15:00:00',6290000),(10,'2018-01-09 14:00:00',6290000),(11,'2018-01-09 13:00:00',6270000),(12,'2018-01-09 12:00:00',6270000),(13,'2018-01-09 11:00:00',62
 [etl] sentencias CREATE TABLE:
 32:CREATE TABLE `ar_internal_metadata` (
 33-  `key` varchar(255) NOT NULL,
@@ -146,8 +71,7 @@ INSERT INTO `gold_prices` VALUES (1,'2018-01-09 23:00:00',6370000),(2,'2018-01-0
 79--- Table structure for table `market_history`
 80---
 81-
-82-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-83-/*!40101 SET character_set_client = utf8 */;
+--
 84:CREATE TABLE `market_history` (
 85-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 86-  `item_amount` bigint(20) unsigned NOT NULL,
@@ -196,11 +120,6 @@ INSERT INTO `gold_prices` VALUES (1,'2018-01-09 23:00:00',6370000),(2,'2018-01-0
 1868-/*!40101 SET character_set_client = @saved_cs_client */;
 1869-
 1870---
-1871--- Dumping data for table `market_orders`
-1872---
-1873-
-1874-LOCK TABLES `market_orders` WRITE;
-1875-/*!40000 ALTER TABLE `market_orders` DISABLE KEYS */;
 --
 2028:CREATE TABLE `market_orders_expired` (
 2029-  `albion_id` bigint(20) unsigned NOT NULL,
@@ -227,172 +146,7 @@ INSERT INTO `gold_prices` VALUES (1,'2018-01-09 23:00:00',6370000),(2,'2018-01-0
 2050--- Dumping data for table `market_orders_expired`
 2051---
 2052-
-2053-LOCK TABLES `market_orders_expired` WRITE;
-2054-/*!40000 ALTER TABLE `market_orders_expired` DISABLE KEYS */;
-2055-/*!40000 ALTER TABLE `market_orders_expired` ENABLE KEYS */;
-2056-UNLOCK TABLES;
-2057-
-2058---
-2059--- Table structure for table `market_stats`
-2060---
-2061-
-2062-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-2063-/*!40101 SET character_set_client = utf8 */;
-2064:CREATE TABLE `market_stats` (
-2065-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-2066-  `item_id` varchar(255) NOT NULL,
-2067-  `location` smallint(5) unsigned NOT NULL,
-2068-  `price_min` bigint(20) unsigned DEFAULT NULL,
-2069-  `price_max` bigint(20) unsigned DEFAULT NULL,
-2070-  `price_avg` decimal(10,0) DEFAULT NULL,
-2071-  `timestamp` timestamp NULL DEFAULT NULL,
-2072-  PRIMARY KEY (`id`),
-2073-  UNIQUE KEY `item_id_location_timestamp_unique` (`item_id`,`location`,`timestamp`) USING BTREE,
-2074-  KEY `item_id` (`item_id`),
-[...]
-
-LOCK TABLES `gold_prices` WRITE;
-/*!40000 ALTER TABLE `gold_prices` DISABLE KEYS */;
-INSERT INTO `gold_prices` VALUES (1,'2018-01-09 23:00:00',6370000),(2,'2018-01-09 22:00:00',6420000),(3,'2018-01-09 21:00:00',6420000),(4,'2018-01-09 20:00:00',6380000),(5,'2018-01-09 19:00:00',6370000),(6,'2018-01-09 18:00:00',6360000),(7,'2018-01-09 17:00:00',6310000),(8,'2018-01-09 16:00:00',6300000),(9,'2018-01-09 15:00:00',6290000),(10,'2018-01-09 14:00:00',6290000),(11,'2018-01-09 13:00:00',6270000),(12,'2018-01-09 12:00:00',6270000),(13,'2018-01-09 11:00:00',62
-[etl] sentencias CREATE TABLE:
-32:CREATE TABLE `ar_internal_metadata` (
-33-  `key` varchar(255) NOT NULL,
-34-  `value` varchar(255) DEFAULT NULL,
-35-  `created_at` datetime(6) NOT NULL,
-36-  `updated_at` datetime(6) NOT NULL,
-37-  PRIMARY KEY (`key`)
-38-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-39-/*!40101 SET character_set_client = @saved_cs_client */;
-40-
-41---
-42--- Dumping data for table `ar_internal_metadata`
-43---
-44-
-45-LOCK TABLES `ar_internal_metadata` WRITE;
-46-/*!40000 ALTER TABLE `ar_internal_metadata` DISABLE KEYS */;
-48-/*!40000 ALTER TABLE `ar_internal_metadata` ENABLE KEYS */;
-49-UNLOCK TABLES;
-50-
-51---
-52--- Table structure for table `gold_prices`
-53---
-54-
-55-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-56-/*!40101 SET character_set_client = utf8 */;
-57:CREATE TABLE `gold_prices` (
-58-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-59-  `timestamp` timestamp NULL DEFAULT NULL,
-60-  `price` int(11) unsigned DEFAULT NULL,
-61-  PRIMARY KEY (`id`),
-62-  KEY `idx_gold_prices_timestamp` (`timestamp`)
-63-) ENGINE=InnoDB AUTO_INCREMENT=72243 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-64-/*!40101 SET character_set_client = @saved_cs_client */;
-65-
-66---
-67--- Dumping data for table `gold_prices`
-68---
-69-
-70-LOCK TABLES `gold_prices` WRITE;
-71-/*!40000 ALTER TABLE `gold_prices` DISABLE KEYS */;
-75-/*!40000 ALTER TABLE `gold_prices` ENABLE KEYS */;
-76-UNLOCK TABLES;
-77-
-78---
-79--- Table structure for table `market_history`
-80---
-81-
-82-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-83-/*!40101 SET character_set_client = utf8 */;
-84:CREATE TABLE `market_history` (
-85-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-86-  `item_amount` bigint(20) unsigned NOT NULL,
-87-  `silver_amount` bigint(20) unsigned NOT NULL,
-88-  `item_id` varchar(128) NOT NULL,
-89-  `location` smallint(5) unsigned NOT NULL,
-90-  `quality` tinyint(3) unsigned NOT NULL,
-91-  `timestamp` datetime(6) NOT NULL,
-92-  `aggregation` tinyint(4) NOT NULL DEFAULT 6,
-93-  PRIMARY KEY (`id`),
-94-  UNIQUE KEY `Main` (`item_id`,`quality`,`location`,`timestamp`,`aggregation`),
-95-  KEY `Simple` (`item_id`,`timestamp`,`aggregation`),
-96-  KEY `Aggregation` (`aggregation`,`timestamp`) USING BTREE
-97-) ENGINE=InnoDB AUTO_INCREMENT=969322377 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-98-/*!40101 SET character_set_client = @saved_cs_client */;
-99-
-100---
-101--- Dumping data for table `market_history`
-102---
-103-
-104-LOCK TABLES `market_history` WRITE;
-105-/*!40000 ALTER TABLE `market_history` DISABLE KEYS */;
 --
-1846:CREATE TABLE `market_orders` (
-1847-  `albion_id` bigint(20) unsigned NOT NULL,
-1848-  `item_id` varchar(255) DEFAULT NULL,
-1849-  `quality_level` tinyint(3) unsigned DEFAULT NULL,
-1850-  `enchantment_level` tinyint(3) unsigned DEFAULT NULL,
-1851-  `price` bigint(20) unsigned DEFAULT NULL,
-1852-  `initial_amount` int(11) unsigned DEFAULT NULL,
-1853-  `amount` int(11) unsigned DEFAULT NULL,
-1854-  `auction_type` varchar(255) DEFAULT NULL,
-1855-  `expires` timestamp NULL DEFAULT NULL,
-1856-  `location` smallint(5) unsigned NOT NULL,
-1857-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-1858-  `created_at` timestamp NULL DEFAULT NULL,
-1859-  `updated_at` timestamp NULL DEFAULT NULL,
-1860-  `deleted_at` timestamp NULL DEFAULT NULL,
-1861-  `updated_at_bin` int(10) unsigned GENERATED ALWAYS AS (unix_timestamp(`updated_at`) DIV 300 * 300) STORED,
-1862-  PRIMARY KEY (`id`),
-1863-  UNIQUE KEY `uix_market_orders_albion_id` (`albion_id`),
-1864-  KEY `expired` (`deleted_at`,`expires`,`updated_at`),
-1865-  KEY `main` (`item_id`,`location`,`updated_at`,`deleted_at`),
-1866-  KEY `stats_bin` (`item_id`,`location`,`quality_level`,`auction_type`,`updated_at_bin`)
-1867-) ENGINE=InnoDB AUTO_INCREMENT=3236990932 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-1868-/*!40101 SET character_set_client = @saved_cs_client */;
-1869-
-1870---
-1871--- Dumping data for table `market_orders`
-1872---
-1873-
-1874-LOCK TABLES `market_orders` WRITE;
-1875-/*!40000 ALTER TABLE `market_orders` DISABLE KEYS */;
---
-2028:CREATE TABLE `market_orders_expired` (
-2029-  `albion_id` bigint(20) unsigned NOT NULL,
-2030-  `item_id` varchar(255) DEFAULT NULL,
-2031-  `quality_level` tinyint(3) unsigned DEFAULT NULL,
-2032-  `enchantment_level` tinyint(3) unsigned DEFAULT NULL,
-2033-  `price` bigint(20) unsigned DEFAULT NULL,
-2034-  `initial_amount` int(11) unsigned DEFAULT NULL,
-2035-  `amount` int(11) unsigned DEFAULT NULL,
-2036-  `auction_type` varchar(255) DEFAULT NULL,
-2037-  `expires` timestamp NULL DEFAULT NULL,
-2038-  `location` smallint(5) unsigned NOT NULL,
-2039-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-2040-  `created_at` timestamp NULL DEFAULT NULL,
-2041-  `updated_at` timestamp NULL DEFAULT NULL,
-2042-  `deleted_at` timestamp NULL DEFAULT NULL,
-2043-  PRIMARY KEY (`id`),
-2044-  UNIQUE KEY `uix_market_orders_expired_albion_id` (`albion_id`),
-2045-  KEY `updated_at_expired` (`updated_at`)
-2046-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=DYNAMIC;
-2047-/*!40101 SET character_set_client = @saved_cs_client */;
-2048-
-2049---
-2050--- Dumping data for table `market_orders_expired`
-2051---
-2052-
-2053-LOCK TABLES `market_orders_expired` WRITE;
-2054-/*!40000 ALTER TABLE `market_orders_expired` DISABLE KEYS */;
-2055-/*!40000 ALTER TABLE `market_orders_expired` ENABLE KEYS */;
-2056-UNLOCK TABLES;
-2057-
-2058---
-2059--- Table structure for table `market_stats`
-2060---
-2061-
-2062-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-2063-/*!40101 SET character_set_client = utf8 */;
 2064:CREATE TABLE `market_stats` (
 2065-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 2066-  `item_id` varchar(255) NOT NULL,
@@ -418,12 +172,7 @@ INSERT INTO `gold_prices` VALUES (1,'2018-01-09 23:00:00',6370000),(2,'2018-01-0
 2086-/*!40000 ALTER TABLE `market_stats` ENABLE KEYS */;
 2087-UNLOCK TABLES;
 2088-
-2089---
-2090--- Table structure for table `schema_migrations`
-2091---
-2092-
-2093-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-2094-/*!40101 SET character_set_client = utf8 */;
+--
 2095:CREATE TABLE `schema_migrations` (
 2096-  `version` varchar(255) NOT NULL,
 2097-  PRIMARY KEY (`version`)
@@ -448,55 +197,306 @@ INSERT INTO `gold_prices` VALUES (1,'2018-01-09 23:00:00',6370000),(2,'2018-01-0
 2117-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 2118-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 2119-
-2120--- Dump completed on 2026-09-16  3:00:57
 
-[etl] $ mysql -h127.0.0.1 -P3306 -uroot -proot --protocol=tcp -e "SELECT VERSION(); SET GLOBAL innodb_flush_log_at_trx_commit=0; SET GLOBAL sync_binlog=0; SET GLOBAL max_allowed_packet=1073741824; DROP DATABASE IF EXISTS aodp; CREATE DATABASE aodp CHARACTER SET utf8mb4;"
+[etl] primer INSERT de market_orders: INSERT INTO `market_orders` VALUES (11426221477,'T8_2H_CROSSBOWLARGE@4',4,4,31529550,1,1,'request','2026-10-16 02:24:58',3003,1542106343,'2024-05-10 04:03:14','2026-09-16 02:24:58',NULL,1789525200),(11389864807,'T8_2H_POLEHAMMER@4',4,4,30801945,1,1,'request','2026-10-16 02:24:57',3003,1542429698,'2024-05-10 22:14:35','2026-09-16 02:24:57',NULL,1789525200),(11374396383,'T8_BAG_INSIGHT@4',5,4,421207 | valores por fila: 15
+[etl] $ mysql -h127.0.0.1 -P3306 -uroot -proot --protocol=tcp -e "SELECT VERSION(); SET GLOBAL innodb_flush_log_at_trx_commit=0; SET GLOBAL sync_binlog=0; SET GLOBAL max_allowed_packet=1073741824; SET GLOBAL time_zone='+00:00'; DROP DATABASE IF EXISTS albion; DROP DATABASE IF EXISTS aodp; CREATE DATABASE aodp CHARACTER SET utf8mb4;"
 mysql: [Warning] Using a password on the command line interface can be insecure.
 VERSION()
 8.0.46-0ubuntu0.24.04.4
-[etl] $ (echo 'SET sql_log_bin=0; SET unique_checks=0; SET foreign_key_checks=0;'; tar -xOzf 'db_backup_2026-09-16T03_01_36.tgz' './backup_2026-09-16T03:00:32Z.sql' | grep -v '^INSERT INTO `market_orders_expired`') | mysql -h127.0.0.1 -P3306 -uroot -proot --protocol=tcp --max_allowed_packet=1G --force aodp 2>&1 | tail -n 40
-ERROR 1146 (42S02) at line 1981: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1982: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1983: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1984: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1985: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1986: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1987: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1988: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1989: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1990: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1991: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1992: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1993: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1994: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1995: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1996: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1997: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1998: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 1999: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2000: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2001: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2002: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2003: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2004: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2005: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2006: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2007: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2008: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2009: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2010: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2011: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2012: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2013: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2014: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2015: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2016: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2017: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2018: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2019: Table 'albion.market_orders' doesn't exist
-ERROR 1146 (42S02) at line 2020: Table 'albion.market_orders' doesn't exist
-[etl] carga terminada en 952 s
+[etl] $ (echo 'SET sql_log_bin=0; SET unique_checks=0; SET foreign_key_checks=0; SET time_zone="+00:00";'; tar -xOzf 'db_backup_2026-09-16T03_01_36.tgz' './backup_2026-09-16T03:00:32Z.sql' | python3 /home/runner/work/albion/albion/etl/build_report.py --filter 15) | mysql -h127.0.0.1 -P3306 -uroot -proot --protocol=tcp --max_allowed_packet=1G --force aodp 2>&1 | grep -v 'password on the command line' | head -n 60
+[etl] carga terminada en 1055 s
 [etl] $ df -h . || true
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   65G   80G  45% /
-No encuentro la tabla de historial. Tablas: 
+[etl] base de datos con las tablas: performance_schema
+[etl] tablas y filas:
+TABLE_NAME	TABLE_ROWS	mb
+accounts	128	0
+binary_log_transaction_compression_stats	0	0
+cond_instances	256	0
+data_lock_waits	99999	0
+data_locks	99999	0
+error_log	88	0
+events_errors_summary_by_account_by_error	210176	0
+events_errors_summary_by_host_by_error	210176	0
+events_errors_summary_by_thread_by_error	420352	0
+events_errors_summary_by_user_by_error	210176	0
+events_errors_summary_global_by_error	5331	0
+events_stages_current	256	0
+events_stages_history	2560	0
+events_stages_history_long	10000	0
+events_stages_summary_by_account_by_event_name	22400	0
+events_stages_summary_by_host_by_event_name	22400	0
+events_stages_summary_by_thread_by_event_name	44800	0
+events_stages_summary_by_user_by_event_name	22400	0
+events_stages_summary_global_by_event_name	175	0
+events_statements_current	2560	0
+events_statements_histogram_by_digest	10000	0
+events_statements_histogram_global	450	0
+events_statements_history	2560	0
+events_statements_history_long	10000	0
+events_statements_summary_by_account_by_event_name	28032	0
+events_statements_summary_by_digest	10000	0
+events_statements_summary_by_host_by_event_name	28032	0
+events_statements_summary_by_program	0	0
+events_statements_summary_by_thread_by_event_name	56064	0
+events_statements_summary_by_user_by_event_name	28032	0
+events_statements_summary_global_by_event_name	219	0
+events_transactions_current	256	0
+events_transactions_history	2560	0
+events_transactions_history_long	10000	0
+events_transactions_summary_by_account_by_event_name	128	0
+events_transactions_summary_by_host_by_event_name	128	0
+events_transactions_summary_by_thread_by_event_name	256	0
+events_transactions_summary_by_user_by_event_name	128	0
+[...]
+[etl] tabla accounts [('USER', 'char'), ('HOST', 'char'), ('CURRENT_CONNECTIONS', 'bigint'), ('TOTAL_CONNECTIONS', 'bigint'), ('MAX_SESSION_CONTROLLED_MEMORY', 'bigint'), ('MAX_SESSION_TOTAL_MEMORY', 'bigint')]
+[etl]   filas~ 128 muestra: ((None, None, 36, 47, 272128, 66901877), ('event_scheduler', 'localhost', 1, 1, 0, 16665), ('root', 'localhost', 1, 6, 56485848, 58026813))
+[etl] tabla binary_log_transaction_compression_stats [('LOG_TYPE', 'enum'), ('COMPRESSION_TYPE', 'varchar'), ('TRANSACTION_COUNTER', 'bigint'), ('COMPRESSED_BYTES_COUNTER', 'bigint'), ('UNCOMPRESSED_BYTES_COUNTER', 'bigint'), ('COMPRESSION_PERCENTAGE', 'smallint'), ('FIRST_TRANSACTION_ID', 'text'), ('FIRST_TRANSACTION_COMPRESSED_BYTES', 'bigint'), ('FIRST_TRANSACTION_UNCOMPRESSED_BYTES', 'bigint'), ('FIRST_TRANSACTION_TIMESTAMP', 'timestamp'), ('LAST_TRANSACTION_ID', 'text'), ('LAST_TRANSACTION_COMPRESSED_BYTES', 'bigint'), ('LAST_TRANSACTION_UNCOMPRESSED_BYTES', 'bigint'), ('LAST_TRANSACTION_TIMESTAMP', 'timestamp')]
+[etl]   filas~ 0 muestra: (('BINARY', 'NONE', 3, 334, 334, 0, 'ANONYMOUS', 107, 107, datetime.datetime(2026, 9, 17, 1, 49, 34, 493619), 'ANONYMOUS', 126, 126, datetime.datetime(2026, 9, 17, 1, 49, 34, 499575)),)
+[etl] tabla cond_instances [('NAME', 'varchar'), ('OBJECT_INSTANCE_BEGIN', 'bigint')]
+[etl]   filas~ 256 muestra: (('wait/synch/cond/sql/COND_manager', 1125899906842624), ('wait/synch/cond/sql/COND_server_started', 1125899906908160), ('wait/synch/cond/sql/COND_compress_gtid_table', 1125899906973696))
+[etl] tabla data_lock_waits [('ENGINE', 'varchar'), ('REQUESTING_ENGINE_LOCK_ID', 'varchar'), ('REQUESTING_ENGINE_TRANSACTION_ID', 'bigint'), ('REQUESTING_THREAD_ID', 'bigint'), ('REQUESTING_EVENT_ID', 'bigint'), ('REQUESTING_OBJECT_INSTANCE_BEGIN', 'bigint'), ('BLOCKING_ENGINE_LOCK_ID', 'varchar'), ('BLOCKING_ENGINE_TRANSACTION_ID', 'bigint'), ('BLOCKING_THREAD_ID', 'bigint'), ('BLOCKING_EVENT_ID', 'bigint'), ('BLOCKING_OBJECT_INSTANCE_BEGIN', 'bigint')]
+[etl]   filas~ 99999 muestra: ()
+[etl] tabla data_locks [('ENGINE', 'varchar'), ('ENGINE_LOCK_ID', 'varchar'), ('ENGINE_TRANSACTION_ID', 'bigint'), ('THREAD_ID', 'bigint'), ('EVENT_ID', 'bigint'), ('OBJECT_SCHEMA', 'varchar'), ('OBJECT_NAME', 'varchar'), ('PARTITION_NAME', 'varchar'), ('SUBPARTITION_NAME', 'varchar'), ('INDEX_NAME', 'varchar'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('LOCK_TYPE', 'varchar'), ('LOCK_MODE', 'varchar'), ('LOCK_STATUS', 'varchar'), ('LOCK_DATA', 'varchar')]
+[etl]   filas~ 99999 muestra: ()
+[etl] tabla error_log [('LOGGED', 'timestamp'), ('THREAD_ID', 'bigint'), ('PRIO', 'enum'), ('ERROR_CODE', 'varchar'), ('SUBSYSTEM', 'varchar'), ('DATA', 'text')]
+[etl]   filas~ 88 muestra: ((datetime.datetime(2026, 9, 17, 1, 48, 41, 32888), 0, 'System', 'MY-010116', 'Server', '/usr/sbin/mysqld (mysqld 8.0.46-0ubuntu0.24.04.4) starting as process 2045'), (datetime.datetime(2026, 9, 17, 1, 48, 41, 166135), 1, 'System', 'MY-013576', 'InnoDB', 'InnoDB initialization has started.'), (datetime.datetime(2026, 9, 17, 1, 48, 42, 568868), 1, 'System', 'MY-013577', 'InnoDB', 'InnoDB initialization has ended.'))
+[etl] tabla events_errors_summary_by_account_by_error [('USER', 'char'), ('HOST', 'char'), ('ERROR_NUMBER', 'int'), ('ERROR_NAME', 'varchar'), ('SQL_STATE', 'varchar'), ('SUM_ERROR_RAISED', 'bigint'), ('SUM_ERROR_HANDLED', 'bigint'), ('FIRST_SEEN', 'timestamp'), ('LAST_SEEN', 'timestamp')]
+[etl]   filas~ 210176 muestra: ((None, None, None, None, None, 0, 0, None, None), (None, None, 1004, 'ER_CANT_CREATE_FILE', 'HY000', 0, 0, None, None), (None, None, 1005, 'ER_CANT_CREATE_TABLE', 'HY000', 0, 0, None, None))
+[etl] tabla events_errors_summary_by_host_by_error [('HOST', 'char'), ('ERROR_NUMBER', 'int'), ('ERROR_NAME', 'varchar'), ('SQL_STATE', 'varchar'), ('SUM_ERROR_RAISED', 'bigint'), ('SUM_ERROR_HANDLED', 'bigint'), ('FIRST_SEEN', 'timestamp'), ('LAST_SEEN', 'timestamp')]
+[etl]   filas~ 210176 muestra: ((None, None, None, None, 0, 0, None, None), (None, 1004, 'ER_CANT_CREATE_FILE', 'HY000', 0, 0, None, None), (None, 1005, 'ER_CANT_CREATE_TABLE', 'HY000', 0, 0, None, None))
+[etl] tabla events_errors_summary_by_thread_by_error [('THREAD_ID', 'bigint'), ('ERROR_NUMBER', 'int'), ('ERROR_NAME', 'varchar'), ('SQL_STATE', 'varchar'), ('SUM_ERROR_RAISED', 'bigint'), ('SUM_ERROR_HANDLED', 'bigint'), ('FIRST_SEEN', 'timestamp'), ('LAST_SEEN', 'timestamp')]
+[etl]   filas~ 420352 muestra: ((1, None, None, None, 0, 0, None, None), (1, 1004, 'ER_CANT_CREATE_FILE', 'HY000', 0, 0, None, None), (1, 1005, 'ER_CANT_CREATE_TABLE', 'HY000', 0, 0, None, None))
+[etl] tabla events_errors_summary_by_user_by_error [('USER', 'char'), ('ERROR_NUMBER', 'int'), ('ERROR_NAME', 'varchar'), ('SQL_STATE', 'varchar'), ('SUM_ERROR_RAISED', 'bigint'), ('SUM_ERROR_HANDLED', 'bigint'), ('FIRST_SEEN', 'timestamp'), ('LAST_SEEN', 'timestamp')]
+[etl]   filas~ 210176 muestra: ((None, None, None, None, 0, 0, None, None), (None, 1004, 'ER_CANT_CREATE_FILE', 'HY000', 0, 0, None, None), (None, 1005, 'ER_CANT_CREATE_TABLE', 'HY000', 0, 0, None, None))
+[etl] tabla events_errors_summary_global_by_error [('ERROR_NUMBER', 'int'), ('ERROR_NAME', 'varchar'), ('SQL_STATE', 'varchar'), ('SUM_ERROR_RAISED', 'bigint'), ('SUM_ERROR_HANDLED', 'bigint'), ('FIRST_SEEN', 'timestamp'), ('LAST_SEEN', 'timestamp')]
+[etl]   filas~ 5331 muestra: ((None, None, None, 0, 0, None, None), (1004, 'ER_CANT_CREATE_FILE', 'HY000', 0, 0, None, None), (1005, 'ER_CANT_CREATE_TABLE', 'HY000', 0, 0, None, None))
+[etl] tabla events_stages_current [('THREAD_ID', 'bigint'), ('EVENT_ID', 'bigint'), ('END_EVENT_ID', 'bigint'), ('EVENT_NAME', 'varchar'), ('SOURCE', 'varchar'), ('TIMER_START', 'bigint'), ('TIMER_END', 'bigint'), ('TIMER_WAIT', 'bigint'), ('WORK_COMPLETED', 'bigint'), ('WORK_ESTIMATED', 'bigint'), ('NESTING_EVENT_ID', 'bigint'), ('NESTING_EVENT_TYPE', 'enum')]
+[etl]   filas~ 256 muestra: ()
+[etl] tabla events_stages_history [('THREAD_ID', 'bigint'), ('EVENT_ID', 'bigint'), ('END_EVENT_ID', 'bigint'), ('EVENT_NAME', 'varchar'), ('SOURCE', 'varchar'), ('TIMER_START', 'bigint'), ('TIMER_END', 'bigint'), ('TIMER_WAIT', 'bigint'), ('WORK_COMPLETED', 'bigint'), ('WORK_ESTIMATED', 'bigint'), ('NESTING_EVENT_ID', 'bigint'), ('NESTING_EVENT_TYPE', 'enum')]
+[etl]   filas~ 2560 muestra: ()
+[etl] tabla events_stages_history_long [('THREAD_ID', 'bigint'), ('EVENT_ID', 'bigint'), ('END_EVENT_ID', 'bigint'), ('EVENT_NAME', 'varchar'), ('SOURCE', 'varchar'), ('TIMER_START', 'bigint'), ('TIMER_END', 'bigint'), ('TIMER_WAIT', 'bigint'), ('WORK_COMPLETED', 'bigint'), ('WORK_ESTIMATED', 'bigint'), ('NESTING_EVENT_ID', 'bigint'), ('NESTING_EVENT_TYPE', 'enum')]
+[etl]   filas~ 10000 muestra: ()
+[etl] tabla events_stages_summary_by_account_by_event_name [('USER', 'char'), ('HOST', 'char'), ('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint')]
+[etl]   filas~ 22400 muestra: ((None, None, 'stage/sql/After create', 0, 0, 0, 0, 0), (None, None, 'stage/sql/preparing for alter table', 0, 0, 0, 0, 0), (None, None, 'stage/sql/altering table', 0, 0, 0, 0, 0))
+[etl] tabla events_stages_summary_by_host_by_event_name [('HOST', 'char'), ('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint')]
+[etl]   filas~ 22400 muestra: ((None, 'stage/sql/After create', 0, 0, 0, 0, 0), (None, 'stage/sql/preparing for alter table', 0, 0, 0, 0, 0), (None, 'stage/sql/altering table', 0, 0, 0, 0, 0))
+[etl] tabla events_stages_summary_by_thread_by_event_name [('THREAD_ID', 'bigint'), ('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint')]
+[etl]   filas~ 44800 muestra: ((1, 'stage/sql/After create', 0, 0, 0, 0, 0), (1, 'stage/sql/preparing for alter table', 0, 0, 0, 0, 0), (1, 'stage/sql/altering table', 0, 0, 0, 0, 0))
+[etl] tabla events_stages_summary_by_user_by_event_name [('USER', 'char'), ('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint')]
+[etl]   filas~ 22400 muestra: ((None, 'stage/sql/After create', 0, 0, 0, 0, 0), (None, 'stage/sql/preparing for alter table', 0, 0, 0, 0, 0), (None, 'stage/sql/altering table', 0, 0, 0, 0, 0))
+[etl] tabla events_stages_summary_global_by_event_name [('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint')]
+[etl]   filas~ 175 muestra: (('stage/sql/After create', 0, 0, 0, 0, 0), ('stage/sql/preparing for alter table', 0, 0, 0, 0, 0), ('stage/sql/altering table', 0, 0, 0, 0, 0))
+[etl] tabla events_statements_current [('THREAD_ID', 'bigint'), ('EVENT_ID', 'bigint'), ('END_EVENT_ID', 'bigint'), ('EVENT_NAME', 'varchar'), ('SOURCE', 'varchar'), ('TIMER_START', 'bigint'), ('TIMER_END', 'bigint'), ('TIMER_WAIT', 'bigint'), ('LOCK_TIME', 'bigint'), ('SQL_TEXT', 'longtext'), ('DIGEST', 'varchar'), ('DIGEST_TEXT', 'longtext'), ('CURRENT_SCHEMA', 'varchar'), ('OBJECT_TYPE', 'varchar'), ('OBJECT_SCHEMA', 'varchar'), ('OBJECT_NAME', 'varchar'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('MYSQL_ERRNO', 'int'), ('RETURNED_SQLSTATE', 'varchar'), ('MESSAGE_TEXT', 'varchar'), ('ERRORS', 'bigint'), ('WARNINGS', 'bigint'), ('ROWS_AFFECTED', 'bigint'), ('ROWS_SENT', 'bigint'), ('ROWS_EXAMINED', 'bigint'), ('CREATED_TMP_DISK_TABLES', 'bigint'), ('CREATED_TMP_TABLES', 'bigint'), ('SELECT_FULL_JOIN', 'bigint'), ('SELECT_FULL_RANGE_JOIN', 'bigint'), ('SELECT_RANGE', 'bigint'), ('SELECT_RANGE_CHECK', 'bigint'), ('SELECT_SCAN', 'bigint'), ('SORT_MERGE_PASSES', 'bigint'), ('SORT_RANGE', 'bigint'), ('SORT_ROWS', 'bigint'), ('SORT_SCAN', 'bigint'), ('NO_INDEX_USED', 'bigint'), ('NO_GOOD_INDEX_USED', 'bigint'), ('NESTING_EVENT_ID', 'bigint'), ('NESTING_EVENT_TYPE', 'enum'), ('NESTING_EVENT_LEVEL', 'int'), ('STATEMENT_ID', 'bigint'), ('CPU_TIME', 'bigint'), ('MAX_CONTROLLED_MEMORY', 'bigint'), ('MAX_TOTAL_MEMORY', 'bigint'), ('EXECUTION_ENGINE', 'enum')]
+[etl]   filas~ 2560 muestra: ((53, 43, None, 'statement/sql/select', 'init_net_server_extension.cc:103', 1109155833859000, 1109155908447000, 74588000, 1000000, 'select * from `events_statements_current` limit 3', '5af56ffce7647dcf88d4154cf7f395d5b64bf1bd1e9808aaa78e2f27dfeaf620', 'SELECT * FROM `events_statements_current` LIMIT ?', 'performance_schema', None, None, None, None, 0, None, None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3, 'TRANSACTION', 0, 2029, 0, 0, 0, 'PRIMARY'),)
+[etl] tabla events_statements_histogram_by_digest [('SCHEMA_NAME', 'varchar'), ('DIGEST', 'varchar'), ('BUCKET_NUMBER', 'int'), ('BUCKET_TIMER_LOW', 'bigint'), ('BUCKET_TIMER_HIGH', 'bigint'), ('COUNT_BUCKET', 'bigint'), ('COUNT_BUCKET_AND_LOWER', 'bigint'), ('BUCKET_QUANTILE', 'double')]
+[etl]   filas~ 10000 muestra: ((None, '44e35cee979ba420eb49a8471f852bbe15b403c89742704817dfbaace0d99dbb', 0, 0, 10000000, 0, 0, 0.0), (None, '44e35cee979ba420eb49a8471f852bbe15b403c89742704817dfbaace0d99dbb', 1, 10000000, 10471285, 0, 0, 0.0), (None, '44e35cee979ba420eb49a8471f852bbe15b403c89742704817dfbaace0d99dbb', 2, 10471285, 10964781, 0, 0, 0.0))
+[etl] tabla events_statements_histogram_global [('BUCKET_NUMBER', 'int'), ('BUCKET_TIMER_LOW', 'bigint'), ('BUCKET_TIMER_HIGH', 'bigint'), ('COUNT_BUCKET', 'bigint'), ('COUNT_BUCKET_AND_LOWER', 'bigint'), ('BUCKET_QUANTILE', 'double')]
+[etl]   filas~ 450 muestra: ((0, 0, 10000000, 5, 5, 0.002462), (1, 10000000, 10471285, 0, 5, 0.002462), (2, 10471285, 10964781, 0, 5, 0.002462))
+[etl] tabla events_statements_history [('THREAD_ID', 'bigint'), ('EVENT_ID', 'bigint'), ('END_EVENT_ID', 'bigint'), ('EVENT_NAME', 'varchar'), ('SOURCE', 'varchar'), ('TIMER_START', 'bigint'), ('TIMER_END', 'bigint'), ('TIMER_WAIT', 'bigint'), ('LOCK_TIME', 'bigint'), ('SQL_TEXT', 'longtext'), ('DIGEST', 'varchar'), ('DIGEST_TEXT', 'longtext'), ('CURRENT_SCHEMA', 'varchar'), ('OBJECT_TYPE', 'varchar'), ('OBJECT_SCHEMA', 'varchar'), ('OBJECT_NAME', 'varchar'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('MYSQL_ERRNO', 'int'), ('RETURNED_SQLSTATE', 'varchar'), ('MESSAGE_TEXT', 'varchar'), ('ERRORS', 'bigint'), ('WARNINGS', 'bigint'), ('ROWS_AFFECTED', 'bigint'), ('ROWS_SENT', 'bigint'), ('ROWS_EXAMINED', 'bigint'), ('CREATED_TMP_DISK_TABLES', 'bigint'), ('CREATED_TMP_TABLES', 'bigint'), ('SELECT_FULL_JOIN', 'bigint'), ('SELECT_FULL_RANGE_JOIN', 'bigint'), ('SELECT_RANGE', 'bigint'), ('SELECT_RANGE_CHECK', 'bigint'), ('SELECT_SCAN', 'bigint'), ('SORT_MERGE_PASSES', 'bigint'), ('SORT_RANGE', 'bigint'), ('SORT_ROWS', 'bigint'), ('SORT_SCAN', 'bigint'), ('NO_INDEX_USED', 'bigint'), ('NO_GOOD_INDEX_USED', 'bigint'), ('NESTING_EVENT_ID', 'bigint'), ('NESTING_EVENT_TYPE', 'enum'), ('NESTING_EVENT_LEVEL', 'int'), ('STATEMENT_ID', 'bigint'), ('CPU_TIME', 'bigint'), ('MAX_CONTROLLED_MEMORY', 'bigint'), ('MAX_TOTAL_MEMORY', 'bigint'), ('EXECUTION_ENGINE', 'enum')]
+[etl]   filas~ 2560 muestra: ((53, 42, 42, 'statement/sql/select', 'init_net_server_extension.cc:103', 1109155072280000, 1109155629671000, 557391000, 1000000, "select table_rows from information_schema.tables where table_schema='performance_schema' and table_name='events_statements_current'", '46531b650ac991bc9cb7fe81fad1c8af3803d486afe2750fc50b55f4a1fea7a7', 'SELECT `table_rows` FROM `information_schema` . `tables` WHERE `table_schema` = ? AND TABLE_NAME = ?', 'performance_schema', None, None, None, None, 0, None, None, 0, 0, 0, 1, 4, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3, 'TRANSACTION', 0, 2028, 0, 1448416, 1706163, 'PRIMARY'), (53, 43, 43, 'statement/sql/select', 'init_net_server_extension.cc:103', 1109155833859000, 1109155984964000, 151105000, 1000000, 'select * from `events_statements_current` limit 3', '5af56ffce7647dcf88d4154cf7f395d5b64bf1bd1e9808aaa78e2f27dfeaf620', 'SELECT * FROM `events_statements_current` LIMIT ?', 'performance_schema', None, None, None, None, 0, None, None, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3, 'TRANSACTION', 0, 2029, 0, 1087664, 1346035, 'PRIMARY'), (53, 44, 44, 'statement/sql/select', 'init_net_server_extension.cc:103', 1109156530891000, 1109157106030000, 575139000, 2000000, "select table_rows from information_schema.tables where table_schema='performance_schema' and table_name='events_statements_histogram_by_digest'", '46531b650ac991bc9cb7fe81fad1c8af3803d486afe2750fc50b55f4a1fea7a7', 'SELECT `table_rows` FROM `information_schema` . `tables` WHERE `table_schema` = ? AND TABLE_NAME = ?', 'performance_schema', None, None, None, None, 0, None, None, 0, 0, 0, 1, 4, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3, 'TRANSACTION', 0, 2030, 0, 1436080, 1694291, 'PRIMARY'))
+[etl] tabla events_statements_history_long [('THREAD_ID', 'bigint'), ('EVENT_ID', 'bigint'), ('END_EVENT_ID', 'bigint'), ('EVENT_NAME', 'varchar'), ('SOURCE', 'varchar'), ('TIMER_START', 'bigint'), ('TIMER_END', 'bigint'), ('TIMER_WAIT', 'bigint'), ('LOCK_TIME', 'bigint'), ('SQL_TEXT', 'longtext'), ('DIGEST', 'varchar'), ('DIGEST_TEXT', 'longtext'), ('CURRENT_SCHEMA', 'varchar'), ('OBJECT_TYPE', 'varchar'), ('OBJECT_SCHEMA', 'varchar'), ('OBJECT_NAME', 'varchar'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('MYSQL_ERRNO', 'int'), ('RETURNED_SQLSTATE', 'varchar'), ('MESSAGE_TEXT', 'varchar'), ('ERRORS', 'bigint'), ('WARNINGS', 'bigint'), ('ROWS_AFFECTED', 'bigint'), ('ROWS_SENT', 'bigint'), ('ROWS_EXAMINED', 'bigint'), ('CREATED_TMP_DISK_TABLES', 'bigint'), ('CREATED_TMP_TABLES', 'bigint'), ('SELECT_FULL_JOIN', 'bigint'), ('SELECT_FULL_RANGE_JOIN', 'bigint'), ('SELECT_RANGE', 'bigint'), ('SELECT_RANGE_CHECK', 'bigint'), ('SELECT_SCAN', 'bigint'), ('SORT_MERGE_PASSES', 'bigint'), ('SORT_RANGE', 'bigint'), ('SORT_ROWS', 'bigint'), ('SORT_SCAN', 'bigint'), ('NO_INDEX_USED', 'bigint'), ('NO_GOOD_INDEX_USED', 'bigint'), ('NESTING_EVENT_ID', 'bigint'), ('NESTING_EVENT_TYPE', 'enum'), ('NESTING_EVENT_LEVEL', 'int'), ('STATEMENT_ID', 'bigint'), ('CPU_TIME', 'bigint'), ('MAX_CONTROLLED_MEMORY', 'bigint'), ('MAX_TOTAL_MEMORY', 'bigint'), ('EXECUTION_ENGINE', 'enum')]
+[etl]   filas~ 10000 muestra: ()
+[etl] tabla events_statements_summary_by_account_by_event_name [('USER', 'char'), ('HOST', 'char'), ('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('SUM_LOCK_TIME', 'bigint'), ('SUM_ERRORS', 'bigint'), ('SUM_WARNINGS', 'bigint'), ('SUM_ROWS_AFFECTED', 'bigint'), ('SUM_ROWS_SENT', 'bigint'), ('SUM_ROWS_EXAMINED', 'bigint'), ('SUM_CREATED_TMP_DISK_TABLES', 'bigint'), ('SUM_CREATED_TMP_TABLES', 'bigint'), ('SUM_SELECT_FULL_JOIN', 'bigint'), ('SUM_SELECT_FULL_RANGE_JOIN', 'bigint'), ('SUM_SELECT_RANGE', 'bigint'), ('SUM_SELECT_RANGE_CHECK', 'bigint'), ('SUM_SELECT_SCAN', 'bigint'), ('SUM_SORT_MERGE_PASSES', 'bigint'), ('SUM_SORT_RANGE', 'bigint'), ('SUM_SORT_ROWS', 'bigint'), ('SUM_SORT_SCAN', 'bigint'), ('SUM_NO_INDEX_USED', 'bigint'), ('SUM_NO_GOOD_INDEX_USED', 'bigint'), ('SUM_CPU_TIME', 'bigint'), ('MAX_CONTROLLED_MEMORY', 'bigint'), ('MAX_TOTAL_MEMORY', 'bigint'), ('COUNT_SECONDARY', 'bigint')]
+[etl]   filas~ 28032 muestra: ((None, None, 'statement/sql/select', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (None, None, 'statement/sql/create_table', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (None, None, 'statement/sql/create_index', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+[etl] tabla events_statements_summary_by_digest [('SCHEMA_NAME', 'varchar'), ('DIGEST', 'varchar'), ('DIGEST_TEXT', 'longtext'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('SUM_LOCK_TIME', 'bigint'), ('SUM_ERRORS', 'bigint'), ('SUM_WARNINGS', 'bigint'), ('SUM_ROWS_AFFECTED', 'bigint'), ('SUM_ROWS_SENT', 'bigint'), ('SUM_ROWS_EXAMINED', 'bigint'), ('SUM_CREATED_TMP_DISK_TABLES', 'bigint'), ('SUM_CREATED_TMP_TABLES', 'bigint'), ('SUM_SELECT_FULL_JOIN', 'bigint'), ('SUM_SELECT_FULL_RANGE_JOIN', 'bigint'), ('SUM_SELECT_RANGE', 'bigint'), ('SUM_SELECT_RANGE_CHECK', 'bigint'), ('SUM_SELECT_SCAN', 'bigint'), ('SUM_SORT_MERGE_PASSES', 'bigint'), ('SUM_SORT_RANGE', 'bigint'), ('SUM_SORT_ROWS', 'bigint'), ('SUM_SORT_SCAN', 'bigint'), ('SUM_NO_INDEX_USED', 'bigint'), ('SUM_NO_GOOD_INDEX_USED', 'bigint'), ('SUM_CPU_TIME', 'bigint'), ('MAX_CONTROLLED_MEMORY', 'bigint'), ('MAX_TOTAL_MEMORY', 'bigint'), ('COUNT_SECONDARY', 'bigint'), ('FIRST_SEEN', 'timestamp'), ('LAST_SEEN', 'timestamp'), ('QUANTILE_95', 'bigint'), ('QUANTILE_99', 'bigint'), ('QUANTILE_999', 'bigint'), ('QUERY_SAMPLE_TEXT', 'longtext'), ('QUERY_SAMPLE_SEEN', 'timestamp'), ('QUERY_SAMPLE_TIMER_WAIT', 'bigint')]
+[etl]   filas~ 10000 muestra: ((None, '44e35cee979ba420eb49a8471f852bbe15b403c89742704817dfbaace0d99dbb', 'SELECT @@`version_comment` LIMIT ?', 4, 12155244000, 67484000, 3038811000, 11884513000, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 29056, 154295, 0, datetime.datetime(2026, 9, 17, 1, 48, 52, 15661), datetime.datetime(2026, 9, 17, 2, 7, 9, 680379), 12022644346, 12022644346, 12022644346, 'select @@version_comment limit 1', datetime.datetime(2026, 9, 17, 2, 7, 9, 651419), 82036000), (None, 'b715edd335c8ab2a3c43087e726bbc978f59bc64c69c2ff9f0f7f1ef75c8d651', 'SELECT `VERSION` ( )', 2, 129485000, 52323000, 64742000, 77162000, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31056, 156295, 0, datetime.datetime(2026, 9, 17, 1, 48, 52, 20291), datetime.datetime(2026, 9, 17, 1, 49, 34, 493031), 79432823, 79432823, 79432823, 'SELECT VERSION()', datetime.datetime(2026, 9, 17, 1, 48, 52, 20291), 77162000), (None, '6648fb0b23ce0bccad929f11fcdd4542ccc9369143c34fa75fb62694dddc439b', 'SET GLOBAL `innodb_flush_log_at_trx_commit` = ?', 1, 40623000, 40623000, 40623000, 40623000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18480, 88644, 0, datetime.datetime(2026, 9, 17, 1, 49, 34, 493132), datetime.datetime(2026, 9, 17, 1, 49, 34, 493132), 41686938, 41686938, 41686938, 'SET GLOBAL innodb_flush_log_at_trx_commit=0', datetime.datetime(2026, 9, 17, 1, 49, 34, 493132), 40623000))
+[etl] tabla events_statements_summary_by_host_by_event_name [('HOST', 'char'), ('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('SUM_LOCK_TIME', 'bigint'), ('SUM_ERRORS', 'bigint'), ('SUM_WARNINGS', 'bigint'), ('SUM_ROWS_AFFECTED', 'bigint'), ('SUM_ROWS_SENT', 'bigint'), ('SUM_ROWS_EXAMINED', 'bigint'), ('SUM_CREATED_TMP_DISK_TABLES', 'bigint'), ('SUM_CREATED_TMP_TABLES', 'bigint'), ('SUM_SELECT_FULL_JOIN', 'bigint'), ('SUM_SELECT_FULL_RANGE_JOIN', 'bigint'), ('SUM_SELECT_RANGE', 'bigint'), ('SUM_SELECT_RANGE_CHECK', 'bigint'), ('SUM_SELECT_SCAN', 'bigint'), ('SUM_SORT_MERGE_PASSES', 'bigint'), ('SUM_SORT_RANGE', 'bigint'), ('SUM_SORT_ROWS', 'bigint'), ('SUM_SORT_SCAN', 'bigint'), ('SUM_NO_INDEX_USED', 'bigint'), ('SUM_NO_GOOD_INDEX_USED', 'bigint'), ('SUM_CPU_TIME', 'bigint'), ('MAX_CONTROLLED_MEMORY', 'bigint'), ('MAX_TOTAL_MEMORY', 'bigint'), ('COUNT_SECONDARY', 'bigint')]
+[etl]   filas~ 28032 muestra: ((None, 'statement/sql/select', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (None, 'statement/sql/create_table', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (None, 'statement/sql/create_index', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+[etl] tabla events_statements_summary_by_program [('OBJECT_TYPE', 'enum'), ('OBJECT_SCHEMA', 'varchar'), ('OBJECT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('COUNT_STATEMENTS', 'bigint'), ('SUM_STATEMENTS_WAIT', 'bigint'), ('MIN_STATEMENTS_WAIT', 'bigint'), ('AVG_STATEMENTS_WAIT', 'bigint'), ('MAX_STATEMENTS_WAIT', 'bigint'), ('SUM_LOCK_TIME', 'bigint'), ('SUM_ERRORS', 'bigint'), ('SUM_WARNINGS', 'bigint'), ('SUM_ROWS_AFFECTED', 'bigint'), ('SUM_ROWS_SENT', 'bigint'), ('SUM_ROWS_EXAMINED', 'bigint'), ('SUM_CREATED_TMP_DISK_TABLES', 'bigint'), ('SUM_CREATED_TMP_TABLES', 'bigint'), ('SUM_SELECT_FULL_JOIN', 'bigint'), ('SUM_SELECT_FULL_RANGE_JOIN', 'bigint'), ('SUM_SELECT_RANGE', 'bigint'), ('SUM_SELECT_RANGE_CHECK', 'bigint'), ('SUM_SELECT_SCAN', 'bigint'), ('SUM_SORT_MERGE_PASSES', 'bigint'), ('SUM_SORT_RANGE', 'bigint'), ('SUM_SORT_ROWS', 'bigint'), ('SUM_SORT_SCAN', 'bigint'), ('SUM_NO_INDEX_USED', 'bigint'), ('SUM_NO_GOOD_INDEX_USED', 'bigint'), ('SUM_CPU_TIME', 'bigint'), ('MAX_CONTROLLED_MEMORY', 'bigint'), ('MAX_TOTAL_MEMORY', 'bigint'), ('COUNT_SECONDARY', 'bigint')]
+[etl]   filas~ 0 muestra: ()
+[etl] tabla events_statements_summary_by_thread_by_event_name [('THREAD_ID', 'bigint'), ('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('SUM_LOCK_TIME', 'bigint'), ('SUM_ERRORS', 'bigint'), ('SUM_WARNINGS', 'bigint'), ('SUM_ROWS_AFFECTED', 'bigint'), ('SUM_ROWS_SENT', 'bigint'), ('SUM_ROWS_EXAMINED', 'bigint'), ('SUM_CREATED_TMP_DISK_TABLES', 'bigint'), ('SUM_CREATED_TMP_TABLES', 'bigint'), ('SUM_SELECT_FULL_JOIN', 'bigint'), ('SUM_SELECT_FULL_RANGE_JOIN', 'bigint'), ('SUM_SELECT_RANGE', 'bigint'), ('SUM_SELECT_RANGE_CHECK', 'bigint'), ('SUM_SELECT_SCAN', 'bigint'), ('SUM_SORT_MERGE_PASSES', 'bigint'), ('SUM_SORT_RANGE', 'bigint'), ('SUM_SORT_ROWS', 'bigint'), ('SUM_SORT_SCAN', 'bigint'), ('SUM_NO_INDEX_USED', 'bigint'), ('SUM_NO_GOOD_INDEX_USED', 'bigint'), ('SUM_CPU_TIME', 'bigint'), ('MAX_CONTROLLED_MEMORY', 'bigint'), ('MAX_TOTAL_MEMORY', 'bigint'), ('COUNT_SECONDARY', 'bigint')]
+[etl]   filas~ 56064 muestra: ((1, 'statement/sql/select', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (1, 'statement/sql/create_table', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (1, 'statement/sql/create_index', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+[etl] tabla events_statements_summary_by_user_by_event_name [('USER', 'char'), ('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('SUM_LOCK_TIME', 'bigint'), ('SUM_ERRORS', 'bigint'), ('SUM_WARNINGS', 'bigint'), ('SUM_ROWS_AFFECTED', 'bigint'), ('SUM_ROWS_SENT', 'bigint'), ('SUM_ROWS_EXAMINED', 'bigint'), ('SUM_CREATED_TMP_DISK_TABLES', 'bigint'), ('SUM_CREATED_TMP_TABLES', 'bigint'), ('SUM_SELECT_FULL_JOIN', 'bigint'), ('SUM_SELECT_FULL_RANGE_JOIN', 'bigint'), ('SUM_SELECT_RANGE', 'bigint'), ('SUM_SELECT_RANGE_CHECK', 'bigint'), ('SUM_SELECT_SCAN', 'bigint'), ('SUM_SORT_MERGE_PASSES', 'bigint'), ('SUM_SORT_RANGE', 'bigint'), ('SUM_SORT_ROWS', 'bigint'), ('SUM_SORT_SCAN', 'bigint'), ('SUM_NO_INDEX_USED', 'bigint'), ('SUM_NO_GOOD_INDEX_USED', 'bigint'), ('SUM_CPU_TIME', 'bigint'), ('MAX_CONTROLLED_MEMORY', 'bigint'), ('MAX_TOTAL_MEMORY', 'bigint'), ('COUNT_SECONDARY', 'bigint')]
+[etl]   filas~ 28032 muestra: ((None, 'statement/sql/select', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (None, 'statement/sql/create_table', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (None, 'statement/sql/create_index', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+[etl] tabla events_statements_summary_global_by_event_name [('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('SUM_LOCK_TIME', 'bigint'), ('SUM_ERRORS', 'bigint'), ('SUM_WARNINGS', 'bigint'), ('SUM_ROWS_AFFECTED', 'bigint'), ('SUM_ROWS_SENT', 'bigint'), ('SUM_ROWS_EXAMINED', 'bigint'), ('SUM_CREATED_TMP_DISK_TABLES', 'bigint'), ('SUM_CREATED_TMP_TABLES', 'bigint'), ('SUM_SELECT_FULL_JOIN', 'bigint'), ('SUM_SELECT_FULL_RANGE_JOIN', 'bigint'), ('SUM_SELECT_RANGE', 'bigint'), ('SUM_SELECT_RANGE_CHECK', 'bigint'), ('SUM_SELECT_SCAN', 'bigint'), ('SUM_SORT_MERGE_PASSES', 'bigint'), ('SUM_SORT_RANGE', 'bigint'), ('SUM_SORT_ROWS', 'bigint'), ('SUM_SORT_SCAN', 'bigint'), ('SUM_NO_INDEX_USED', 'bigint'), ('SUM_NO_GOOD_INDEX_USED', 'bigint'), ('SUM_CPU_TIME', 'bigint'), ('MAX_CONTROLLED_MEMORY', 'bigint'), ('MAX_TOTAL_MEMORY', 'bigint'), ('COUNT_SECONDARY', 'bigint')]
+[etl]   filas~ 219 muestra: (('statement/sql/select', 75, 82828052000, 24705000, 1104374000, 34043583000, 364000000, 0, 0, 0, 1709, 6585, 0, 1, 1, 0, 0, 0, 64, 0, 0, 1490, 1, 31, 0, 0, 2101720, 4124244, 0), ('statement/sql/create_table', 7, 80835680000, 4877430000, 11547954000, 23770230000, 67000000, 0, 29, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 108272, 1842388, 0), ('statement/sql/create_index', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+[etl] tabla events_transactions_current [('THREAD_ID', 'bigint'), ('EVENT_ID', 'bigint'), ('END_EVENT_ID', 'bigint'), ('EVENT_NAME', 'varchar'), ('STATE', 'enum'), ('TRX_ID', 'bigint'), ('GTID', 'varchar'), ('XID_FORMAT_ID', 'int'), ('XID_GTRID', 'varchar'), ('XID_BQUAL', 'varchar'), ('XA_STATE', 'varchar'), ('SOURCE', 'varchar'), ('TIMER_START', 'bigint'), ('TIMER_END', 'bigint'), ('TIMER_WAIT', 'bigint'), ('ACCESS_MODE', 'enum'), ('ISOLATION_LEVEL', 'varchar'), ('AUTOCOMMIT', 'enum'), ('NUMBER_OF_SAVEPOINTS', 'bigint'), ('NUMBER_OF_ROLLBACK_TO_SAVEPOINT', 'bigint'), ('NUMBER_OF_RELEASE_SAVEPOINT', 'bigint'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('NESTING_EVENT_ID', 'bigint'), ('NESTING_EVENT_TYPE', 'enum')]
+[etl]   filas~ 256 muestra: ((1, 23, 23, 'transaction', 'COMMITTED', 421512508041648, 'AUTOMATIC', None, None, None, None, 'handler.cc:1346', 2500782192000, 2500786919000, 4727000, 'READ WRITE', 'REPEATABLE READ', 'YES', 0, 0, 0, None, None, None), (38, 1, 1, 'transaction', 'COMMITTED', 421512508040840, 'AUTOMATIC', None, None, None, None, 'handler.cc:1346', 2392320423000, 2392331994000, 11571000, 'READ WRITE', 'REPEATABLE READ', 'YES', 0, 0, 0, None, None, None), (47, 1, 1, 'transaction', 'COMMITTED', 421512508041648, 'AUTOMATIC', None, None, None, None, 'handler.cc:1346', 2507595843000, 2507614050000, 18207000, 'READ WRITE', 'REPEATABLE READ', 'YES', 0, 0, 0, None, None, None))
+[etl] tabla events_transactions_history [('THREAD_ID', 'bigint'), ('EVENT_ID', 'bigint'), ('END_EVENT_ID', 'bigint'), ('EVENT_NAME', 'varchar'), ('STATE', 'enum'), ('TRX_ID', 'bigint'), ('GTID', 'varchar'), ('XID_FORMAT_ID', 'int'), ('XID_GTRID', 'varchar'), ('XID_BQUAL', 'varchar'), ('XA_STATE', 'varchar'), ('SOURCE', 'varchar'), ('TIMER_START', 'bigint'), ('TIMER_END', 'bigint'), ('TIMER_WAIT', 'bigint'), ('ACCESS_MODE', 'enum'), ('ISOLATION_LEVEL', 'varchar'), ('AUTOCOMMIT', 'enum'), ('NUMBER_OF_SAVEPOINTS', 'bigint'), ('NUMBER_OF_ROLLBACK_TO_SAVEPOINT', 'bigint'), ('NUMBER_OF_RELEASE_SAVEPOINT', 'bigint'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('NESTING_EVENT_ID', 'bigint'), ('NESTING_EVENT_TYPE', 'enum')]
+[etl]   filas~ 2560 muestra: ((1, 21, 21, 'transaction', 'COMMITTED', 421512508041648, 'AUTOMATIC', None, None, None, None, 'handler.cc:1346', 2500298813000, 2500308121000, 9308000, 'READ WRITE', 'REPEATABLE READ', 'YES', 0, 0, 0, None, None, None), (1, 22, 22, 'transaction', 'COMMITTED', 421512508041648, 'AUTOMATIC', None, None, None, None, 'handler.cc:1346', 2500707262000, 2500714054000, 6792000, 'READ WRITE', 'REPEATABLE READ', 'YES', 0, 0, 0, None, None, None), (1, 23, 23, 'transaction', 'COMMITTED', 421512508041648, 'AUTOMATIC', None, None, None, None, 'handler.cc:1346', 2500782192000, 2500786919000, 4727000, 'READ WRITE', 'REPEATABLE READ', 'YES', 0, 0, 0, None, None, None))
+[etl] tabla events_transactions_history_long [('THREAD_ID', 'bigint'), ('EVENT_ID', 'bigint'), ('END_EVENT_ID', 'bigint'), ('EVENT_NAME', 'varchar'), ('STATE', 'enum'), ('TRX_ID', 'bigint'), ('GTID', 'varchar'), ('XID_FORMAT_ID', 'int'), ('XID_GTRID', 'varchar'), ('XID_BQUAL', 'varchar'), ('XA_STATE', 'varchar'), ('SOURCE', 'varchar'), ('TIMER_START', 'bigint'), ('TIMER_END', 'bigint'), ('TIMER_WAIT', 'bigint'), ('ACCESS_MODE', 'enum'), ('ISOLATION_LEVEL', 'varchar'), ('AUTOCOMMIT', 'enum'), ('NUMBER_OF_SAVEPOINTS', 'bigint'), ('NUMBER_OF_ROLLBACK_TO_SAVEPOINT', 'bigint'), ('NUMBER_OF_RELEASE_SAVEPOINT', 'bigint'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('NESTING_EVENT_ID', 'bigint'), ('NESTING_EVENT_TYPE', 'enum')]
+[etl]   filas~ 10000 muestra: ()
+[etl] tabla events_transactions_summary_by_account_by_event_name [('USER', 'char'), ('HOST', 'char'), ('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('COUNT_READ_WRITE', 'bigint'), ('SUM_TIMER_READ_WRITE', 'bigint'), ('MIN_TIMER_READ_WRITE', 'bigint'), ('AVG_TIMER_READ_WRITE', 'bigint'), ('MAX_TIMER_READ_WRITE', 'bigint'), ('COUNT_READ_ONLY', 'bigint'), ('SUM_TIMER_READ_ONLY', 'bigint'), ('MIN_TIMER_READ_ONLY', 'bigint'), ('AVG_TIMER_READ_ONLY', 'bigint'), ('MAX_TIMER_READ_ONLY', 'bigint')]
+[etl]   filas~ 128 muestra: ((None, None, 'transaction', 26, 82577238000, 4517000, 3176047000, 47448336000, 26, 82577238000, 4517000, 3176047000, 47448336000, 0, 0, 0, 0, 0), ('event_scheduler', 'localhost', 'transaction', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ('root', 'localhost', 'transaction', 1911, 957569686532000, 2139000, 501083038000, 2073061849000, 1911, 957569686532000, 2139000, 501083038000, 2073061849000, 0, 0, 0, 0, 0))
+[etl] tabla events_transactions_summary_by_host_by_event_name [('HOST', 'char'), ('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('COUNT_READ_WRITE', 'bigint'), ('SUM_TIMER_READ_WRITE', 'bigint'), ('MIN_TIMER_READ_WRITE', 'bigint'), ('AVG_TIMER_READ_WRITE', 'bigint'), ('MAX_TIMER_READ_WRITE', 'bigint'), ('COUNT_READ_ONLY', 'bigint'), ('SUM_TIMER_READ_ONLY', 'bigint'), ('MIN_TIMER_READ_ONLY', 'bigint'), ('AVG_TIMER_READ_ONLY', 'bigint'), ('MAX_TIMER_READ_ONLY', 'bigint')]
+[etl]   filas~ 128 muestra: ((None, 'transaction', 26, 82577238000, 4517000, 3176047000, 47448336000, 26, 82577238000, 4517000, 3176047000, 47448336000, 0, 0, 0, 0, 0), ('localhost', 'transaction', 1911, 957569686532000, 2139000, 501083038000, 2073061849000, 1911, 957569686532000, 2139000, 501083038000, 2073061849000, 0, 0, 0, 0, 0))
+[etl] tabla events_transactions_summary_by_thread_by_event_name [('THREAD_ID', 'bigint'), ('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('COUNT_READ_WRITE', 'bigint'), ('SUM_TIMER_READ_WRITE', 'bigint'), ('MIN_TIMER_READ_WRITE', 'bigint'), ('AVG_TIMER_READ_WRITE', 'bigint'), ('MAX_TIMER_READ_WRITE', 'bigint'), ('COUNT_READ_ONLY', 'bigint'), ('SUM_TIMER_READ_ONLY', 'bigint'), ('MIN_TIMER_READ_ONLY', 'bigint'), ('AVG_TIMER_READ_ONLY', 'bigint'), ('MAX_TIMER_READ_ONLY', 'bigint')]
+[etl]   filas~ 256 muestra: ((1, 'transaction', 23, 35099124000, 4517000, 1526048000, 25238640000, 23, 35099124000, 4517000, 1526048000, 25238640000, 0, 0, 0, 0, 0), (4, 'transaction', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (5, 'transaction', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+[etl] tabla events_transactions_summary_by_user_by_event_name [('USER', 'char'), ('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('COUNT_READ_WRITE', 'bigint'), ('SUM_TIMER_READ_WRITE', 'bigint'), ('MIN_TIMER_READ_WRITE', 'bigint'), ('AVG_TIMER_READ_WRITE', 'bigint'), ('MAX_TIMER_READ_WRITE', 'bigint'), ('COUNT_READ_ONLY', 'bigint'), ('SUM_TIMER_READ_ONLY', 'bigint'), ('MIN_TIMER_READ_ONLY', 'bigint'), ('AVG_TIMER_READ_ONLY', 'bigint'), ('MAX_TIMER_READ_ONLY', 'bigint')]
+[etl]   filas~ 128 muestra: ((None, 'transaction', 26, 82577238000, 4517000, 3176047000, 47448336000, 26, 82577238000, 4517000, 3176047000, 47448336000, 0, 0, 0, 0, 0), ('event_scheduler', 'transaction', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ('root', 'transaction', 1911, 957569686532000, 2139000, 501083038000, 2073061849000, 1911, 957569686532000, 2139000, 501083038000, 2073061849000, 0, 0, 0, 0, 0))
+[etl] tabla events_transactions_summary_global_by_event_name [('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('COUNT_READ_WRITE', 'bigint'), ('SUM_TIMER_READ_WRITE', 'bigint'), ('MIN_TIMER_READ_WRITE', 'bigint'), ('AVG_TIMER_READ_WRITE', 'bigint'), ('MAX_TIMER_READ_WRITE', 'bigint'), ('COUNT_READ_ONLY', 'bigint'), ('SUM_TIMER_READ_ONLY', 'bigint'), ('MIN_TIMER_READ_ONLY', 'bigint'), ('AVG_TIMER_READ_ONLY', 'bigint'), ('MAX_TIMER_READ_ONLY', 'bigint')]
+[etl]   filas~ 1 muestra: (('transaction', 1937, 957652263770000, 2139000, 494399723000, 2073061849000, 1937, 957652263770000, 2139000, 494399723000, 2073061849000, 0, 0, 0, 0, 0),)
+[etl] tabla events_waits_current [('THREAD_ID', 'bigint'), ('EVENT_ID', 'bigint'), ('END_EVENT_ID', 'bigint'), ('EVENT_NAME', 'varchar'), ('SOURCE', 'varchar'), ('TIMER_START', 'bigint'), ('TIMER_END', 'bigint'), ('TIMER_WAIT', 'bigint'), ('SPINS', 'int'), ('OBJECT_SCHEMA', 'varchar'), ('OBJECT_NAME', 'varchar'), ('INDEX_NAME', 'varchar'), ('OBJECT_TYPE', 'varchar'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('NESTING_EVENT_ID', 'bigint'), ('NESTING_EVENT_TYPE', 'enum'), ('OPERATION', 'varchar'), ('NUMBER_OF_BYTES', 'bigint'), ('FLAGS', 'int')]
+[etl]   filas~ 1536 muestra: ()
+[etl] tabla events_waits_history [('THREAD_ID', 'bigint'), ('EVENT_ID', 'bigint'), ('END_EVENT_ID', 'bigint'), ('EVENT_NAME', 'varchar'), ('SOURCE', 'varchar'), ('TIMER_START', 'bigint'), ('TIMER_END', 'bigint'), ('TIMER_WAIT', 'bigint'), ('SPINS', 'int'), ('OBJECT_SCHEMA', 'varchar'), ('OBJECT_NAME', 'varchar'), ('INDEX_NAME', 'varchar'), ('OBJECT_TYPE', 'varchar'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('NESTING_EVENT_ID', 'bigint'), ('NESTING_EVENT_TYPE', 'enum'), ('OPERATION', 'varchar'), ('NUMBER_OF_BYTES', 'bigint'), ('FLAGS', 'int')]
+[etl]   filas~ 2560 muestra: ()
+[etl] tabla events_waits_history_long [('THREAD_ID', 'bigint'), ('EVENT_ID', 'bigint'), ('END_EVENT_ID', 'bigint'), ('EVENT_NAME', 'varchar'), ('SOURCE', 'varchar'), ('TIMER_START', 'bigint'), ('TIMER_END', 'bigint'), ('TIMER_WAIT', 'bigint'), ('SPINS', 'int'), ('OBJECT_SCHEMA', 'varchar'), ('OBJECT_NAME', 'varchar'), ('INDEX_NAME', 'varchar'), ('OBJECT_TYPE', 'varchar'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('NESTING_EVENT_ID', 'bigint'), ('NESTING_EVENT_TYPE', 'enum'), ('OPERATION', 'varchar'), ('NUMBER_OF_BYTES', 'bigint'), ('FLAGS', 'int')]
+[etl]   filas~ 10000 muestra: ()
+[etl] tabla events_waits_summary_by_account_by_event_name [('USER', 'char'), ('HOST', 'char'), ('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint')]
+[etl]   filas~ 83712 muestra: ((None, None, 'wait/synch/mutex/pfs/LOCK_pfs_share_list', 0, 0, 0, 0, 0), (None, None, 'wait/synch/mutex/pfs/LOCK_pfs_tracing_callback', 0, 0, 0, 0, 0), (None, None, 'wait/synch/mutex/sql/TC_LOG_MMAP::LOCK_tc', 0, 0, 0, 0, 0))
+[etl] tabla events_waits_summary_by_host_by_event_name [('HOST', 'char'), ('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint')]
+[etl]   filas~ 83712 muestra: ((None, 'wait/synch/mutex/pfs/LOCK_pfs_share_list', 0, 0, 0, 0, 0), (None, 'wait/synch/mutex/pfs/LOCK_pfs_tracing_callback', 0, 0, 0, 0, 0), (None, 'wait/synch/mutex/sql/TC_LOG_MMAP::LOCK_tc', 0, 0, 0, 0, 0))
+[etl] tabla events_waits_summary_by_instance [('EVENT_NAME', 'varchar'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint')]
+[etl]   filas~ 10752 muestra: (('wait/synch/mutex/pfs/LOCK_pfs_share_list', 281474976710656, 0, 0, 0, 0, 0), ('wait/synch/mutex/pfs/LOCK_pfs_tracing_callback', 281474976776192, 0, 0, 0, 0, 0), ('wait/synch/mutex/mysys/THR_LOCK_heap', 281474976841728, 0, 0, 0, 0, 0))
+[etl] tabla events_waits_summary_by_thread_by_event_name [('THREAD_ID', 'bigint'), ('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint')]
+[etl]   filas~ 167424 muestra: ((1, 'wait/synch/mutex/pfs/LOCK_pfs_share_list', 0, 0, 0, 0, 0), (1, 'wait/synch/mutex/pfs/LOCK_pfs_tracing_callback', 0, 0, 0, 0, 0), (1, 'wait/synch/mutex/sql/TC_LOG_MMAP::LOCK_tc', 0, 0, 0, 0, 0))
+[etl] tabla events_waits_summary_by_user_by_event_name [('USER', 'char'), ('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint')]
+[etl]   filas~ 83712 muestra: ((None, 'wait/synch/mutex/pfs/LOCK_pfs_share_list', 0, 0, 0, 0, 0), (None, 'wait/synch/mutex/pfs/LOCK_pfs_tracing_callback', 0, 0, 0, 0, 0), (None, 'wait/synch/mutex/sql/TC_LOG_MMAP::LOCK_tc', 0, 0, 0, 0, 0))
+[etl] tabla events_waits_summary_global_by_event_name [('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint')]
+[etl]   filas~ 654 muestra: (('wait/synch/mutex/pfs/LOCK_pfs_share_list', 0, 0, 0, 0, 0), ('wait/synch/mutex/pfs/LOCK_pfs_tracing_callback', 0, 0, 0, 0, 0), ('wait/synch/mutex/sql/TC_LOG_MMAP::LOCK_tc', 0, 0, 0, 0, 0))
+[etl] tabla file_instances [('FILE_NAME', 'varchar'), ('EVENT_NAME', 'varchar'), ('OPEN_COUNT', 'int')]
+[etl]   filas~ 4096 muestra: (('/usr/share/mysql/english/errmsg.sys', 'wait/io/file/sql/ERRMSG', 0), ('/usr/share/mysql/charsets/Index.xml', 'wait/io/file/mysys/charset', 0), ('/var/lib/mysql/auto.cnf', 'wait/io/file/mysys/cnf', 0))
+[etl] tabla file_summary_by_event_name [('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('COUNT_READ', 'bigint'), ('SUM_TIMER_READ', 'bigint'), ('MIN_TIMER_READ', 'bigint'), ('AVG_TIMER_READ', 'bigint'), ('MAX_TIMER_READ', 'bigint'), ('SUM_NUMBER_OF_BYTES_READ', 'bigint'), ('COUNT_WRITE', 'bigint'), ('SUM_TIMER_WRITE', 'bigint'), ('MIN_TIMER_WRITE', 'bigint'), ('AVG_TIMER_WRITE', 'bigint'), ('MAX_TIMER_WRITE', 'bigint'), ('SUM_NUMBER_OF_BYTES_WRITE', 'bigint'), ('COUNT_MISC', 'bigint'), ('SUM_TIMER_MISC', 'bigint'), ('MIN_TIMER_MISC', 'bigint'), ('AVG_TIMER_MISC', 'bigint'), ('MAX_TIMER_MISC', 'bigint')]
+[etl]   filas~ 80 muestra: (('wait/io/file/sql/binlog', 23, 9836010858, 0, 427652570, 4573877980, 4, 8601686004, 421268, 2150421501, 4573877980, 1344, 5, 42083974, 3561550, 8416620, 18110154, 734, 14, 1192240880, 0, 85159938, 608826652), ('wait/io/file/sql/binlog_cache', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ('wait/io/file/sql/binlog_index', 23, 77513970122, 0, 3370172405, 51746330672, 5, 25635338574, 0, 5127067540, 25628849124, 288, 0, 0, 0, 0, 0, 0, 18, 51878631548, 0, 2882146100, 51746330672))
+[etl] tabla file_summary_by_instance [('FILE_NAME', 'varchar'), ('EVENT_NAME', 'varchar'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('COUNT_READ', 'bigint'), ('SUM_TIMER_READ', 'bigint'), ('MIN_TIMER_READ', 'bigint'), ('AVG_TIMER_READ', 'bigint'), ('MAX_TIMER_READ', 'bigint'), ('SUM_NUMBER_OF_BYTES_READ', 'bigint'), ('COUNT_WRITE', 'bigint'), ('SUM_TIMER_WRITE', 'bigint'), ('MIN_TIMER_WRITE', 'bigint'), ('AVG_TIMER_WRITE', 'bigint'), ('MAX_TIMER_WRITE', 'bigint'), ('SUM_NUMBER_OF_BYTES_WRITE', 'bigint'), ('COUNT_MISC', 'bigint'), ('SUM_TIMER_MISC', 'bigint'), ('MIN_TIMER_MISC', 'bigint'), ('AVG_TIMER_MISC', 'bigint'), ('MAX_TIMER_MISC', 'bigint')]
+[etl]   filas~ 4096 muestra: (('/usr/share/mysql/english/errmsg.sys', 'wait/io/file/sql/ERRMSG', 1407374883618816, 5, 202601066, 1976114, 40519951, 165564442, 3, 183370444, 2602772, 61123190, 165564442, 390504, 0, 0, 0, 0, 0, 0, 2, 19230622, 1976114, 9615311, 17254508), ('/usr/share/mysql/charsets/Index.xml', 'wait/io/file/mysys/charset', 1407374883684352, 3, 21474180, 1222726, 7158060, 12853044, 1, 12853044, 12853044, 12853044, 12853044, 19525, 0, 0, 0, 0, 0, 0, 2, 8621136, 1222726, 4310568, 7398410), ('/var/lib/mysql/auto.cnf', 'wait/io/file/mysys/cnf', 1407374883946496, 5, 5656627636, 326002, 1131325265, 5636130588, 3, 5638791044, 326002, 1879596869, 5636130588, 56, 0, 0, 0, 0, 0, 0, 2, 17836592, 5620694, 8918296, 12215898))
+[etl] tabla global_status [('VARIABLE_NAME', 'varchar'), ('VARIABLE_VALUE', 'varchar')]
+[etl]   filas~ 258 muestra: (('Aborted_clients', '0'), ('Aborted_connects', '0'), ('Acl_cache_items_count', '0'))
+[etl] tabla global_variables [('VARIABLE_NAME', 'varchar'), ('VARIABLE_VALUE', 'varchar')]
+[etl]   filas~ 674 muestra: (('activate_all_roles_on_login', 'OFF'), ('admin_address', ''), ('admin_port', '33062'))
+[etl] tabla host_cache [('IP', 'varchar'), ('HOST', 'varchar'), ('HOST_VALIDATED', 'enum'), ('SUM_CONNECT_ERRORS', 'bigint'), ('COUNT_HOST_BLOCKED_ERRORS', 'bigint'), ('COUNT_NAMEINFO_TRANSIENT_ERRORS', 'bigint'), ('COUNT_NAMEINFO_PERMANENT_ERRORS', 'bigint'), ('COUNT_FORMAT_ERRORS', 'bigint'), ('COUNT_ADDRINFO_TRANSIENT_ERRORS', 'bigint'), ('COUNT_ADDRINFO_PERMANENT_ERRORS', 'bigint'), ('COUNT_FCRDNS_ERRORS', 'bigint'), ('COUNT_HOST_ACL_ERRORS', 'bigint'), ('COUNT_NO_AUTH_PLUGIN_ERRORS', 'bigint'), ('COUNT_AUTH_PLUGIN_ERRORS', 'bigint'), ('COUNT_HANDSHAKE_ERRORS', 'bigint'), ('COUNT_PROXY_USER_ERRORS', 'bigint'), ('COUNT_PROXY_USER_ACL_ERRORS', 'bigint'), ('COUNT_AUTHENTICATION_ERRORS', 'bigint'), ('COUNT_SSL_ERRORS', 'bigint'), ('COUNT_MAX_USER_CONNECTIONS_ERRORS', 'bigint'), ('COUNT_MAX_USER_CONNECTIONS_PER_HOUR_ERRORS', 'bigint'), ('COUNT_DEFAULT_DATABASE_ERRORS', 'bigint'), ('COUNT_INIT_CONNECT_ERRORS', 'bigint'), ('COUNT_LOCAL_ERRORS', 'bigint'), ('COUNT_UNKNOWN_ERRORS', 'bigint'), ('FIRST_SEEN', 'timestamp'), ('LAST_SEEN', 'timestamp'), ('FIRST_ERROR_SEEN', 'timestamp'), ('LAST_ERROR_SEEN', 'timestamp')]
+[etl]   filas~ 279 muestra: ()
+[etl] tabla hosts [('HOST', 'char'), ('CURRENT_CONNECTIONS', 'bigint'), ('TOTAL_CONNECTIONS', 'bigint'), ('MAX_SESSION_CONTROLLED_MEMORY', 'bigint'), ('MAX_SESSION_TOTAL_MEMORY', 'bigint')]
+[etl]   filas~ 128 muestra: ((None, 36, 47, 272128, 66901877), ('localhost', 2, 7, 56485848, 58026813))
+[etl] tabla innodb_redo_log_files [('FILE_ID', 'bigint'), ('FILE_NAME', 'varchar'), ('START_LSN', 'bigint'), ('END_LSN', 'bigint'), ('SIZE_IN_BYTES', 'bigint'), ('IS_FULL', 'tinyint'), ('CONSUMER_LEVEL', 'int')]
+[etl]   filas~ 25 muestra: ((3520, './#innodb_redo/#ib_redo3520', 11527135232, 11530409984, 3276800, 1, 0), (3521, './#innodb_redo/#ib_redo3521', 11530409984, 11533684736, 3276800, 1, 0), (3522, './#innodb_redo/#ib_redo3522', 11533684736, 11536959488, 3276800, 1, 0))
+[etl] tabla keyring_component_status [('STATUS_KEY', 'varchar'), ('STATUS_VALUE', 'varchar')]
+[etl]   filas~ 64 muestra: ()
+[etl] tabla keyring_keys [('KEY_ID', 'varchar'), ('KEY_OWNER', 'varchar'), ('BACKEND_KEY_ID', 'varchar')]
+[etl]   filas~ 96 muestra: ()
+[etl] tabla log_status [('SERVER_UUID', 'char'), ('LOCAL', 'json'), ('REPLICATION', 'json'), ('STORAGE_ENGINES', 'json')]
+[etl]   filas~ 1 muestra: (('aac4c515-ab02-11f1-b678-000d3a123874', '{"gtid_executed": "", "binary_log_file": "binlog.000005", "binary_log_position": 734}', '{"channels": []}', '{"InnoDB": {"LSN": 11607169179, "LSN_checkpoint": 11529342570}}'),)
+[etl] tabla memory_summary_by_account_by_event_name [('USER', 'char'), ('HOST', 'char'), ('EVENT_NAME', 'varchar'), ('COUNT_ALLOC', 'bigint'), ('COUNT_FREE', 'bigint'), ('SUM_NUMBER_OF_BYTES_ALLOC', 'bigint'), ('SUM_NUMBER_OF_BYTES_FREE', 'bigint'), ('LOW_COUNT_USED', 'bigint'), ('CURRENT_COUNT_USED', 'bigint'), ('HIGH_COUNT_USED', 'bigint'), ('LOW_NUMBER_OF_BYTES_USED', 'bigint'), ('CURRENT_NUMBER_OF_BYTES_USED', 'bigint'), ('HIGH_NUMBER_OF_BYTES_USED', 'bigint')]
+[etl]   filas~ 57600 muestra: ((None, None, 'memory/sql/Locked_tables_list::m_locked_tables_root', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (None, None, 'memory/sql/display_table_locks', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (None, None, 'memory/sql/THD::transactions::mem_root', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+[etl] tabla memory_summary_by_host_by_event_name [('HOST', 'char'), ('EVENT_NAME', 'varchar'), ('COUNT_ALLOC', 'bigint'), ('COUNT_FREE', 'bigint'), ('SUM_NUMBER_OF_BYTES_ALLOC', 'bigint'), ('SUM_NUMBER_OF_BYTES_FREE', 'bigint'), ('LOW_COUNT_USED', 'bigint'), ('CURRENT_COUNT_USED', 'bigint'), ('HIGH_COUNT_USED', 'bigint'), ('LOW_NUMBER_OF_BYTES_USED', 'bigint'), ('CURRENT_NUMBER_OF_BYTES_USED', 'bigint'), ('HIGH_NUMBER_OF_BYTES_USED', 'bigint')]
+[etl]   filas~ 57600 muestra: ((None, 'memory/sql/Locked_tables_list::m_locked_tables_root', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (None, 'memory/sql/display_table_locks', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (None, 'memory/sql/THD::transactions::mem_root', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+[etl] tabla memory_summary_by_thread_by_event_name [('THREAD_ID', 'bigint'), ('EVENT_NAME', 'varchar'), ('COUNT_ALLOC', 'bigint'), ('COUNT_FREE', 'bigint'), ('SUM_NUMBER_OF_BYTES_ALLOC', 'bigint'), ('SUM_NUMBER_OF_BYTES_FREE', 'bigint'), ('LOW_COUNT_USED', 'bigint'), ('CURRENT_COUNT_USED', 'bigint'), ('HIGH_COUNT_USED', 'bigint'), ('LOW_NUMBER_OF_BYTES_USED', 'bigint'), ('CURRENT_NUMBER_OF_BYTES_USED', 'bigint'), ('HIGH_NUMBER_OF_BYTES_USED', 'bigint')]
+[etl]   filas~ 115200 muestra: ((1, 'memory/sql/Locked_tables_list::m_locked_tables_root', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (1, 'memory/sql/display_table_locks', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (1, 'memory/sql/THD::transactions::mem_root', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+[etl] tabla memory_summary_by_user_by_event_name [('USER', 'char'), ('EVENT_NAME', 'varchar'), ('COUNT_ALLOC', 'bigint'), ('COUNT_FREE', 'bigint'), ('SUM_NUMBER_OF_BYTES_ALLOC', 'bigint'), ('SUM_NUMBER_OF_BYTES_FREE', 'bigint'), ('LOW_COUNT_USED', 'bigint'), ('CURRENT_COUNT_USED', 'bigint'), ('HIGH_COUNT_USED', 'bigint'), ('LOW_NUMBER_OF_BYTES_USED', 'bigint'), ('CURRENT_NUMBER_OF_BYTES_USED', 'bigint'), ('HIGH_NUMBER_OF_BYTES_USED', 'bigint')]
+[etl]   filas~ 57600 muestra: ((None, 'memory/sql/Locked_tables_list::m_locked_tables_root', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (None, 'memory/sql/display_table_locks', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (None, 'memory/sql/THD::transactions::mem_root', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+[etl] tabla memory_summary_global_by_event_name [('EVENT_NAME', 'varchar'), ('COUNT_ALLOC', 'bigint'), ('COUNT_FREE', 'bigint'), ('SUM_NUMBER_OF_BYTES_ALLOC', 'bigint'), ('SUM_NUMBER_OF_BYTES_FREE', 'bigint'), ('LOW_COUNT_USED', 'bigint'), ('CURRENT_COUNT_USED', 'bigint'), ('HIGH_COUNT_USED', 'bigint'), ('LOW_NUMBER_OF_BYTES_USED', 'bigint'), ('CURRENT_NUMBER_OF_BYTES_USED', 'bigint'), ('HIGH_NUMBER_OF_BYTES_USED', 'bigint')]
+[etl]   filas~ 450 muestra: (('memory/performance_schema/mutex_instances', 4, 0, 327680, 0, 0, 4, 4, 0, 327680, 327680), ('memory/performance_schema/rwlock_instances', 2, 0, 180224, 0, 0, 2, 2, 0, 180224, 180224), ('memory/performance_schema/cond_instances', 1, 0, 18432, 0, 0, 1, 1, 0, 18432, 18432))
+[etl] tabla metadata_locks [('OBJECT_TYPE', 'varchar'), ('OBJECT_SCHEMA', 'varchar'), ('OBJECT_NAME', 'varchar'), ('COLUMN_NAME', 'varchar'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('LOCK_TYPE', 'varchar'), ('LOCK_DURATION', 'varchar'), ('LOCK_STATUS', 'varchar'), ('SOURCE', 'varchar'), ('OWNER_THREAD_ID', 'bigint'), ('OWNER_EVENT_ID', 'bigint')]
+[etl]   filas~ 1024 muestra: (('TABLE', 'performance_schema', 'events_transactions_summary_by_account_by_event_name', None, 1970324837498895, 'SHARED_READ', 'TRANSACTION', 'GRANTED', 'sql_parse.cc:6176', 53, 74), ('TABLE', 'performance_schema', 'events_transactions_summary_by_host_by_event_name', None, 1970324838547471, 'SHARED_READ', 'TRANSACTION', 'GRANTED', 'sql_parse.cc:6176', 53, 76), ('TABLE', 'performance_schema', 'events_transactions_summary_by_thread_by_event_name', None, 1970324839596047, 'SHARED_READ', 'TRANSACTION', 'GRANTED', 'sql_parse.cc:6176', 53, 78))
+[etl] tabla mutex_instances [('NAME', 'varchar'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('LOCKED_BY_THREAD_ID', 'bigint')]
+[etl]   filas~ 4096 muestra: (('wait/synch/mutex/pfs/LOCK_pfs_share_list', 281474976710656, None), ('wait/synch/mutex/pfs/LOCK_pfs_tracing_callback', 281474976776192, None), ('wait/synch/mutex/mysys/THR_LOCK_heap', 281474976841728, None))
+[etl] tabla objects_summary_global_by_type [('OBJECT_TYPE', 'varchar'), ('OBJECT_SCHEMA', 'varchar'), ('OBJECT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint')]
+[etl]   filas~ 4096 muestra: (('TABLE', 'mysql', 'dd_properties', 0, 0, 0, 0, 0), ('TABLE', 'mysql', 'schemata', 0, 0, 0, 0, 0), ('TABLE', 'mysql', 'tablespace_files', 0, 0, 0, 0, 0))
+[etl] tabla performance_timers [('TIMER_NAME', 'enum'), ('TIMER_FREQUENCY', 'bigint'), ('TIMER_RESOLUTION', 'bigint'), ('TIMER_OVERHEAD', 'bigint')]
+[etl]   filas~ 5 muestra: (('CYCLE', 2289631840, 1, 24), ('NANOSECOND', 1000000000, 1, 46), ('MICROSECOND', 1000000, 1, 44))
+[etl] tabla persisted_variables [('VARIABLE_NAME', 'varchar'), ('VARIABLE_VALUE', 'varchar')]
+[etl]   filas~ 0 muestra: ()
+[etl] tabla prepared_statements_instances [('OBJECT_INSTANCE_BEGIN', 'bigint'), ('STATEMENT_ID', 'bigint'), ('STATEMENT_NAME', 'varchar'), ('SQL_TEXT', 'longtext'), ('OWNER_THREAD_ID', 'bigint'), ('OWNER_EVENT_ID', 'bigint'), ('OWNER_OBJECT_TYPE', 'enum'), ('OWNER_OBJECT_SCHEMA', 'varchar'), ('OWNER_OBJECT_NAME', 'varchar'), ('EXECUTION_ENGINE', 'enum'), ('TIMER_PREPARE', 'bigint'), ('COUNT_REPREPARE', 'bigint'), ('COUNT_EXECUTE', 'bigint'), ('SUM_TIMER_EXECUTE', 'bigint'), ('MIN_TIMER_EXECUTE', 'bigint'), ('AVG_TIMER_EXECUTE', 'bigint'), ('MAX_TIMER_EXECUTE', 'bigint'), ('SUM_LOCK_TIME', 'bigint'), ('SUM_ERRORS', 'bigint'), ('SUM_WARNINGS', 'bigint'), ('SUM_ROWS_AFFECTED', 'bigint'), ('SUM_ROWS_SENT', 'bigint'), ('SUM_ROWS_EXAMINED', 'bigint'), ('SUM_CREATED_TMP_DISK_TABLES', 'bigint'), ('SUM_CREATED_TMP_TABLES', 'bigint'), ('SUM_SELECT_FULL_JOIN', 'bigint'), ('SUM_SELECT_FULL_RANGE_JOIN', 'bigint'), ('SUM_SELECT_RANGE', 'bigint'), ('SUM_SELECT_RANGE_CHECK', 'bigint'), ('SUM_SELECT_SCAN', 'bigint'), ('SUM_SORT_MERGE_PASSES', 'bigint'), ('SUM_SORT_RANGE', 'bigint'), ('SUM_SORT_ROWS', 'bigint'), ('SUM_SORT_SCAN', 'bigint'), ('SUM_NO_INDEX_USED', 'bigint'), ('SUM_NO_GOOD_INDEX_USED', 'bigint'), ('SUM_CPU_TIME', 'bigint'), ('MAX_CONTROLLED_MEMORY', 'bigint'), ('MAX_TOTAL_MEMORY', 'bigint'), ('COUNT_SECONDARY', 'bigint')]
+[etl]   filas~ 0 muestra: ()
+[etl] tabla processlist [('ID', 'bigint'), ('USER', 'varchar'), ('HOST', 'varchar'), ('DB', 'varchar'), ('COMMAND', 'varchar'), ('TIME', 'bigint'), ('STATE', 'varchar'), ('INFO', 'longtext'), ('EXECUTION_ENGINE', 'enum')]
+[etl]   filas~ 256 muestra: ((5, 'event_scheduler', 'localhost', None, 'Daemon', 1107, 'Waiting on empty queue', None, 'PRIMARY'), (13, 'root', 'localhost:50110', 'performance_schema', 'Query', 0, 'executing', 'select * from `processlist` limit 3', 'PRIMARY'))
+[etl] tabla replication_applier_configuration [('CHANNEL_NAME', 'char'), ('DESIRED_DELAY', 'int'), ('PRIVILEGE_CHECKS_USER', 'text'), ('REQUIRE_ROW_FORMAT', 'enum'), ('REQUIRE_TABLE_PRIMARY_KEY_CHECK', 'enum'), ('ASSIGN_GTIDS_TO_ANONYMOUS_TRANSACTIONS_TYPE', 'enum'), ('ASSIGN_GTIDS_TO_ANONYMOUS_TRANSACTIONS_VALUE', 'text')]
+[etl]   filas~ 256 muestra: ()
+[etl] tabla replication_applier_filters [('CHANNEL_NAME', 'char'), ('FILTER_NAME', 'char'), ('FILTER_RULE', 'longtext'), ('CONFIGURED_BY', 'enum'), ('ACTIVE_SINCE', 'timestamp'), ('COUNTER', 'bigint')]
+[etl]   filas~ 0 muestra: ()
+[etl] tabla replication_applier_global_filters [('FILTER_NAME', 'char'), ('FILTER_RULE', 'longtext'), ('CONFIGURED_BY', 'enum'), ('ACTIVE_SINCE', 'timestamp')]
+[etl]   filas~ 0 muestra: ()
+[etl] tabla replication_applier_status [('CHANNEL_NAME', 'char'), ('SERVICE_STATE', 'enum'), ('REMAINING_DELAY', 'int'), ('COUNT_TRANSACTIONS_RETRIES', 'bigint')]
+[etl]   filas~ 256 muestra: ()
+[etl] tabla replication_applier_status_by_coordinator [('CHANNEL_NAME', 'char'), ('THREAD_ID', 'bigint'), ('SERVICE_STATE', 'enum'), ('LAST_ERROR_NUMBER', 'int'), ('LAST_ERROR_MESSAGE', 'varchar'), ('LAST_ERROR_TIMESTAMP', 'timestamp'), ('LAST_PROCESSED_TRANSACTION', 'char'), ('LAST_PROCESSED_TRANSACTION_ORIGINAL_COMMIT_TIMESTAMP', 'timestamp'), ('LAST_PROCESSED_TRANSACTION_IMMEDIATE_COMMIT_TIMESTAMP', 'timestamp'), ('LAST_PROCESSED_TRANSACTION_START_BUFFER_TIMESTAMP', 'timestamp'), ('LAST_PROCESSED_TRANSACTION_END_BUFFER_TIMESTAMP', 'timestamp'), ('PROCESSING_TRANSACTION', 'char'), ('PROCESSING_TRANSACTION_ORIGINAL_COMMIT_TIMESTAMP', 'timestamp'), ('PROCESSING_TRANSACTION_IMMEDIATE_COMMIT_TIMESTAMP', 'timestamp'), ('PROCESSING_TRANSACTION_START_BUFFER_TIMESTAMP', 'timestamp')]
+[etl]   filas~ 256 muestra: ()
+[etl] tabla replication_applier_status_by_worker [('CHANNEL_NAME', 'char'), ('WORKER_ID', 'bigint'), ('THREAD_ID', 'bigint'), ('SERVICE_STATE', 'enum'), ('LAST_ERROR_NUMBER', 'int'), ('LAST_ERROR_MESSAGE', 'varchar'), ('LAST_ERROR_TIMESTAMP', 'timestamp'), ('LAST_APPLIED_TRANSACTION', 'char'), ('LAST_APPLIED_TRANSACTION_ORIGINAL_COMMIT_TIMESTAMP', 'timestamp'), ('LAST_APPLIED_TRANSACTION_IMMEDIATE_COMMIT_TIMESTAMP', 'timestamp'), ('LAST_APPLIED_TRANSACTION_START_APPLY_TIMESTAMP', 'timestamp'), ('LAST_APPLIED_TRANSACTION_END_APPLY_TIMESTAMP', 'timestamp'), ('APPLYING_TRANSACTION', 'char'), ('APPLYING_TRANSACTION_ORIGINAL_COMMIT_TIMESTAMP', 'timestamp'), ('APPLYING_TRANSACTION_IMMEDIATE_COMMIT_TIMESTAMP', 'timestamp'), ('APPLYING_TRANSACTION_START_APPLY_TIMESTAMP', 'timestamp'), ('LAST_APPLIED_TRANSACTION_RETRIES_COUNT', 'bigint'), ('LAST_APPLIED_TRANSACTION_LAST_TRANSIENT_ERROR_NUMBER', 'int'), ('LAST_APPLIED_TRANSACTION_LAST_TRANSIENT_ERROR_MESSAGE', 'varchar'), ('LAST_APPLIED_TRANSACTION_LAST_TRANSIENT_ERROR_TIMESTAMP', 'timestamp'), ('APPLYING_TRANSACTION_RETRIES_COUNT', 'bigint'), ('APPLYING_TRANSACTION_LAST_TRANSIENT_ERROR_NUMBER', 'int'), ('APPLYING_TRANSACTION_LAST_TRANSIENT_ERROR_MESSAGE', 'varchar'), ('APPLYING_TRANSACTION_LAST_TRANSIENT_ERROR_TIMESTAMP', 'timestamp')]
+[etl]   filas~ 8192 muestra: ()
+[etl] tabla replication_asynchronous_connection_failover [('CHANNEL_NAME', 'char'), ('HOST', 'char'), ('PORT', 'int'), ('NETWORK_NAMESPACE', 'char'), ('WEIGHT', 'int'), ('MANAGED_NAME', 'char')]
+[etl]   filas~ 0 muestra: ()
+[etl] tabla replication_asynchronous_connection_failover_managed [('CHANNEL_NAME', 'char'), ('MANAGED_NAME', 'char'), ('MANAGED_TYPE', 'char'), ('CONFIGURATION', 'json')]
+[etl]   filas~ 0 muestra: ()
+[etl] tabla replication_connection_configuration [('CHANNEL_NAME', 'char'), ('HOST', 'char'), ('PORT', 'int'), ('USER', 'char'), ('NETWORK_INTERFACE', 'char'), ('AUTO_POSITION', 'enum'), ('SSL_ALLOWED', 'enum'), ('SSL_CA_FILE', 'varchar'), ('SSL_CA_PATH', 'varchar'), ('SSL_CERTIFICATE', 'varchar'), ('SSL_CIPHER', 'varchar'), ('SSL_KEY', 'varchar'), ('SSL_VERIFY_SERVER_CERTIFICATE', 'enum'), ('SSL_CRL_FILE', 'varchar'), ('SSL_CRL_PATH', 'varchar'), ('CONNECTION_RETRY_INTERVAL', 'int'), ('CONNECTION_RETRY_COUNT', 'bigint'), ('HEARTBEAT_INTERVAL', 'double'), ('TLS_VERSION', 'varchar'), ('PUBLIC_KEY_PATH', 'varchar'), ('GET_PUBLIC_KEY', 'enum'), ('NETWORK_NAMESPACE', 'varchar'), ('COMPRESSION_ALGORITHM', 'char'), ('ZSTD_COMPRESSION_LEVEL', 'int'), ('TLS_CIPHERSUITES', 'text'), ('SOURCE_CONNECTION_AUTO_FAILOVER', 'enum'), ('GTID_ONLY', 'enum')]
+[etl]   filas~ 256 muestra: ()
+[etl] tabla replication_connection_status [('CHANNEL_NAME', 'char'), ('GROUP_NAME', 'char'), ('SOURCE_UUID', 'char'), ('THREAD_ID', 'bigint'), ('SERVICE_STATE', 'enum'), ('COUNT_RECEIVED_HEARTBEATS', 'bigint'), ('LAST_HEARTBEAT_TIMESTAMP', 'timestamp'), ('RECEIVED_TRANSACTION_SET', 'longtext'), ('LAST_ERROR_NUMBER', 'int'), ('LAST_ERROR_MESSAGE', 'varchar'), ('LAST_ERROR_TIMESTAMP', 'timestamp'), ('LAST_QUEUED_TRANSACTION', 'char'), ('LAST_QUEUED_TRANSACTION_ORIGINAL_COMMIT_TIMESTAMP', 'timestamp'), ('LAST_QUEUED_TRANSACTION_IMMEDIATE_COMMIT_TIMESTAMP', 'timestamp'), ('LAST_QUEUED_TRANSACTION_START_QUEUE_TIMESTAMP', 'timestamp'), ('LAST_QUEUED_TRANSACTION_END_QUEUE_TIMESTAMP', 'timestamp'), ('QUEUEING_TRANSACTION', 'char'), ('QUEUEING_TRANSACTION_ORIGINAL_COMMIT_TIMESTAMP', 'timestamp'), ('QUEUEING_TRANSACTION_IMMEDIATE_COMMIT_TIMESTAMP', 'timestamp'), ('QUEUEING_TRANSACTION_START_QUEUE_TIMESTAMP', 'timestamp')]
+[etl]   filas~ 256 muestra: ()
+[etl] tabla replication_group_member_stats [('CHANNEL_NAME', 'char'), ('VIEW_ID', 'char'), ('MEMBER_ID', 'char'), ('COUNT_TRANSACTIONS_IN_QUEUE', 'bigint'), ('COUNT_TRANSACTIONS_CHECKED', 'bigint'), ('COUNT_CONFLICTS_DETECTED', 'bigint'), ('COUNT_TRANSACTIONS_ROWS_VALIDATING', 'bigint'), ('TRANSACTIONS_COMMITTED_ALL_MEMBERS', 'longtext'), ('LAST_CONFLICT_FREE_TRANSACTION', 'text'), ('COUNT_TRANSACTIONS_REMOTE_IN_APPLIER_QUEUE', 'bigint'), ('COUNT_TRANSACTIONS_REMOTE_APPLIED', 'bigint'), ('COUNT_TRANSACTIONS_LOCAL_PROPOSED', 'bigint'), ('COUNT_TRANSACTIONS_LOCAL_ROLLBACK', 'bigint')]
+[etl]   filas~ 0 muestra: ()
+[etl] tabla replication_group_members [('CHANNEL_NAME', 'char'), ('MEMBER_ID', 'char'), ('MEMBER_HOST', 'char'), ('MEMBER_PORT', 'int'), ('MEMBER_STATE', 'char'), ('MEMBER_ROLE', 'char'), ('MEMBER_VERSION', 'char'), ('MEMBER_COMMUNICATION_STACK', 'char')]
+[etl]   filas~ 0 muestra: ()
+[etl] tabla rwlock_instances [('NAME', 'varchar'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('WRITE_LOCKED_BY_THREAD_ID', 'bigint'), ('READ_LOCKED_BY_COUNT', 'int')]
+[etl]   filas~ 2048 muestra: (('wait/synch/rwlock/pfs/LOCK_pfs_tls_channels', 844424930131968, None, 0), ('wait/synch/rwlock/sql/Resource_group_mgr::m_map_rwlock', 844424930197504, None, 0), ('wait/synch/rwlock/session/LOCK_srv_session_collection', 844424930263040, None, 0))
+[etl] tabla session_account_connect_attrs [('PROCESSLIST_ID', 'bigint'), ('ATTR_NAME', 'varchar'), ('ATTR_VALUE', 'varchar'), ('ORDINAL_POSITION', 'int')]
+[etl]   filas~ 131072 muestra: ((13, '_client_name', 'pymysql', 0), (13, '_pid', '2208', 1), (13, '_client_version', '1.0.2', 2))
+[etl] tabla session_connect_attrs [('PROCESSLIST_ID', 'bigint'), ('ATTR_NAME', 'varchar'), ('ATTR_VALUE', 'varchar'), ('ORDINAL_POSITION', 'int')]
+[etl]   filas~ 131072 muestra: ((13, '_client_name', 'pymysql', 0), (13, '_pid', '2208', 1), (13, '_client_version', '1.0.2', 2))
+[etl] tabla session_status [('VARIABLE_NAME', 'varchar'), ('VARIABLE_VALUE', 'varchar')]
+[etl]   filas~ 258 muestra: (('Aborted_clients', '0'), ('Aborted_connects', '0'), ('Acl_cache_items_count', '0'))
+[etl] tabla session_variables [('VARIABLE_NAME', 'varchar'), ('VARIABLE_VALUE', 'varchar')]
+[etl]   filas~ 674 muestra: (('activate_all_roles_on_login', 'OFF'), ('admin_address', ''), ('admin_port', '33062'))
+[etl] tabla setup_actors [('HOST', 'char'), ('USER', 'char'), ('ROLE', 'char'), ('ENABLED', 'enum'), ('HISTORY', 'enum')]
+[etl]   filas~ 128 muestra: (('%', '%', '%', 'YES', 'YES'),)
+[etl] tabla setup_consumers [('NAME', 'varchar'), ('ENABLED', 'enum')]
+[etl]   filas~ 16 muestra: (('events_stages_current', 'NO'), ('events_stages_history', 'NO'), ('events_stages_history_long', 'NO'))
+[etl] tabla setup_instruments [('NAME', 'varchar'), ('ENABLED', 'enum'), ('TIMED', 'enum'), ('PROPERTIES', 'set'), ('FLAGS', 'set'), ('VOLATILITY', 'int'), ('DOCUMENTATION', 'longtext')]
+[etl]   filas~ 1500 muestra: (('wait/synch/mutex/pfs/LOCK_pfs_share_list', 'NO', 'NO', 'singleton', None, 1, 'Components can provide their own performance_schema tables. This lock protects the list of such tables definitions.'), ('wait/synch/mutex/pfs/LOCK_pfs_tracing_callback', 'NO', 'NO', 'singleton', None, 1, 'This lock protects telemetry trace callback functions.'), ('wait/synch/mutex/sql/TC_LOG_MMAP::LOCK_tc', 'NO', 'NO', '', None, 0, None))
+[etl] tabla setup_objects [('OBJECT_TYPE', 'enum'), ('OBJECT_SCHEMA', 'varchar'), ('OBJECT_NAME', 'varchar'), ('ENABLED', 'enum'), ('TIMED', 'enum')]
+[etl]   filas~ 128 muestra: (('EVENT', 'mysql', '%', 'NO', 'NO'), ('EVENT', 'performance_schema', '%', 'NO', 'NO'), ('EVENT', 'information_schema', '%', 'NO', 'NO'))
+[etl] tabla setup_threads [('NAME', 'varchar'), ('ENABLED', 'enum'), ('HISTORY', 'enum'), ('PROPERTIES', 'set'), ('VOLATILITY', 'int'), ('DOCUMENTATION', 'longtext')]
+[etl]   filas~ 100 muestra: (('thread/performance_schema/setup', 'YES', 'YES', 'singleton', 0, None), ('thread/sql/bootstrap', 'YES', 'YES', 'singleton', 0, None), ('thread/sql/manager', 'YES', 'YES', 'singleton', 0, None))
+[etl] tabla socket_instances [('EVENT_NAME', 'varchar'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('THREAD_ID', 'bigint'), ('SOCKET_ID', 'int'), ('IP', 'varchar'), ('PORT', 'int'), ('STATE', 'enum')]
+[etl]   filas~ 256 muestra: (('wait/io/socket/mysqlx/tcpip_socket', 1688849860263936, 45, 21, '127.0.0.1', 33060, 'ACTIVE'), ('wait/io/socket/mysqlx/unix_socket', 1688849860329472, 45, 22, '', 0, 'ACTIVE'), ('wait/io/socket/sql/server_tcpip_socket', 1688849860395008, 1, 23, '127.0.0.1', 3306, 'ACTIVE'))
+[etl] tabla socket_summary_by_event_name [('EVENT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('COUNT_READ', 'bigint'), ('SUM_TIMER_READ', 'bigint'), ('MIN_TIMER_READ', 'bigint'), ('AVG_TIMER_READ', 'bigint'), ('MAX_TIMER_READ', 'bigint'), ('SUM_NUMBER_OF_BYTES_READ', 'bigint'), ('COUNT_WRITE', 'bigint'), ('SUM_TIMER_WRITE', 'bigint'), ('MIN_TIMER_WRITE', 'bigint'), ('AVG_TIMER_WRITE', 'bigint'), ('MAX_TIMER_WRITE', 'bigint'), ('SUM_NUMBER_OF_BYTES_WRITE', 'bigint'), ('COUNT_MISC', 'bigint'), ('SUM_TIMER_MISC', 'bigint'), ('MIN_TIMER_MISC', 'bigint'), ('AVG_TIMER_MISC', 'bigint'), ('MAX_TIMER_MISC', 'bigint')]
+[etl]   filas~ 10 muestra: (('wait/io/socket/sql/server_tcpip_socket', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ('wait/io/socket/sql/server_unix_socket', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ('wait/io/socket/sql/client_connection', 257477, 0, 0, 0, 0, 255471, 0, 0, 0, 0, 1943026526, 2006, 0, 0, 0, 0, 184680, 0, 0, 0, 0, 0))
+[etl] tabla socket_summary_by_instance [('EVENT_NAME', 'varchar'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('COUNT_READ', 'bigint'), ('SUM_TIMER_READ', 'bigint'), ('MIN_TIMER_READ', 'bigint'), ('AVG_TIMER_READ', 'bigint'), ('MAX_TIMER_READ', 'bigint'), ('SUM_NUMBER_OF_BYTES_READ', 'bigint'), ('COUNT_WRITE', 'bigint'), ('SUM_TIMER_WRITE', 'bigint'), ('MIN_TIMER_WRITE', 'bigint'), ('AVG_TIMER_WRITE', 'bigint'), ('MAX_TIMER_WRITE', 'bigint'), ('SUM_NUMBER_OF_BYTES_WRITE', 'bigint'), ('COUNT_MISC', 'bigint'), ('SUM_TIMER_MISC', 'bigint'), ('MIN_TIMER_MISC', 'bigint'), ('AVG_TIMER_MISC', 'bigint'), ('MAX_TIMER_MISC', 'bigint')]
+[etl]   filas~ 256 muestra: (('wait/io/socket/mysqlx/tcpip_socket', 1688849860263936, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ('wait/io/socket/mysqlx/unix_socket', 1688849860329472, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ('wait/io/socket/sql/server_tcpip_socket', 1688849860395008, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+[etl] tabla status_by_account [('USER', 'char'), ('HOST', 'char'), ('VARIABLE_NAME', 'varchar'), ('VARIABLE_VALUE', 'varchar')]
+[etl]   filas~ 33024 muestra: ((None, None, 'Bytes_received', '0'), (None, None, 'Bytes_sent', '0'), (None, None, 'Com_stmt_reprepare', '0'))
+[etl] tabla status_by_host [('HOST', 'char'), ('VARIABLE_NAME', 'varchar'), ('VARIABLE_VALUE', 'varchar')]
+[etl]   filas~ 33024 muestra: ((None, 'Bytes_received', '0'), (None, 'Bytes_sent', '0'), (None, 'Com_stmt_reprepare', '0'))
+[etl] tabla status_by_thread [('THREAD_ID', 'bigint'), ('VARIABLE_NAME', 'varchar'), ('VARIABLE_VALUE', 'varchar')]
+[etl]   filas~ 66048 muestra: ((53, 'Bytes_received', '19960'), (53, 'Bytes_sent', '293082'), (53, 'Com_stmt_reprepare', '0'))
+[etl] tabla status_by_user [('USER', 'char'), ('VARIABLE_NAME', 'varchar'), ('VARIABLE_VALUE', 'varchar')]
+[etl]   filas~ 33024 muestra: ((None, 'Bytes_received', '0'), (None, 'Bytes_sent', '0'), (None, 'Com_stmt_reprepare', '0'))
+[etl] tabla table_handles [('OBJECT_TYPE', 'varchar'), ('OBJECT_SCHEMA', 'varchar'), ('OBJECT_NAME', 'varchar'), ('OBJECT_INSTANCE_BEGIN', 'bigint'), ('OWNER_THREAD_ID', 'bigint'), ('OWNER_EVENT_ID', 'bigint'), ('INTERNAL_LOCK', 'varchar'), ('EXTERNAL_LOCK', 'varchar')]
+[etl]   filas~ 1024 muestra: ()
+[etl] tabla table_io_waits_summary_by_index_usage [('OBJECT_TYPE', 'varchar'), ('OBJECT_SCHEMA', 'varchar'), ('OBJECT_NAME', 'varchar'), ('INDEX_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('COUNT_READ', 'bigint'), ('SUM_TIMER_READ', 'bigint'), ('MIN_TIMER_READ', 'bigint'), ('AVG_TIMER_READ', 'bigint'), ('MAX_TIMER_READ', 'bigint'), ('COUNT_WRITE', 'bigint'), ('SUM_TIMER_WRITE', 'bigint'), ('MIN_TIMER_WRITE', 'bigint'), ('AVG_TIMER_WRITE', 'bigint'), ('MAX_TIMER_WRITE', 'bigint'), ('COUNT_FETCH', 'bigint'), ('SUM_TIMER_FETCH', 'bigint'), ('MIN_TIMER_FETCH', 'bigint'), ('AVG_TIMER_FETCH', 'bigint'), ('MAX_TIMER_FETCH', 'bigint'), ('COUNT_INSERT', 'bigint'), ('SUM_TIMER_INSERT', 'bigint'), ('MIN_TIMER_INSERT', 'bigint'), ('AVG_TIMER_INSERT', 'bigint'), ('MAX_TIMER_INSERT', 'bigint'), ('COUNT_UPDATE', 'bigint'), ('SUM_TIMER_UPDATE', 'bigint'), ('MIN_TIMER_UPDATE', 'bigint'), ('AVG_TIMER_UPDATE', 'bigint'), ('MAX_TIMER_UPDATE', 'bigint'), ('COUNT_DELETE', 'bigint'), ('SUM_TIMER_DELETE', 'bigint'), ('MIN_TIMER_DELETE', 'bigint'), ('AVG_TIMER_DELETE', 'bigint'), ('MAX_TIMER_DELETE', 'bigint')]
+[etl]   filas~ 8192 muestra: (('TABLE', 'mysql', 'schemata', 'PRIMARY', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ('TABLE', 'mysql', 'schemata', 'catalog_id', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ('TABLE', 'mysql', 'schemata', 'default_collation_id', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+[etl] tabla table_io_waits_summary_by_table [('OBJECT_TYPE', 'varchar'), ('OBJECT_SCHEMA', 'varchar'), ('OBJECT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('COUNT_READ', 'bigint'), ('SUM_TIMER_READ', 'bigint'), ('MIN_TIMER_READ', 'bigint'), ('AVG_TIMER_READ', 'bigint'), ('MAX_TIMER_READ', 'bigint'), ('COUNT_WRITE', 'bigint'), ('SUM_TIMER_WRITE', 'bigint'), ('MIN_TIMER_WRITE', 'bigint'), ('AVG_TIMER_WRITE', 'bigint'), ('MAX_TIMER_WRITE', 'bigint'), ('COUNT_FETCH', 'bigint'), ('SUM_TIMER_FETCH', 'bigint'), ('MIN_TIMER_FETCH', 'bigint'), ('AVG_TIMER_FETCH', 'bigint'), ('MAX_TIMER_FETCH', 'bigint'), ('COUNT_INSERT', 'bigint'), ('SUM_TIMER_INSERT', 'bigint'), ('MIN_TIMER_INSERT', 'bigint'), ('AVG_TIMER_INSERT', 'bigint'), ('MAX_TIMER_INSERT', 'bigint'), ('COUNT_UPDATE', 'bigint'), ('SUM_TIMER_UPDATE', 'bigint'), ('MIN_TIMER_UPDATE', 'bigint'), ('AVG_TIMER_UPDATE', 'bigint'), ('MAX_TIMER_UPDATE', 'bigint'), ('COUNT_DELETE', 'bigint'), ('SUM_TIMER_DELETE', 'bigint'), ('MIN_TIMER_DELETE', 'bigint'), ('AVG_TIMER_DELETE', 'bigint'), ('MAX_TIMER_DELETE', 'bigint')]
+[etl]   filas~ 4096 muestra: (('TABLE', 'mysql', 'dd_properties', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ('TABLE', 'mysql', 'schemata', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ('TABLE', 'mysql', 'tablespace_files', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+[etl] tabla table_lock_waits_summary_by_table [('OBJECT_TYPE', 'varchar'), ('OBJECT_SCHEMA', 'varchar'), ('OBJECT_NAME', 'varchar'), ('COUNT_STAR', 'bigint'), ('SUM_TIMER_WAIT', 'bigint'), ('MIN_TIMER_WAIT', 'bigint'), ('AVG_TIMER_WAIT', 'bigint'), ('MAX_TIMER_WAIT', 'bigint'), ('COUNT_READ', 'bigint'), ('SUM_TIMER_READ', 'bigint'), ('MIN_TIMER_READ', 'bigint'), ('AVG_TIMER_READ', 'bigint'), ('MAX_TIMER_READ', 'bigint'), ('COUNT_WRITE', 'bigint'), ('SUM_TIMER_WRITE', 'bigint'), ('MIN_TIMER_WRITE', 'bigint'), ('AVG_TIMER_WRITE', 'bigint'), ('MAX_TIMER_WRITE', 'bigint'), ('COUNT_READ_NORMAL', 'bigint'), ('SUM_TIMER_READ_NORMAL', 'bigint'), ('MIN_TIMER_READ_NORMAL', 'bigint'), ('AVG_TIMER_READ_NORMAL', 'bigint'), ('MAX_TIMER_READ_NORMAL', 'bigint'), ('COUNT_READ_WITH_SHARED_LOCKS', 'bigint'), ('SUM_TIMER_READ_WITH_SHARED_LOCKS', 'bigint'), ('MIN_TIMER_READ_WITH_SHARED_LOCKS', 'bigint'), ('AVG_TIMER_READ_WITH_SHARED_LOCKS', 'bigint'), ('MAX_TIMER_READ_WITH_SHARED_LOCKS', 'bigint'), ('COUNT_READ_HIGH_PRIORITY', 'bigint'), ('SUM_TIMER_READ_HIGH_PRIORITY', 'bigint'), ('MIN_TIMER_READ_HIGH_PRIORITY', 'bigint'), ('AVG_TIMER_READ_HIGH_PRIORITY', 'bigint'), ('MAX_TIMER_READ_HIGH_PRIORITY', 'bigint'), ('COUNT_READ_NO_INSERT', 'bigint'), ('SUM_TIMER_READ_NO_INSERT', 'bigint'), ('MIN_TIMER_READ_NO_INSERT', 'bigint'), ('AVG_TIMER_READ_NO_INSERT', 'bigint'), ('MAX_TIMER_READ_NO_INSERT', 'bigint'), ('COUNT_READ_EXTERNAL', 'bigint'), ('SUM_TIMER_READ_EXTERNAL', 'bigint'), ('MIN_TIMER_READ_EXTERNAL', 'bigint'), ('AVG_TIMER_READ_EXTERNAL', 'bigint'), ('MAX_TIMER_READ_EXTERNAL', 'bigint'), ('COUNT_WRITE_ALLOW_WRITE', 'bigint'), ('SUM_TIMER_WRITE_ALLOW_WRITE', 'bigint'), ('MIN_TIMER_WRITE_ALLOW_WRITE', 'bigint'), ('AVG_TIMER_WRITE_ALLOW_WRITE', 'bigint'), ('MAX_TIMER_WRITE_ALLOW_WRITE', 'bigint'), ('COUNT_WRITE_CONCURRENT_INSERT', 'bigint'), ('SUM_TIMER_WRITE_CONCURRENT_INSERT', 'bigint'), ('MIN_TIMER_WRITE_CONCURRENT_INSERT', 'bigint'), ('AVG_TIMER_WRITE_CONCURRENT_INSERT', 'bigint'), ('MAX_TIMER_WRITE_CONCURRENT_INSERT', 'bigint'), ('COUNT_WRITE_LOW_PRIORITY', 'bigint'), ('SUM_TIMER_WRITE_LOW_PRIORITY', 'bigint'), ('MIN_TIMER_WRITE_LOW_PRIORITY', 'bigint'), ('AVG_TIMER_WRITE_LOW_PRIORITY', 'bigint'), ('MAX_TIMER_WRITE_LOW_PRIORITY', 'bigint'), ('COUNT_WRITE_NORMAL', 'bigint'), ('SUM_TIMER_WRITE_NORMAL', 'bigint'), ('MIN_TIMER_WRITE_NORMAL', 'bigint'), ('AVG_TIMER_WRITE_NORMAL', 'bigint'), ('MAX_TIMER_WRITE_NORMAL', 'bigint'), ('COUNT_WRITE_EXTERNAL', 'bigint'), ('SUM_TIMER_WRITE_EXTERNAL', 'bigint'), ('MIN_TIMER_WRITE_EXTERNAL', 'bigint'), ('AVG_TIMER_WRITE_EXTERNAL', 'bigint'), ('MAX_TIMER_WRITE_EXTERNAL', 'bigint')]
+[etl]   filas~ 4096 muestra: (('TABLE', 'mysql', 'dd_properties', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ('TABLE', 'mysql', 'schemata', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ('TABLE', 'mysql', 'tablespace_files', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+[etl] tabla threads [('THREAD_ID', 'bigint'), ('NAME', 'varchar'), ('TYPE', 'varchar'), ('PROCESSLIST_ID', 'bigint'), ('PROCESSLIST_USER', 'varchar'), ('PROCESSLIST_HOST', 'varchar'), ('PROCESSLIST_DB', 'varchar'), ('PROCESSLIST_COMMAND', 'varchar'), ('PROCESSLIST_TIME', 'bigint'), ('PROCESSLIST_STATE', 'varchar'), ('PROCESSLIST_INFO', 'longtext'), ('PARENT_THREAD_ID', 'bigint'), ('ROLE', 'varchar'), ('INSTRUMENTED', 'enum'), ('HISTORY', 'enum'), ('CONNECTION_TYPE', 'varchar'), ('THREAD_OS_ID', 'bigint'), ('RESOURCE_GROUP', 'varchar'), ('EXECUTION_ENGINE', 'enum'), ('CONTROLLED_MEMORY', 'bigint'), ('MAX_CONTROLLED_MEMORY', 'bigint'), ('TOTAL_MEMORY', 'bigint'), ('MAX_TOTAL_MEMORY', 'bigint'), ('TELEMETRY_ACTIVE', 'enum')]
+[etl]   filas~ 256 muestra: ((1, 'thread/sql/main', 'BACKGROUND', None, None, None, 'mysql', None, 1107, None, None, None, None, 'YES', 'YES', None, 2045, 'SYS_default', 'PRIMARY', 480, 87808, 1585442, 1593460, 'NO'), (4, 'thread/innodb/io_ibuf_thread', 'BACKGROUND', None, None, None, None, None, None, None, None, None, None, 'YES', 'YES', None, 2049, 'SYS_default', 'PRIMARY', 0, 0, 0, 0, 'NO'), (5, 'thread/innodb/io_read_thread', 'BACKGROUND', None, None, None, None, None, None, None, None, None, None, 'YES', 'YES', None, 2050, 'SYS_default', 'PRIMARY', 0, 0, 0, 62295, 'NO'))
+[etl] tabla tls_channel_status [('CHANNEL', 'varchar'), ('PROPERTY', 'varchar'), ('VALUE', 'varchar')]
+[etl]   filas~ 96 muestra: (('mysql_main', 'Enabled', 'Yes'), ('mysql_main', 'Ssl_accept_renegotiates', '0'), ('mysql_main', 'Ssl_accepts', '5'))
+[etl] tabla user_defined_functions [('UDF_NAME', 'varchar'), ('UDF_RETURN_TYPE', 'varchar'), ('UDF_TYPE', 'varchar'), ('UDF_LIBRARY', 'varchar'), ('UDF_USAGE_COUNT', 'bigint')]
+[etl]   filas~ 16 muestra: (('asynchronous_connection_failover_reset', 'char', 'function', None, 1), ('asynchronous_connection_failover_delete_source', 'char', 'function', None, 1), ('asynchronous_connection_failover_add_source', 'char', 'function', None, 1))
+[etl] tabla user_variables_by_thread [('THREAD_ID', 'bigint'), ('VARIABLE_NAME', 'varchar'), ('VARIABLE_VALUE', 'longblob')]
+[etl]   filas~ 2560 muestra: ()
+[etl] tabla users [('USER', 'char'), ('CURRENT_CONNECTIONS', 'bigint'), ('TOTAL_CONNECTIONS', 'bigint'), ('MAX_SESSION_CONTROLLED_MEMORY', 'bigint'), ('MAX_SESSION_TOTAL_MEMORY', 'bigint')]
+[etl]   filas~ 128 muestra: ((None, 36, 47, 272128, 66901877), ('event_scheduler', 1, 1, 0, 16665), ('root', 1, 6, 56485848, 58026813))
+[etl] tabla variables_by_thread [('THREAD_ID', 'bigint'), ('VARIABLE_NAME', 'varchar'), ('VARIABLE_VALUE', 'varchar')]
+[etl]   filas~ 172544 muestra: ((53, 'auto_increment_increment', '1'), (53, 'auto_increment_offset', '1'), (53, 'autocommit', 'OFF'))
+[etl] tabla variables_info [('VARIABLE_NAME', 'varchar'), ('VARIABLE_SOURCE', 'enum'), ('VARIABLE_PATH', 'varchar'), ('MIN_VALUE', 'varchar'), ('MAX_VALUE', 'varchar'), ('SET_TIME', 'timestamp'), ('SET_USER', 'char'), ('SET_HOST', 'char')]
+[etl]   filas~ 674 muestra: (('activate_all_roles_on_login', 'COMPILED', '', '0', '0', None, None, None), ('admin_address', 'COMPILED', '', '0', '0', None, None, None), ('admin_port', 'COMPILED', '', '0', '65535', None, None, None))
+[etl] mapeo historial: {'item': None, 'loc': None, 'ts': None, 'amt': None, 'sil': None, 'scale': None, 'q': None}
+Traceback (most recent call last):
+  File "/home/runner/work/albion/albion/etl/build_report.py", line 277, in <module>
+    con = connect(); cur = con.cursor(); s = schema(cur); items, ref = compute(cur, s); write(items, ref)
+                                                                       ^^^^^^^^^^^^^^^
+  File "/home/runner/work/albion/albion/etl/build_report.py", line 179, in compute
+    cur.execute(f"select max(`{h_ts}`) from `{hist_t}`"); maxts = cur.fetchone()[0]; log("último timestamp historial:", maxts)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/pymysql/cursors.py", line 148, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/pymysql/cursors.py", line 310, in _query
+    conn.query(q)
+  File "/usr/lib/python3/dist-packages/pymysql/connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/pymysql/connections.py", line 775, in _read_query_result
+    result.read()
+  File "/usr/lib/python3/dist-packages/pymysql/connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/usr/lib/python3/dist-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/lib/python3/dist-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column 'None' in 'field list'")
