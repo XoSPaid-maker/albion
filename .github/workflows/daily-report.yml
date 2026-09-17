@@ -43,9 +43,8 @@ jobs:
           git commit -m "Informe diario $(date -u +%F)" || echo "sin cambios"
           git pull --rebase origin "${{ github.ref_name }}" || true
           git push origin "HEAD:${{ github.ref_name }}"
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v5   # Pages debe estar activado (Settings → Pages → Source: GitHub Actions)
         if: github.ref == 'refs/heads/main'
-        with: { enablement: true }
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main'
         with: { path: docs }
