@@ -122,39 +122,108 @@ details summary{cursor:pointer;color:var(--accent);font-weight:500;margin-block:
 @media (max-width:600px){.top{align-items:flex-start}.kpi .v{font-size:24px}}
 details.card>summary{cursor:pointer;font:600 13px "Barlow Condensed",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);list-style:none}
 details.card>summary::before{content:"▸ ";}details.card[open]>summary::before{content:"▾ ";}
-#tabs button.adv{display:none}#tabs.more button.adv{display:inline-block}
+#tabs button.adv{display:none}#tabs.more button.adv{display:inline-block}#tabs button.adv[hidden]{display:none}
 .card.today:hover{background:var(--row-hover)}.card.today .kv{grid-template-columns:auto 1fr}
+#statusline{margin-top:8px}
+#acctWrap{padding:9px 14px}
+#acctWrap:not([open]){border-style:dashed}
+/* ---- barra de decisión (siempre visible) ---- */
+.quick{display:flex;flex-wrap:wrap;gap:10px;align-items:end;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:12px}
+.quick label{display:flex;flex-direction:column;gap:3px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;flex:1 1 200px;min-width:0}
+.quick select,.quick input{width:100%;min-width:0}
+.quick label .small{text-transform:none;letter-spacing:0;font-size:11px;margin-top:1px}
+/* ---- tarjetas de respuesta ---- */
+.sec{margin-top:20px}
+.sec>h2{font-family:"Barlow Condensed",sans-serif;font-size:21px;letter-spacing:.04em;color:var(--gold);text-transform:uppercase;line-height:1.15}
+.deals{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));margin-top:10px}
+.deal{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}
+.deal:hover{border-color:var(--gold2);background:var(--row-hover)}
+.deal>header{display:flex;gap:10px;align-items:flex-start}
+.deal .t{flex:1;min-width:0}
+.deal .t b{font-size:15px;line-height:1.2;display:block}
+.deal .p{text-align:right;white-space:nowrap}
+.deal .p b{font:700 21px "Barlow Condensed",sans-serif;line-height:1}
+.deal .p .small{font-size:11px}
+.steps{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+.steps li{display:grid;grid-template-columns:22px 1fr;gap:9px;align-items:start;font-size:13.5px;line-height:1.35}
+.steps .n{width:22px;height:22px;border-radius:50%;background:var(--surface2);border:1px solid var(--line);color:var(--gold);font:700 12px "IBM Plex Mono",monospace;display:flex;align-items:center;justify-content:center}
+.steps .k{color:var(--muted);text-transform:uppercase;font:600 11px "Barlow Condensed",sans-serif;letter-spacing:.11em;display:block}
+.deal>footer{margin-top:10px;padding-top:9px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:13px;flex-wrap:wrap}
+/* ---- listas compactas (sin scroll horizontal) ---- */
+.lite{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:10px}
+.lite .r{display:flex;gap:10px;align-items:center;background:var(--surface);padding:9px 11px;cursor:pointer}
+.lite .r:hover{background:var(--row-hover)}
+.lite .r .n{flex:1;min-width:0}
+.lite .r .n b{display:block;font-size:13.5px;line-height:1.25}
+.lite .r .v{text-align:right;white-space:nowrap;font-size:12px;color:var(--muted)}
+.lite .r .v b{display:block;color:var(--ink);font-size:13px}
+@media (max-width:600px){
+  body{padding-inline:12px}
+  h1{font-size:15px;letter-spacing:.01em}
+  h1 small{display:none}
+  .top .btn{padding:6px 9px;font-size:11px}
+  .seg button{padding:5px 7px;font-size:11px}
+  #acctWrap>summary{font-size:12px}
+  .top{padding-block:8px 6px;gap:8px;flex-wrap:nowrap}
+  .top .status{gap:6px;justify-content:flex-end}
+  .pill{padding:2px 8px;font-size:11px}
+  nav.tabs{margin-block:8px}
+  nav.tabs button{padding:8px 9px;font-size:14px}
+  .quick{padding:8px 10px;gap:8px;margin-top:8px}
+  .quick label{flex:1 1 100%}
+  #acctWrap{padding:8px 12px;margin-top:8px}
+  .sec{margin-top:16px}
+  .deals{grid-template-columns:1fr}
+  .deal>header{align-items:center}
+  .grid.g2>div>h4{margin-top:10px}
+}
 </style>
 </head><body><div class="wrap">
 <header class="top">
-  <div><h1><small data-t="Terminal económica · Servidor Americas|Economic terminal · Americas server">Terminal económica · Servidor Americas</small>Albion Market Intel</h1></div>
+  <div><h1><small data-t="Qué comprar, fabricar y vender hoy · Americas|What to buy, craft and sell today · Americas">Qué comprar, fabricar y vender hoy · Americas</small>Albion Market Intel</h1></div>
   <div class="status">
-    <span class="pill" id="mkState">⏳ …</span>
-    <span class="pill" id="mkAge"></span>
-    <button class="btn primary" id="btnRefresh" data-t="Actualizar mercado|Refresh market">Actualizar mercado</button>
+    <button class="btn primary" id="btnRefresh" data-t="Actualizar precios|Refresh prices">Actualizar precios</button>
     <span class="seg" id="langSeg"><button data-lang="es" class="on">ES</button><button data-lang="en">EN</button></span>
   </div>
 </header>
+<div class="status" id="statusline"><span class="pill" id="mkState">⏳ …</span><span class="pill" id="mkAge"></span></div>
 <div class="progress" id="prog" hidden><span></span></div>
 <div class="small" id="mkMsg" style="margin-top:6px"></div>
 
 <nav class="tabs" id="tabs">
   <button data-tab="today" class="on" data-t="Hoy|Today">Hoy</button>
-  <button data-tab="daily" id="tabDaily" hidden data-t="Mercado 7 días|Market 7 days">Mercado 7 días</button>
-  <button data-tab="scan" data-t="Profit Scanner|Profit Scanner">Profit Scanner</button>
-  <button data-tab="lab" data-t="Item Lab|Item Lab">Item Lab</button>
-  <button id="tabMore" data-t="Más ▾|More ▾">Más ▾</button>
-  <button class="adv" data-tab="dash" data-t="Dashboard|Dashboard">Dashboard</button>
+  <button data-tab="lab" data-t="Buscar ítem|Find an item">Buscar ítem</button>
+  <button id="tabMore" data-t="Avanzado ▾|Advanced ▾">Avanzado ▾</button>
+  <button class="adv" data-tab="daily" id="tabDaily" hidden data-t="Los 500 más vendidos|Top 500 traded">Los 500 más vendidos</button>
+  <button class="adv" data-tab="scan" data-t="Buscador de ganancias|Profit scanner">Buscador de ganancias</button>
+  <button class="adv" data-tab="dash" data-t="Estado de los datos|Data status">Estado de los datos</button>
   <button class="adv" data-tab="refine" data-t="Refinado|Refining">Refinado</button>
   <button class="adv" data-tab="plan" data-t="Plan de producción|Production Plan">Plan de producción</button>
   <button class="adv" data-tab="log" data-t="Bitácora|Ledger">Bitácora</button>
-  <button class="adv" data-tab="bonus" data-t="Bonos y fees|Bonuses & fees">Bonos y fees</button>
+  <button class="adv" data-tab="bonus" data-t="Bonos y comisiones|Bonuses & fees">Bonos y comisiones</button>
   <button class="adv" data-tab="bot" id="tabBot" hidden data-t="Analista IA|AI Analyst">Analista IA</button>
-  <button class="adv" data-tab="method" data-t="Método|Method">Método</button>
+  <button class="adv" data-tab="method" data-t="De dónde salen los datos|Method">De dónde salen los datos</button>
 </nav>
 
+<!-- BARRA DE DECISIÓN: lo único que hay que tocar -->
+<div class="quick" id="quick">
+  <label><span data-t="Comprar los materiales|Buy the materials">Comprar los materiales</span>
+    <select id="pBuyMode">
+      <option value="single">Todo en una sola ciudad (la mejor)|Everything in one city (the best one)</option>
+      <option value="cheapest">Cada cosa donde esté más barata|Each one where it is cheapest</option>
+      <option value="Bridgewatch">Todo en Bridgewatch|All in Bridgewatch</option>
+      <option value="Fort Sterling">Todo en Fort Sterling|All in Fort Sterling</option>
+      <option value="Lymhurst">Todo en Lymhurst|All in Lymhurst</option>
+      <option value="Martlock">Todo en Martlock|All in Martlock</option>
+      <option value="Thetford">Todo en Thetford|All in Thetford</option>
+      <option value="Caerleon">Todo en Caerleon|All in Caerleon</option>
+      <option value="Brecilien">Todo en Brecilien|All in Brecilien</option>
+    </select></label>
+  <label><span data-t="Plata que puedo gastar|Silver I can spend">Plata que puedo gastar</span><input type="number" id="pCapital" value="10000000" min="0" step="100000"><span class="small" id="capHint"></span></label>
+</div>
+
 <!-- ACCOUNT / GLOBAL SETTINGS -->
-<details class="card" id="acctWrap"><summary data-t="Ajustes: cuenta, focus, capital y modo de compra|Settings: account, focus, capital & purchase mode">Ajustes: cuenta, focus, capital y modo de compra</summary>
+<details class="card" id="acctWrap" style="margin-top:12px"><summary data-t="Ajustar más|Fine-tune">Ajustar más</summary>
 <div id="acctCard" style="margin-top:10px">
   <div class="controls">
     <label><span data-t="Estado de cuenta|Account status">Estado de cuenta</span>
@@ -162,10 +231,8 @@ details.card>summary::before{content:"▸ ";}details.card[open]>summary::before{
     <label>Focus <span class="seg" id="segFocus"><button data-v="1" class="on">ON</button><button data-v="0">OFF</button></span></label>
     <label><span data-t="Focus disponible|Focus available">Focus disponible</span><input type="number" id="pFocusAvail" value="10000" min="0" step="100"></label>
     <label><span data-t="Reducción de focus por spec %|Focus cost reduction (spec) %">Reducción de focus por spec %</span><input type="number" id="pFocusRed" value="0" min="0" max="90" step="5"></label>
-    <label><span data-t="Capital disponible|Available silver">Capital disponible</span><input type="number" id="pCapital" value="10000000" min="0" step="100000"></label>
-    <label><span data-t="Venta|Sell mode">Venta</span><select id="pSellMode"><option value="order" data-t="Orden de venta (undercut)|Sell order (undercut)">Orden de venta (undercut)</option><option value="instant" data-t="Instantánea a orden de compra|Instant to buy order">Instantánea a orden de compra</option></select></label>
-    <label><span data-t="Compra de materiales|Materials purchase">Compra de materiales</span><select id="pBuyMode"><option value="cheapest">Cada material en su ciudad más barata|Each material in its cheapest city</option><option value="single">Todo en una sola ciudad (la mejor)|Everything in one city (best one)</option><option value="Bridgewatch">Todo en Bridgewatch|All in Bridgewatch</option><option value="Fort Sterling">Todo en Fort Sterling|All in Fort Sterling</option><option value="Lymhurst">Todo en Lymhurst|All in Lymhurst</option><option value="Martlock">Todo en Martlock|All in Martlock</option><option value="Thetford">Todo en Thetford|All in Thetford</option><option value="Caerleon">Todo en Caerleon|All in Caerleon</option><option value="Brecilien">Todo en Brecilien|All in Brecilien</option></select></label>
-    <label><span data-t="Antigüedad máx. de datos|Max data age">Antigüedad máx. de datos</span><select id="pMaxAge"><option value="2">2 h</option><option value="6" selected>6 h</option><option value="24">24 h</option><option value="72">72 h</option><option value="99999" data-t="Sin límite|No limit">Sin límite</option></select></label>
+    <label><span data-t="Cómo vendo|How I sell">Cómo vendo</span><select id="pSellMode"><option value="order" data-t="Pongo mi orden de venta y espero|I post a sell order and wait">Pongo mi orden de venta y espero</option><option value="instant" data-t="Vendo al instante a quien esté comprando|I sell instantly to whoever is buying">Vendo al instante a quien esté comprando</option></select></label>
+    <label><span data-t="Descartar precios de más de|Ignore prices older than">Descartar precios de más de</span><select id="pMaxAge"><option value="2">2 h</option><option value="6" selected>6 h</option><option value="24">24 h</option><option value="72">72 h</option><option value="99999" data-t="Sin límite|No limit">Sin límite</option></select></label>
   </div>
   <div class="small" id="acctInfo" style="margin-top:8px"></div>
 </div></details>
@@ -231,13 +298,13 @@ details.card>summary::before{content:"▸ ";}details.card[open]>summary::before{
 <section class="tab" id="tab-lab" hidden style="margin-top:14px">
   <div class="card">
     <div class="controls">
-      <label style="flex:1;min-width:260px"><span data-t="Ítem|Item">Ítem</span><input type="search" id="labQ" list="labList" placeholder="Escribe nombre o ID…" style="width:100%"><datalist id="labList"></datalist></label>
+      <label style="flex:1;min-width:260px"><span data-t="Ítem|Item">Ítem</span><input type="search" id="labQ" list="labList" placeholder="Escribe el nombre del ítem…" style="width:100%"><datalist id="labList"></datalist></label>
       <label>Tier<select id="labTier"><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
       <label><span data-t="Encantamiento|Enchantment">Encantamiento</span><select id="labEnch"><option value="0">.0</option><option value="1">.1</option><option value="2">.2</option><option value="3">.3</option><option value="4">.4</option></select></label>
-      <label><span data-t="Craftear en|Craft in">Craftear en</span><select id="labCity"><option value="">Mejor|Best</option></select></label>
+      <label><span data-t="Fabricar en|Craft in">Fabricar en</span><select id="labCity"><option value="">Mejor|Best</option></select></label>
       <label><span data-t="Vender en|Sell in">Vender en</span><select id="labSell"><option value="">Mejor|Best</option></select></label>
       <label><span data-t="Cantidad|Quantity">Cantidad</span><input type="number" id="labQty" value="10" min="1"></label>
-      <button class="btn primary" id="btnLabFetch" data-t="Consultar API|Query API">Consultar API</button>
+      <button class="btn primary" id="btnLabFetch" data-t="Ver precios de ahora|Fetch current prices">Ver precios de ahora</button>
     </div>
     <div class="chips" id="labResults"></div>
   </div>
@@ -393,6 +460,7 @@ const catName = cat => T(CAT_NAME[cat] || cat);
 function ageH(iso) { if (!iso || iso.startsWith('0001')) return null; const t = Date.parse(iso.endsWith('Z') ? iso : iso + 'Z'); return isNaN(t) ? null : (Date.now() - t) / 36e5; }
 function ageTxt(h) { if (h == null) return `<span class="age dead">${T('sin datos|no data')}</span>`; const c = h > P().maxAge ? 'dead' : h > 6 ? 'old' : ''; const s = h < 1 ? Math.round(h * 60) + ' min' : h < 48 ? h.toFixed(1) + ' h' : Math.round(h / 24) + ' d'; return `<span class="age ${c}" title="${T('antigüedad del dato observado|age of observed data')}">${s}</span>`; }
 
+function dayTxt(iso) { const d = new Date(iso.endsWith('Z') ? iso : iso + 'Z'); if (isNaN(d)) return iso; return d.toLocaleDateString(LANG === 'es' ? 'es-CO' : 'en-US', { day: 'numeric', month: 'short', timeZone: 'UTC' }) + ', ' + iso.slice(11, 16) + ' UTC'; }
 /* ---------- icons (single source of truth) ---------- */
 const ICON_BASE = 'https://render.albiononline.com/v1/item/';
 function getItemIcon(id, size = 64) { return `${ICON_BASE}${encodeURIComponent(id)}.png?size=${size}&quality=1`; }
@@ -588,11 +656,11 @@ function applyStatic() {
 function renderStatus() {
   const st = $('#mkState'), ag = $('#mkAge'); st.className = 'pill';
   const okAge = MK.lastOk ? (Date.now() - MK.lastOk) / 6e4 : null;
-  if (MK.lastErr && (!MK.lastOk || MK.lastErr.t > MK.lastOk)) { st.classList.add('bad'); st.textContent = '🔴 API OFFLINE'; ag.textContent = T('Mostrando último dato guardado|Showing last saved data'); }
-  else if (okAge != null && okAge <= 15) { st.classList.add('good'); st.textContent = '🟢 LIVE MARKET'; ag.textContent = T('Actualizado hace|Updated') + ' ' + (okAge < 1 ? Math.round(okAge * 60) + ' s' : Math.round(okAge) + ' min') + (LANG === 'en' ? ' ago' : ''); }
-  else if (MK.source === 'daily' && DAILY.latest && !okAge) { const h = (Date.now() - Date.parse(DAILY.latest.data_until + 'Z')) / 36e5; st.classList.add(h <= 30 ? 'good' : 'warn'); st.textContent = h <= 30 ? T('🟢 DATOS DE AYER|🟢 YESTERDAY DATA') : T('🟡 DATOS ANTIGUOS|🟡 STALE DATA'); ag.textContent = T('Datos del mercado hasta|Market data until') + ' ' + DAILY.latest.data_until.replace('T', ' ').slice(0, 16) + ' UTC'; }
-  else if (okAge != null) { st.classList.add('warn'); st.textContent = '🟡 DATA STALE'; ag.textContent = T('Última consulta hace|Last query') + ' ' + (okAge < 120 ? Math.round(okAge) + ' min' : (okAge / 60).toFixed(1) + ' h') + (LANG === 'en' ? ' ago' : ''); }
-  else { st.classList.add('warn'); st.textContent = '🟡 DATA STALE'; ag.textContent = T('Snapshot del|Snapshot from') + ' ' + new Date(SNAP.at).toLocaleString(LANG === 'es' ? 'es-CO' : 'en-US', { dateStyle: 'short', timeStyle: 'short' }) + ' UTC'; }
+  if (MK.lastErr && (!MK.lastOk || MK.lastErr.t > MK.lastOk)) { st.classList.add('bad'); st.textContent = T('🔴 Sin conexión|🔴 No connection'); ag.textContent = T('Mostrando lo último que se guardó|Showing the last saved data'); }
+  else if (okAge != null && okAge <= 15) { st.classList.add('good'); st.textContent = T('🟢 Precios en vivo|🟢 Live prices'); ag.textContent = T('consultados hace|fetched') + ' ' + (okAge < 1 ? Math.round(okAge * 60) + ' s' : Math.round(okAge) + ' min') + (LANG === 'en' ? ' ago' : ''); }
+  else if (MK.source === 'daily' && DAILY.latest && !okAge) { const h = (Date.now() - Date.parse(DAILY.latest.data_until + 'Z')) / 36e5; st.classList.add(h <= 48 ? 'good' : 'warn'); st.textContent = h <= 48 ? T('🟢 Datos de ayer|🟢 Yesterday\'s data') : T('🟡 Datos algo viejos|🟡 Slightly old data'); ag.textContent = T('mercado hasta el|market up to') + ' ' + dayTxt(DAILY.latest.data_until); }
+  else if (okAge != null) { st.classList.add('warn'); st.textContent = T('🟡 Precios viejos|🟡 Old prices'); ag.textContent = T('última consulta hace|last fetched') + ' ' + (okAge < 120 ? Math.round(okAge) + ' min' : (okAge / 60).toFixed(1) + ' h') + (LANG === 'en' ? ' ago' : ''); }
+  else { st.classList.add('warn'); st.textContent = T('🟡 Precios viejos|🟡 Old prices'); ag.textContent = T('foto del|snapshot from') + ' ' + new Date(SNAP.at).toLocaleString(LANG === 'es' ? 'es-CO' : 'en-US', { dateStyle: 'short', timeStyle: 'short' }); }
 }
 /* ---------- tabs ---------- */
 function showTab(name) { CUR_TAB = name; $$('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === name)); const tb = $(`#tabs button[data-tab="${name}"]`); if (tb && tb.classList.contains('adv')) $('#tabs').classList.add('more'); $$('section.tab').forEach(s => s.hidden = s.id !== 'tab-' + name); try { localStorage.setItem('ami3.tab', name); } catch (e) { } renderTab(name); }
@@ -612,6 +680,7 @@ function renderAcct() {
   const p = P(); $$('#segFocus button').forEach(b => b.disabled = !SET.premium);
   $('#acctInfo').innerHTML = p.premium ? `<b>Premium</b> · ${T('regeneración de focus|focus regeneration')} <b>10.000 / ${T('día|day')}</b> · 30 ${T('puntos de aprendizaje/día|learning points/day')} · ${T('tasa de venta|sales tax')} 4% · Focus ${p.focus ? '<span class="pos">ON</span>' : '<span class="neg">OFF</span>'}` : `<b>${T('Sin Premium|No Premium')}</b> · Focus ${T('disponible|available')}: 0 (${T('no regenera|no regeneration')}) · ${T('tasa de venta|sales tax')} 8%`;
   if (!p.premium) { $('#pFocusAvail').disabled = true; } else $('#pFocusAvail').disabled = false;
+  $('#capHint').textContent = fmt(p.capital) + ' ' + T('de plata|silver');
 }
 
 /* ---------- table helper ---------- */
@@ -937,37 +1006,110 @@ function renderDaily() {
   ], rows, 'daily', r => { const b = r.item.split('@')[0]; if (DB.items[b]) openLab(b, +(r.item.split('@')[1] || 0)); }, 300);
 }
 
-/* ---------- HOY: respuesta directa con los datos diarios ---------- */
-const TODAY = { rows: null, key: null };
+/* ---------- HOY: la respuesta directa, sin configurar nada ---------- */
+const TODAY = { rows: null, key: null, flips: null };
 function scanDaily() {
   const f = { q: '', tier: '', ench: '', cat: '', art: '1', demand: 1 }; // solo recetas con demanda real (≥ 1 u/día en el historial)
   const uni = scanUniverse(f).filter(([b, e]) => { const pr = MK.prices[key(b, e)]; return pr && Object.keys(pr).length; });
   computeScan(f, uni, true); SCAN.label = T('Datos de ayer (todos los ítems con precio)|Yesterday data (all priced items)');
   TODAY.rows = SCAN.rows.slice().sort((a, b) => b.total - a.total); TODAY.key = JSON.stringify(P());
 }
+/* Reventa: comprar donde está barato y vender donde de verdad se vende caro.
+   Usa el promedio de 7 días de la ciudad de destino (no la orden suelta de turno),
+   así una orden absurda no inventa una oportunidad que no existe. */
+const FLIP_MIN_UNITS7 = 20, FLIP_MIN_PRICE = 2000;
+function flipRows(p, limit = 8) {
+  const out = [];
+  for (const [id, cities] of Object.entries(MK.agg)) {
+    let bp = null, bc = null;
+    for (const c of CITIES) { const d = cities[c]; if (d && d.sell > 0 && (bp === null || d.sell < bp)) { bp = d.sell; bc = c; } }
+    if (!bp || bp < FLIP_MIN_PRICE) continue;
+    let best = null;
+    for (const c of ALL) {
+      if (c === bc) continue; const d = cities[c]; if (!d) continue;
+      const u7 = d.u7 || 0; if (u7 < FLIP_MIN_UNITS7) continue;
+      let price, fees, how;
+      if (c === BM) { if (!(d.buy > 0)) continue; price = d.buy; fees = price * p.tax; how = T('te lo compran al instante|they buy it instantly'); }
+      else { const a7 = d.a7 || 0; if (!a7) continue; price = (d.sell > 0 && d.sell < a7) ? d.sell - 1 : a7; fees = price * (p.tax + RULES.setupFee); how = T('precio al que se ha vendido de verdad estos días|price it has actually sold for lately'); }
+      const net = price - fees - bp; if (net <= 0) continue;
+      const cand = { city: c, price, net, u7, how, score: net * Math.min(u7 / 7, 30) };
+      if (!best || cand.score > best.score) best = cand;
+    }
+    if (!best) continue;
+    if (best.net / bp > 4) continue; // margen imposible = dato raro, fuera
+    const qty = Math.max(0, Math.floor(p.capital / bp));
+    out.push({ id, buyCity: bc, buyPrice: bp, sellCity: best.city, sellPrice: best.price, net: best.net,
+      margin: best.net / bp * 100, perDay: best.u7 / 7, how: best.how, score: best.score,
+      qty: Math.min(qty, Math.max(1, Math.round(best.u7 / 7 * p.share))) });
+  }
+  out.sort((a, b) => b.score - a.score);
+  return out.slice(0, limit);
+}
+const cityTxt = c => c === BM ? `${cn(BM)} <span class="small">(${T('está en Caerleon|it is in Caerleon')})</span>` : esc(c);
+function matLine(mats, qty) { // agrupa los materiales por ciudad donde se compran
+  const by = {};
+  for (const m of mats) (by[m.city] ||= []).push(`${esc(nameOf(m.mid))} × ${fmt(Math.ceil(m.eff * qty))}`);
+  const cs = Object.keys(by);
+  if (cs.length === 1) return `${by[cs[0]].join(' + ')} — ${T('todo en|all of it in')} <b>${esc(cs[0])}</b>`;
+  return cs.map(c => `${by[c].join(' + ')} ${T('en|in')} <b>${esc(c)}</b>`).join('<br>');
+}
+function craftCard(r, i, p) {
+  const qty = Math.max(1, r.qty);
+  const ret = (r.cost.R.rrr * 100).toFixed(0);
+  return `<article class="deal" data-b="${r.base}" data-e="${r.e}">
+  <header>${icon(r.id)}<div class="t"><b>${i + 1}. ${esc(nameOf(r.id))}</b><span class="small">${tierBadge(r.id)} ${esc(catName(DB.items[r.base].cat))}</span></div>
+  <div class="p"><b class="${cls(r.profit)}">${r.profit > 0 ? '+' : ''}${fmt(r.profit)}</b><div class="small">${T('por unidad|per unit')}</div></div></header>
+  <ol class="steps">
+    <li><span class="n">1</span><div><span class="k">${T('Compra|Buy')}</span>${matLine(r.cost.mats, qty)}<span class="small"> · ${S(r.cost.matCost * qty)}</span></div></li>
+    <li><span class="n">2</span><div><span class="k">${T('Craftea|Craft')}</span>${T('en|in')} <b>${esc(r.craftCity)}</b>${r.cost.bonusCity === r.craftCity ? ' — ' + T('aquí te devuelven más material|extra material back here') : ''} <span class="small">(${T('recuperas el|you get back')} ${ret}% ${T('de los materiales|of the materials')})</span></div></li>
+    <li><span class="n">3</span><div><span class="k">${T('Vende|Sell')}</span>${T('en|in')} <b>${cityTxt(r.sellCity)}</b> ${T('a|at')} ${S(r.sell.gross)} ${T('cada uno|each')}${r.demand ? `<span class="small"> · ${T('se venden|about')} ${fmt(r.demand)} ${T('al día ahí|a day there')}</span>` : ''}</div></li>
+  </ol>
+  <footer><span>${r.qty ? `${T('Haz|Make')} <b>${fmt(r.qty)}</b> → ${T('pones|you put in')} ${S(r.invest)} ${T('y ganas|and make')} <b class="${cls(r.total)}">${S(r.total)}</b>` : T('Con tu plata no alcanza ni para una unidad|Not enough silver for a single unit')}</span><span class="btn small">${T('Ver detalle|Details')}</span></footer>
+  </article>`;
+}
+function flipCard(f, i) {
+  return `<article class="deal" data-item="${esc(f.id)}">
+  <header>${icon(f.id)}<div class="t"><b>${i + 1}. ${esc(nameOf(f.id))}</b><span class="small">${tierBadge(f.id)}</span></div>
+  <div class="p"><b class="pos">+${fmt(f.net)}</b><div class="small">${T('por unidad|per unit')} · ${f.margin.toFixed(0)}%</div></div></header>
+  <ol class="steps">
+    <li><span class="n">1</span><div><span class="k">${T('Compra|Buy')}</span>${T('en|in')} <b>${esc(f.buyCity)}</b> ${T('a|at')} ${S(f.buyPrice)}</div></li>
+    <li><span class="n">2</span><div><span class="k">${T('Vende|Sell')}</span>${T('en|in')} <b>${cityTxt(f.sellCity)}</b> ${T('a|at')} ${S(f.sellPrice)} <span class="small">(${esc(f.how)}) · ${T('se venden|about')} ${fmt(f.perDay)} ${T('al día|a day')}</span></div></li>
+  </ol>
+  <footer><span>${f.qty ? `${T('Lleva|Take')} <b>${fmt(f.qty)}</b> → ${T('ganas|you make')} <b class="pos">${S(f.net * f.qty)}</b>` : ''}</span><span class="small">${T('tienes que transportarlo tú|you carry it yourself')}</span></footer>
+  </article>`;
+}
 function renderToday() {
   const out = $('#todayOut'); const L = DAILY.latest; const p = P();
   if (!L) { out.innerHTML = `<div class="card empty">${T('Cargando los datos del mercado…|Loading market data…')}</div>`; return; }
-  if (!TODAY.rows || TODAY.key !== JSON.stringify(p)) { out.innerHTML = `<div class="card empty">${T('Calculando qué conviene craftear hoy…|Working out what is worth crafting today…')}</div>`; setTimeout(() => { scanDaily(); renderToday(); }, 30); return; }
-  const until = L.data_until.replace('T', ' ').slice(0, 16);
-  const modeTxt = p.buyMode === 'single' ? (p.buyCity ? T('todo comprado en|everything bought in') + ' ' + p.buyCity : T('todo comprado en una sola ciudad|everything bought in one city')) : T('cada material en su ciudad más barata|each material in its cheapest city');
-  let h = `<div class="rec">${T('Datos del mercado hasta|Market data until')} <b>${until} UTC</b> · ${T('se actualizan solos cada mañana|refreshed automatically every morning')} · ${T('compra|purchase')}: <b>${modeTxt}</b> <span class="small">(${T('cámbialo en Ajustes|change it in Settings')})</span></div>`;
-  const top = TODAY.rows.filter(r => r.profit > 0 && r.qty > 0 && r.demand >= 1).slice(0, 10);
-  h += `<div class="card"><h3>🛠 ${T('Qué craftear hoy|What to craft today')}</h3><div class="small">${T('Ordenado por ganancia total con la cantidad sugerida según tu capital, focus y la demanda. Toca uno para ver el detalle completo.|Sorted by total profit at the suggested quantity given your capital, focus and demand. Tap one for full details.')}</div>`;
-  if (!top.length) h += `<div class="empty">${T('Ninguna receta rentable con los datos de hoy.|No profitable recipe with today\'s data.')}</div>`;
-  h += `<div class="grid g2" style="margin-top:10px">` + top.map((r, i) => `<div class="card today" data-b="${r.base}" data-e="${r.e}" style="cursor:pointer"><div style="display:flex;gap:10px;align-items:center">${icon(r.id)}<div style="flex:1;min-width:0"><b>${i + 1}. ${esc(nameOf(r.id))}</b> ${tierBadge(r.id)}<div class="small">${esc(catName(DB.items[r.base].cat))}</div></div><div style="text-align:right"><b class="${cls(r.profit)}">${S(r.profit)}</b><div class="small">${T('por unidad|per unit')} · ROI ${r.roi.toFixed(0)}%</div></div></div>
-    <div class="kv" style="margin-top:8px"><b>1. ${T('Compra|Buy')}</b><span>${r.cost.mats.map(m => `${esc(nameOf(m.mid))} × ${Math.ceil(m.eff * Math.max(1, r.qty))} ${T('en|in')} <b>${esc(m.city)}</b>`).join(' · ')}</span>
-    <b>2. ${T('Craftea|Craft')}</b><span>${T('en|in')} <b>${esc(r.craftCity)}</b>${r.cost.bonusCity === r.craftCity ? ' (' + T('bono de ciudad|city bonus') + ')' : ''} · ${T('retorno de materiales|material return')} ${(r.cost.R.rrr * 100).toFixed(0)}%</span>
-    <b>3. ${T('Vende|Sell')}</b><span>${T('en|in')} <b>${cn(r.sellCity)}</b> ${T('a|at')} ${S(r.sell.gross)} · ${T('demanda|demand')} ${r.demand ? r.demand.toFixed(0) : '?'} u/${T('día|day')}</span>
-    <b>${T('Total|Total')}</b><span>${r.qty ? `${r.qty} u → ${T('inviertes|invest')} ${S(r.invest)}, ${T('ganas|profit')} <b class="${cls(r.total)}">${S(r.total)}</b>` : T('con tu capital o focus la cantidad sugerida es 0|with your capital or focus the suggested quantity is 0')}</span></div></div>`).join('') + `</div></div>`;
-  const row = r => `<tr class="row" data-item="${esc(r.item)}"><td><span class="item">${icon(r.item, 'sm')}<span>${esc(nameOf(r.item))} ${tierBadge(r.item)}</span></span></td><td class="num">${fmt(r.u7)}</td><td class="num">${S(r.avg7)}</td><td>${cn(r.top_city)}</td><td>${r.cheapest ? esc(r.cheapest[0]) + ' ' + S(r.cheapest[1]) : '—'}</td><td>${r.dearest ? esc(r.dearest[0]) + ' ' + S(r.dearest[1]) : '—'}</td><td class="num ${cls(r.trend)}">${pct(r.trend)}</td></tr>`;
-  const thead = `<thead><tr><th>${T('Ítem|Item')}</th><th class="num">${T('Uds 7 días|Units 7 d')}</th><th class="num">${T('Precio prom.|Avg price')}</th><th>${T('Donde más se vende|Sells most in')}</th><th>${T('Más barato|Cheapest')}</th><th>${T('Más caro|Dearest')}</th><th class="num">${T('Tendencia|Trend')}</th></tr></thead>`;
-  h += `<div class="grid g2" style="margin-top:14px"><div class="card"><h3>📦 ${T('Lo que más se vende (7 días)|Most sold (7 days)')}</h3><div class="tblwrap"><table>${thead}<tbody>${L.top_units.slice(0, 10).map(row).join('')}</tbody></table></div></div>
-  <div class="card"><h3>💰 ${T('Donde más plata se mueve (7 días)|Most silver traded (7 days)')}</h3><div class="tblwrap"><table>${thead}<tbody>${L.top_silver.slice(0, 10).map(row).join('')}</tbody></table></div></div></div>
-  <div class="controls" style="margin-top:14px"><button class="btn" data-go="daily">${T('Ver los 500 ítems con filtros|See all 500 items with filters')}</button><button class="btn" data-go="scan">${T('Scanner completo|Full scanner')}</button><button class="btn" data-go="lab">${T('Buscar un ítem|Look up an item')}</button></div>`;
+  if (!TODAY.rows || TODAY.key !== JSON.stringify(p)) { out.innerHTML = `<div class="card empty">${T('Calculando qué te conviene hoy…|Working out what is worth it today…')}</div>`; setTimeout(() => { scanDaily(); TODAY.flips = null; renderToday(); }, 30); return; }
+  if (!TODAY.flips) TODAY.flips = flipRows(p);
+  let h = '';
+  const top = TODAY.rows.filter(r => r.profit > 0 && r.qty > 0 && r.demand >= 1).slice(0, 8);
+  h += `<section class="sec"><h2>🛠 ${T('Fabrica esto hoy|Craft this today')}</h2><div class="small">${T('Lo que más plata deja con lo que tienes. Toca una tarjeta para ver los números completos.|What makes the most silver with what you have. Tap a card for the full numbers.')}</div>`;
+  h += top.length ? `<div class="deals">${top.map((r, i) => craftCard(r, i, p)).join('')}</div>`
+    : `<div class="card empty">${T('Hoy no sale rentable fabricar nada con estos datos. Mira la reventa de abajo.|Nothing is worth crafting with today\'s data. Look at the resale list below.')}</div>`;
+  h += `</section>`;
+
+  h += `<section class="sec"><h2>🚚 ${T('Compra barato y revende|Buy low, sell high')}</h2><div class="small">${T('Sin fabricar nada: se compra en una ciudad y se vende en otra. Ya se descontó la comisión del mercado; el transporte corre por tu cuenta.|No crafting: buy in one city, sell in another. Market fees already deducted; you do the hauling.')}</div>`;
+  h += TODAY.flips.length ? `<div class="deals">${TODAY.flips.map(flipCard).join('')}</div>`
+    : `<div class="card empty">${T('No hay diferencias de precio que valgan la pena hoy.|No price gaps worth the trip today.')}</div>`;
+  h += `</section>`;
+
+  const liteRow = r => {
+    const ch = r.cheapest ? `${esc(r.cheapest[0])} ${fmt(r.cheapest[1])}` : '—';
+    const de = r.dearest ? `${esc(r.dearest[0])} ${fmt(r.dearest[1])}` : '—';
+    return `<div class="r" data-item="${esc(r.item)}">${icon(r.item, 'sm')}<span class="n"><b>${esc(nameOf(r.item))}</b><span class="small">${T('más barato en|cheapest in')} ${ch} · ${T('más caro en|dearest in')} ${de}</span></span><span class="v"><b>${fmt(r.u7)}</b>${T('vendidos en 7 días|sold in 7 days')}</span></div>`;
+  };
+  const liteRowS = r => `<div class="r" data-item="${esc(r.item)}">${icon(r.item, 'sm')}<span class="n"><b>${esc(nameOf(r.item))}</b><span class="small">${T('se vende sobre todo en|mostly sold in')} ${cn(r.top_city)} · ${fmt(r.avg7)} ${T('cada uno|each')}</span></span><span class="v"><b>${fmt(r.s7)}</b>${T('de plata movida|silver traded')}</span></div>`;
+  h += `<section class="sec"><h2>📦 ${T('Lo que más se mueve|What moves the most')}</h2><div class="grid g2" style="margin-top:10px">
+  <div><h4>${T('Más unidades vendidas (7 días)|Most units sold (7 days)')}</h4><div class="lite">${L.top_units.slice(0, 8).map(liteRow).join('')}</div></div>
+  <div><h4>${T('Donde más plata se mueve (7 días)|Most silver traded (7 days)')}</h4><div class="lite">${L.top_silver.slice(0, 8).map(liteRowS).join('')}</div></div></div></section>`;
+
+  h += `<section class="sec"><div class="controls"><button class="btn" data-go="lab">${T('Buscar un ítem concreto|Look up a specific item')}</button><button class="btn" data-go="daily">${T('Ver los 500 más vendidos|See the top 500')}</button><button class="btn" data-go="method">${T('¿De dónde salen estos datos?|Where does this data come from?')}</button></div>
+  <div class="note">${T('Los precios de arriba son del volcado del mercado hasta el|Prices above come from the market dump up to')} <b>${dayTxt(L.data_until)}</b>; ${T('se renueva solo cada mañana. Pulsa <b>Actualizar precios</b> arriba para consultar el mercado de este mismo momento.|it refreshes automatically every morning. Press <b>Refresh prices</b> above to query the market right now.')}</div></section>`;
   out.innerHTML = h;
-  $$('#todayOut .today').forEach(c => c.onclick = () => openLab(c.dataset.b, +c.dataset.e));
-  $$('#todayOut tr.row').forEach(tr => tr.onclick = () => { const it = tr.dataset.item, b = it.split('@')[0]; if (DB.items[b]) openLab(b, +(it.split('@')[1] || 0)); else { $('#dyQ').value = it; showTab('daily'); } });
+  $$('#todayOut .deal[data-b]').forEach(c => c.onclick = () => openLab(c.dataset.b, +c.dataset.e));
+  $$('#todayOut [data-item]').forEach(el => el.onclick = () => { const it = el.dataset.item, b = it.split('@')[0]; if (DB.items[b]) openLab(b, +(it.split('@')[1] || 0)); else { $('#dyQ').value = it; showTab('daily'); } });
   $$('#todayOut [data-go]').forEach(b => b.onclick = () => showTab(b.dataset.go));
 }
 
@@ -983,7 +1125,7 @@ function fillCommon() {
 function boot() {
   loadSet(); loadMarket(); loadLog(); applyStatic(); fillCommon(); bindSettings(); bindLog(); bindBonus(); renderAcct(); renderStatus();
   $('#tabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b && b.dataset.tab) showTab(b.dataset.tab); });
-  $('#tabMore').onclick = () => { const on = $('#tabs').classList.toggle('more'); $('#tabMore').textContent = on ? T('Menos ▴|Less ▴') : T('Más ▾|More ▾'); };
+  $('#tabMore').onclick = () => { const on = $('#tabs').classList.toggle('more'); $('#tabMore').textContent = on ? T('Ocultar ▴|Hide ▴') : T('Avanzado ▾|Advanced ▾'); };
   $('#btnRefresh').onclick = async () => { const ids = new Set(Object.keys(MK.prices)); if (LAB.base) idsForVariant(LAB.base, LAB.e).forEach(x => ids.add(x)); if (!ids.size) return toast(T('Nada que actualizar aún: escanea o abre un ítem.|Nothing to refresh yet: scan or open an item.')); await marketFetch(Array.from(ids).slice(0, 2000), { hist: SCAN.rows.slice(0, 200).map(r => r.id) }); if (SCAN.rows.length) computeScan(scanFilters(), SCAN.rows.map(r => [r.base, r.e]), false); rerender(); };
   $('#btnStart').onclick = () => { showTab('scan'); if (!$('#sTier').value) $('#sTier').value = '6'; runScan(false); };
   $('#btnScan').onclick = () => runScan(false); $('#btnScanAll').onclick = () => { if (confirm(T('Escaneo completo T4.0–T8.4 (~6.000 variantes, 4–7 min). ¿Continuar?|Full scan T4.0–T8.4 (~6,000 variants, 4–7 min). Continue?'))) runScan(true); };
