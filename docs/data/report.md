@@ -1,4 +1,4 @@
-# Albion Market Intel — informe diario (2026-09-17 02:08 UTC)
+# Albion Market Intel — informe diario (2026-09-17 02:30 UTC)
 Servidor Americas · datos hasta 2026-09-16T02:00:00 · 5180 ítems con ventas en 7 días
 
 ## Top 30 por unidades vendidas (7 días)
