@@ -125,7 +125,7 @@ def restore(tgz):
     log("carga terminada en", round(time.time() - t0), "s")
     sh("df -h . || true")
     # el volcado hace CREATE DATABASE/USE con su propio nombre: se localiza la base que tiene el historial
-    db = out(f"mysql {MYARGS} -N -e \"select table_schema from information_schema.tables where table_name like '%history%' limit 1\" 2>/dev/null").strip()
+    db = out(f"mysql {MYARGS} -N -e \"select table_schema from information_schema.tables where table_name = 'market_history' and table_schema not in ('information_schema','performance_schema','mysql','sys') limit 1\" 2>/dev/null").strip()
     if db: MY["database"] = db
     log("base de datos con las tablas:", MY["database"])
     log("tablas y filas:\n" + out(f"mysql {MYARGS} -e \"select table_name, table_rows, round(data_length/1048576) as mb from information_schema.tables where table_schema='{MY['database']}'\" 2>/dev/null"))
@@ -170,7 +170,7 @@ def norm_loc(loc):
     s = str(loc); return LOC.get(s, s)
 
 def compute(cur, s):
-    hist_t = next((t for t in s if "history" in t), None); ord_t = next((t for t in s if t.endswith("orders")), None)
+    hist_t = "market_history" if "market_history" in s else next((t for t in s if "history" in t), None); ord_t = "market_orders" if "market_orders" in s else next((t for t in s if t.endswith("orders")), None)
     if not hist_t: raise SystemExit("No encuentro la tabla de historial. Tablas: " + ", ".join(s))
     H = s[hist_t]
     h_item = pick(H, "item_id", "item"); h_loc = pick(H, "location", "city"); h_ts = pick(H, "timestamp", "date", "time")
