@@ -32,6 +32,7 @@ jobs:
         run: |
           set -o pipefail
           python3 -u etl/build_report.py 2>&1 | tee etl.log
+          python3 etl/build_names.py 2>&1 | tee -a etl.log || echo "[names] no se pudo actualizar; se conserva el anterior" | tee -a etl.log
       - name: Guardar informe y log en el repositorio
         if: always()
         shell: bash

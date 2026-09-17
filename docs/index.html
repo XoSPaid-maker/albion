@@ -120,6 +120,10 @@ details summary{cursor:pointer;color:var(--accent);font-weight:500;margin-block:
 .step{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;margin-block:8px}
 .step .n{font:700 20px "Cinzel",serif;color:var(--gold)}
 @media (max-width:600px){.top{align-items:flex-start}.kpi .v{font-size:24px}}
+details.card>summary{cursor:pointer;font:600 13px "Barlow Condensed",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);list-style:none}
+details.card>summary::before{content:"▸ ";}details.card[open]>summary::before{content:"▾ ";}
+#tabs button.adv{display:none}#tabs.more button.adv{display:inline-block}
+.card.today:hover{background:var(--row-hover)}.card.today .kv{grid-template-columns:auto 1fr}
 </style>
 </head><body><div class="wrap">
 <header class="top">
@@ -135,20 +139,23 @@ details summary{cursor:pointer;color:var(--accent);font-weight:500;margin-block:
 <div class="small" id="mkMsg" style="margin-top:6px"></div>
 
 <nav class="tabs" id="tabs">
-  <button data-tab="dash" class="on" data-t="Dashboard|Dashboard">Dashboard</button>
+  <button data-tab="today" class="on" data-t="Hoy|Today">Hoy</button>
   <button data-tab="daily" id="tabDaily" hidden data-t="Mercado 7 días|Market 7 days">Mercado 7 días</button>
   <button data-tab="scan" data-t="Profit Scanner|Profit Scanner">Profit Scanner</button>
   <button data-tab="lab" data-t="Item Lab|Item Lab">Item Lab</button>
-  <button data-tab="refine" data-t="Refinado|Refining">Refinado</button>
-  <button data-tab="plan" data-t="Plan de producción|Production Plan">Plan de producción</button>
-  <button data-tab="log" data-t="Bitácora|Ledger">Bitácora</button>
-  <button data-tab="bonus" data-t="Bonos y fees|Bonuses & fees">Bonos y fees</button>
-  <button data-tab="bot" id="tabBot" hidden data-t="Analista IA|AI Analyst">Analista IA</button>
-  <button data-tab="method" data-t="Método|Method">Método</button>
+  <button id="tabMore" data-t="Más ▾|More ▾">Más ▾</button>
+  <button class="adv" data-tab="dash" data-t="Dashboard|Dashboard">Dashboard</button>
+  <button class="adv" data-tab="refine" data-t="Refinado|Refining">Refinado</button>
+  <button class="adv" data-tab="plan" data-t="Plan de producción|Production Plan">Plan de producción</button>
+  <button class="adv" data-tab="log" data-t="Bitácora|Ledger">Bitácora</button>
+  <button class="adv" data-tab="bonus" data-t="Bonos y fees|Bonuses & fees">Bonos y fees</button>
+  <button class="adv" data-tab="bot" id="tabBot" hidden data-t="Analista IA|AI Analyst">Analista IA</button>
+  <button class="adv" data-tab="method" data-t="Método|Method">Método</button>
 </nav>
 
 <!-- ACCOUNT / GLOBAL SETTINGS -->
-<div class="card" id="acctCard">
+<details class="card" id="acctWrap"><summary data-t="Ajustes: cuenta, focus, capital y modo de compra|Settings: account, focus, capital & purchase mode">Ajustes: cuenta, focus, capital y modo de compra</summary>
+<div id="acctCard" style="margin-top:10px">
   <div class="controls">
     <label><span data-t="Estado de cuenta|Account status">Estado de cuenta</span>
       <span class="seg" id="segPremium"><button data-v="1" class="on">Premium</button><button data-v="0" data-t="No Premium|No Premium">No Premium</button></span></label>
@@ -161,7 +168,10 @@ details summary{cursor:pointer;color:var(--accent);font-weight:500;margin-block:
     <label><span data-t="Antigüedad máx. de datos|Max data age">Antigüedad máx. de datos</span><select id="pMaxAge"><option value="2">2 h</option><option value="6" selected>6 h</option><option value="24">24 h</option><option value="72">72 h</option><option value="99999" data-t="Sin límite|No limit">Sin límite</option></select></label>
   </div>
   <div class="small" id="acctInfo" style="margin-top:8px"></div>
-</div>
+</div></details>
+
+<!-- HOY -->
+<section class="tab" id="tab-today" style="margin-top:14px"><div id="todayOut"></div></section>
 
 <!-- DASHBOARD -->
 <section class="tab" id="tab-dash" style="margin-top:14px">
@@ -374,7 +384,8 @@ const S = n => n == null || isNaN(n) ? '—' : `<span class="sv">${fmt(n)}</span
 const pct = n => n == null || isNaN(n) ? '—' : (n > 0 ? '+' : '') + n.toFixed(1) + '%';
 const cls = n => n > 0 ? 'pos' : n < 0 ? 'neg' : '';
 const cn = c => c === BM ? T('Mercado Negro|Black Market') : c;
-const nameOf = id => { const b = id.split('@')[0]; const it = DB.items[b]; if (it) return LANG === 'es' ? it.es : it.en; const r = DB.res[id]; if (r) return LANG === 'es' ? r.es : r.en; const x = DB.extra[id]; if (x) return LANG === 'es' ? x.es : x.en; return id; };
+let NAMES = {}; // data/names.json: nombres del juego para ítems que no están en la base incrustada
+const nameOf = id => { const b = id.split('@')[0]; const it = DB.items[b]; if (it) return LANG === 'es' ? it.es : it.en; const r = DB.res[id]; if (r) return LANG === 'es' ? r.es : r.en; const x = DB.extra[id]; if (x) return LANG === 'es' ? x.es : x.en; const n = NAMES[b] || NAMES[id]; if (n) return LANG === 'es' ? n[0] : n[1]; return id; };
 const tierOf = id => { const b = id.split('@')[0]; const e = +(id.split('@')[1] || 0); const m = b.match(/^T(\d)/); return { t: m ? +m[1] : 0, e }; };
 const tierLabel = (t, e) => `T${t}.${e}`;
 const tierBadge = id => { const { t, e } = tierOf(id); return `<span class="tier e${e}" title="Tier ${t} · ${T('encantamiento|enchant')} ${e}">${tierLabel(t, e)}</span>`; };
@@ -394,7 +405,7 @@ function loadSet() { try { Object.assign(SET, JSON.parse(localStorage.getItem('a
 function saveSet() { try { localStorage.setItem('ami3.settings', JSON.stringify(SET)); } catch (e) { } }
 function P() {
   const d = SET.daily && SET.daily.date === new Date().toISOString().slice(0, 10) ? SET.daily : null;
-  return { premium: !!SET.premium, focus: !!SET.premium && !!SET.focus, focusAvail: +SET.focusAvail || 0, focusRed: (+SET.focusRed || 0) / 100, capital: +SET.capital || 0, sellMode: SET.sellMode, maxAge: +SET.maxAge || 6, tax: SET.premium ? RULES.taxPremium : RULES.taxFree, feeMode: SET.feeMode, feeVal: +SET.feeVal || 0, cap: +SET.cap || 1, trip: +SET.trip || 0, q: SET.q, daily: d, share: (+SET.share || 25) / 100, buyMode: !SET.buyMode || SET.buyMode === 'cheapest' ? 'cheapest' : 'single', buyCity: SET.buyMode && SET.buyMode !== 'cheapest' && SET.buyMode !== 'single' ? SET.buyMode : null };
+  return { premium: !!SET.premium, focus: !!SET.premium && !!SET.focus, focusAvail: +SET.focusAvail || 0, focusRed: (+SET.focusRed || 0) / 100, capital: +SET.capital || 0, sellMode: SET.sellMode, maxAge: Math.max(+SET.maxAge || 6, (typeof MK !== 'undefined' && MK.source === 'daily') ? 36 : 0), tax: SET.premium ? RULES.taxPremium : RULES.taxFree, feeMode: SET.feeMode, feeVal: +SET.feeVal || 0, cap: +SET.cap || 1, trip: +SET.trip || 0, q: SET.q, daily: d, share: (+SET.share || 25) / 100, buyMode: !SET.buyMode || SET.buyMode === 'cheapest' ? 'cheapest' : 'single', buyCity: SET.buyMode && SET.buyMode !== 'cheapest' && SET.buyMode !== 'single' ? SET.buyMode : null };
 }
 
 /* ---------- market store ---------- */
@@ -579,13 +590,13 @@ function renderStatus() {
   const okAge = MK.lastOk ? (Date.now() - MK.lastOk) / 6e4 : null;
   if (MK.lastErr && (!MK.lastOk || MK.lastErr.t > MK.lastOk)) { st.classList.add('bad'); st.textContent = '🔴 API OFFLINE'; ag.textContent = T('Mostrando último dato guardado|Showing last saved data'); }
   else if (okAge != null && okAge <= 15) { st.classList.add('good'); st.textContent = '🟢 LIVE MARKET'; ag.textContent = T('Actualizado hace|Updated') + ' ' + (okAge < 1 ? Math.round(okAge * 60) + ' s' : Math.round(okAge) + ' min') + (LANG === 'en' ? ' ago' : ''); }
-  else if (MK.source === 'daily' && DAILY.latest && !okAge) { const h = (Date.now() - Date.parse(DAILY.latest.data_until + 'Z')) / 36e5; st.classList.add(h <= 30 ? 'good' : 'warn'); st.textContent = h <= 30 ? '🟢 DAILY DATA' : '🟡 DATA STALE'; ag.textContent = T('Volcado AODP hasta|AODP dump until') + ' ' + DAILY.latest.data_until.replace('T', ' ').slice(0, 16) + ' UTC'; }
+  else if (MK.source === 'daily' && DAILY.latest && !okAge) { const h = (Date.now() - Date.parse(DAILY.latest.data_until + 'Z')) / 36e5; st.classList.add(h <= 30 ? 'good' : 'warn'); st.textContent = h <= 30 ? T('🟢 DATOS DE AYER|🟢 YESTERDAY DATA') : T('🟡 DATOS ANTIGUOS|🟡 STALE DATA'); ag.textContent = T('Datos del mercado hasta|Market data until') + ' ' + DAILY.latest.data_until.replace('T', ' ').slice(0, 16) + ' UTC'; }
   else if (okAge != null) { st.classList.add('warn'); st.textContent = '🟡 DATA STALE'; ag.textContent = T('Última consulta hace|Last query') + ' ' + (okAge < 120 ? Math.round(okAge) + ' min' : (okAge / 60).toFixed(1) + ' h') + (LANG === 'en' ? ' ago' : ''); }
   else { st.classList.add('warn'); st.textContent = '🟡 DATA STALE'; ag.textContent = T('Snapshot del|Snapshot from') + ' ' + new Date(SNAP.at).toLocaleString(LANG === 'es' ? 'es-CO' : 'en-US', { dateStyle: 'short', timeStyle: 'short' }) + ' UTC'; }
 }
 /* ---------- tabs ---------- */
-function showTab(name) { CUR_TAB = name; $$('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === name)); $$('section.tab').forEach(s => s.hidden = s.id !== 'tab-' + name); try { localStorage.setItem('ami3.tab', name); } catch (e) { } renderTab(name); }
-function renderTab(name) { ({ bot: () => {}, daily: renderDaily, dash: renderDash, scan: renderScan, lab: renderLab, refine: renderRefine, plan: renderPlan, log: renderLog, bonus: renderBonus, method: renderMethod })[name](); }
+function showTab(name) { CUR_TAB = name; $$('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === name)); const tb = $(`#tabs button[data-tab="${name}"]`); if (tb && tb.classList.contains('adv')) $('#tabs').classList.add('more'); $$('section.tab').forEach(s => s.hidden = s.id !== 'tab-' + name); try { localStorage.setItem('ami3.tab', name); } catch (e) { } renderTab(name); }
+function renderTab(name) { ({ today: renderToday, bot: () => {}, daily: renderDaily, dash: renderDash, scan: renderScan, lab: renderLab, refine: renderRefine, plan: renderPlan, log: renderLog, bonus: renderBonus, method: renderMethod })[name](); }
 function rerender() { renderStatus(); renderAcct(); renderTab(CUR_TAB); }
 
 /* ---------- account bar ---------- */
@@ -629,7 +640,7 @@ function renderDash() {
   const top = SCAN.rows.slice().sort((a, b) => b.total - a.total).slice(0, 8);
   $('#dashTop').innerHTML = top.length ? `<div class="small">${esc(SCAN.label)} · ${new Date(SCAN.at).toLocaleTimeString()}</div><div class="tblwrap" style="margin-top:8px"><table>` + top.map(r => `<tr class="row" data-b="${r.base}" data-e="${r.e}"><td>${itemCell(r.id)}</td><td class="small">${cn(r.craftCity)} → ${cn(r.sellCity)}</td><td class="num ${cls(r.profit)}">${S(r.profit)}/u</td><td class="num">${r.roi.toFixed(0)}%</td><td class="num">${r.qty} u</td><td class="num ${cls(r.total)}">${S(r.total)}</td></tr>`).join('') + '</table></div>' : `<div class="empty">${T('Aún no hay escaneo. Pulsa "Iniciar análisis de crafteo".|No scan yet. Press "Start crafting analysis".')}</div>`;
   $$('#dashTop tr.row').forEach(tr => tr.onclick = () => openLab(tr.dataset.b, +tr.dataset.e));
-  $('#dashData').innerHTML = `<div class="kv"><b>${T('Fuente|Source')}</b><span>Albion Online Data Project (${T('crowdsourced, servidor|crowdsourced, server')} Americas/west)</span><b>${T('Modo|Mode')}</b><span>${MK.source === 'live' ? '🟢 ' + T('en vivo|live') : MK.source === 'cache' ? '🟡 ' + T('caché del navegador|browser cache') : '🟡 ' + T('snapshot embebido|embedded snapshot')}</span><b>${T('Ítems con precio fresco|Items with fresh price')}</b><span>${fresh.fresh} / ${fresh.total} (${T('máx.|max')} ${p.maxAge} h)</span><b>${T('Historial de ventas|Sales history')}</b><span>${Object.keys(MK.hist).length} ${T('ítems|items')}</span><b>${T('Última consulta OK|Last OK query')}</b><span>${MK.lastOk ? new Date(MK.lastOk).toLocaleString() : '—'}</span><b>${T('Último error|Last error')}</b><span>${MK.lastErr ? new Date(MK.lastErr.t).toLocaleTimeString() + ' · ' + esc(MK.lastErr.msg) : '—'}</span></div>`;
+  $('#dashData').innerHTML = `<div class="kv"><b>${T('Fuente|Source')}</b><span>Albion Online Data Project (${T('crowdsourced, servidor|crowdsourced, server')} Americas/west)</span><b>${T('Modo|Mode')}</b><span>${MK.source === 'live' ? '🟢 ' + T('en vivo|live') : MK.source === 'cache' ? '🟡 ' + T('caché del navegador|browser cache') : '🟡 ' + T('datos de ejemplo|embedded snapshot')}</span><b>${T('Ítems con precio fresco|Items with fresh price')}</b><span>${fresh.fresh} / ${fresh.total} (${T('máx.|max')} ${p.maxAge} h)</span><b>${T('Historial de ventas|Sales history')}</b><span>${Object.keys(MK.hist).length} ${T('ítems|items')}</span><b>${T('Última consulta OK|Last OK query')}</b><span>${MK.lastOk ? new Date(MK.lastOk).toLocaleString() : '—'}</span><b>${T('Último error|Last error')}</b><span>${MK.lastErr ? new Date(MK.lastErr.t).toLocaleTimeString() + ' · ' + esc(MK.lastErr.msg) : '—'}</span></div>`;
 }
 function countFresh() { let total = 0, fr = 0; const p = P(); for (const [id, cities] of Object.entries(MK.prices)) { total++; let ok = false; for (const c of Object.values(cities)) { const q = c.q && c.q[1]; if (q && ((q.s > 0 && ageH(q.sd) <= p.maxAge) || (q.b > 0 && ageH(q.bd) <= p.maxAge))) { ok = true; break; } } if (ok) fr++; } return { total, fresh: fr }; }
 
@@ -900,7 +911,8 @@ async function loadDaily() {
     const market = await m.json(); DAILY.latest = await l.json();
     const upd = DAILY.latest.data_until; let n = 0;
     for (const [id, cities] of Object.entries(market)) { for (const [c, d] of Object.entries(cities)) { (MK.agg[id] ||= {})[c] = d; if (d.sell || d.buy) { const rec = (MK.prices[id] ||= {})[c] ||= { q: {} }; const q1 = rec.q[1]; const older = !q1 || !q1.sd || q1.sd.startsWith('0001') || Date.parse(q1.sd + 'Z') < Date.parse((d.upd || upd) + 'Z'); if (older) { rec.q[1] = { s: d.sell || 0, sd: d.upd || upd, b: d.buy || 0, bd: d.upd || upd }; n++; } } } }
-    MK.source = 'daily'; $('#tabDaily').hidden = false; log('daily data', n);
+    try { const inn = document.getElementById('namesinline'); if (inn) NAMES = JSON.parse(inn.textContent); else { const nr = await fetch('data/names.json', { cache: 'no-store' }); if (nr.ok) NAMES = await nr.json(); } } catch (e) { }
+    TODAY.rows = null; MK.source = 'daily'; $('#tabDaily').hidden = false; log('daily data', n);
     renderStatus(); renderTab(CUR_TAB);
   } catch (e) { /* not hosted with data: ignore */ }
 }
@@ -925,6 +937,40 @@ function renderDaily() {
   ], rows, 'daily', r => { const b = r.item.split('@')[0]; if (DB.items[b]) openLab(b, +(r.item.split('@')[1] || 0)); }, 300);
 }
 
+/* ---------- HOY: respuesta directa con los datos diarios ---------- */
+const TODAY = { rows: null, key: null };
+function scanDaily() {
+  const f = { q: '', tier: '', ench: '', cat: '', art: '1', demand: 1 }; // solo recetas con demanda real (≥ 1 u/día en el historial)
+  const uni = scanUniverse(f).filter(([b, e]) => { const pr = MK.prices[key(b, e)]; return pr && Object.keys(pr).length; });
+  computeScan(f, uni, true); SCAN.label = T('Datos de ayer (todos los ítems con precio)|Yesterday data (all priced items)');
+  TODAY.rows = SCAN.rows.slice().sort((a, b) => b.total - a.total); TODAY.key = JSON.stringify(P());
+}
+function renderToday() {
+  const out = $('#todayOut'); const L = DAILY.latest; const p = P();
+  if (!L) { out.innerHTML = `<div class="card empty">${T('Cargando los datos del mercado…|Loading market data…')}</div>`; return; }
+  if (!TODAY.rows || TODAY.key !== JSON.stringify(p)) { out.innerHTML = `<div class="card empty">${T('Calculando qué conviene craftear hoy…|Working out what is worth crafting today…')}</div>`; setTimeout(() => { scanDaily(); renderToday(); }, 30); return; }
+  const until = L.data_until.replace('T', ' ').slice(0, 16);
+  const modeTxt = p.buyMode === 'single' ? (p.buyCity ? T('todo comprado en|everything bought in') + ' ' + p.buyCity : T('todo comprado en una sola ciudad|everything bought in one city')) : T('cada material en su ciudad más barata|each material in its cheapest city');
+  let h = `<div class="rec">${T('Datos del mercado hasta|Market data until')} <b>${until} UTC</b> · ${T('se actualizan solos cada mañana|refreshed automatically every morning')} · ${T('compra|purchase')}: <b>${modeTxt}</b> <span class="small">(${T('cámbialo en Ajustes|change it in Settings')})</span></div>`;
+  const top = TODAY.rows.filter(r => r.profit > 0 && r.qty > 0 && r.demand >= 1).slice(0, 10);
+  h += `<div class="card"><h3>🛠 ${T('Qué craftear hoy|What to craft today')}</h3><div class="small">${T('Ordenado por ganancia total con la cantidad sugerida según tu capital, focus y la demanda. Toca uno para ver el detalle completo.|Sorted by total profit at the suggested quantity given your capital, focus and demand. Tap one for full details.')}</div>`;
+  if (!top.length) h += `<div class="empty">${T('Ninguna receta rentable con los datos de hoy.|No profitable recipe with today\'s data.')}</div>`;
+  h += `<div class="grid g2" style="margin-top:10px">` + top.map((r, i) => `<div class="card today" data-b="${r.base}" data-e="${r.e}" style="cursor:pointer"><div style="display:flex;gap:10px;align-items:center">${icon(r.id)}<div style="flex:1;min-width:0"><b>${i + 1}. ${esc(nameOf(r.id))}</b> ${tierBadge(r.id)}<div class="small">${esc(catName(DB.items[r.base].cat))}</div></div><div style="text-align:right"><b class="${cls(r.profit)}">${S(r.profit)}</b><div class="small">${T('por unidad|per unit')} · ROI ${r.roi.toFixed(0)}%</div></div></div>
+    <div class="kv" style="margin-top:8px"><b>1. ${T('Compra|Buy')}</b><span>${r.cost.mats.map(m => `${esc(nameOf(m.mid))} × ${Math.ceil(m.eff * Math.max(1, r.qty))} ${T('en|in')} <b>${esc(m.city)}</b>`).join(' · ')}</span>
+    <b>2. ${T('Craftea|Craft')}</b><span>${T('en|in')} <b>${esc(r.craftCity)}</b>${r.cost.bonusCity === r.craftCity ? ' (' + T('bono de ciudad|city bonus') + ')' : ''} · ${T('retorno de materiales|material return')} ${(r.cost.R.rrr * 100).toFixed(0)}%</span>
+    <b>3. ${T('Vende|Sell')}</b><span>${T('en|in')} <b>${cn(r.sellCity)}</b> ${T('a|at')} ${S(r.sell.gross)} · ${T('demanda|demand')} ${r.demand ? r.demand.toFixed(0) : '?'} u/${T('día|day')}</span>
+    <b>${T('Total|Total')}</b><span>${r.qty ? `${r.qty} u → ${T('inviertes|invest')} ${S(r.invest)}, ${T('ganas|profit')} <b class="${cls(r.total)}">${S(r.total)}</b>` : T('con tu capital o focus la cantidad sugerida es 0|with your capital or focus the suggested quantity is 0')}</span></div></div>`).join('') + `</div></div>`;
+  const row = r => `<tr class="row" data-item="${esc(r.item)}"><td><span class="item">${icon(r.item, 'sm')}<span>${esc(nameOf(r.item))} ${tierBadge(r.item)}</span></span></td><td class="num">${fmt(r.u7)}</td><td class="num">${S(r.avg7)}</td><td>${cn(r.top_city)}</td><td>${r.cheapest ? esc(r.cheapest[0]) + ' ' + S(r.cheapest[1]) : '—'}</td><td>${r.dearest ? esc(r.dearest[0]) + ' ' + S(r.dearest[1]) : '—'}</td><td class="num ${cls(r.trend)}">${pct(r.trend)}</td></tr>`;
+  const thead = `<thead><tr><th>${T('Ítem|Item')}</th><th class="num">${T('Uds 7 días|Units 7 d')}</th><th class="num">${T('Precio prom.|Avg price')}</th><th>${T('Donde más se vende|Sells most in')}</th><th>${T('Más barato|Cheapest')}</th><th>${T('Más caro|Dearest')}</th><th class="num">${T('Tendencia|Trend')}</th></tr></thead>`;
+  h += `<div class="grid g2" style="margin-top:14px"><div class="card"><h3>📦 ${T('Lo que más se vende (7 días)|Most sold (7 days)')}</h3><div class="tblwrap"><table>${thead}<tbody>${L.top_units.slice(0, 10).map(row).join('')}</tbody></table></div></div>
+  <div class="card"><h3>💰 ${T('Donde más plata se mueve (7 días)|Most silver traded (7 days)')}</h3><div class="tblwrap"><table>${thead}<tbody>${L.top_silver.slice(0, 10).map(row).join('')}</tbody></table></div></div></div>
+  <div class="controls" style="margin-top:14px"><button class="btn" data-go="daily">${T('Ver los 500 ítems con filtros|See all 500 items with filters')}</button><button class="btn" data-go="scan">${T('Scanner completo|Full scanner')}</button><button class="btn" data-go="lab">${T('Buscar un ítem|Look up an item')}</button></div>`;
+  out.innerHTML = h;
+  $$('#todayOut .today').forEach(c => c.onclick = () => openLab(c.dataset.b, +c.dataset.e));
+  $$('#todayOut tr.row').forEach(tr => tr.onclick = () => { const it = tr.dataset.item, b = it.split('@')[0]; if (DB.items[b]) openLab(b, +(it.split('@')[1] || 0)); else { $('#dyQ').value = it; showTab('daily'); } });
+  $$('#todayOut [data-go]').forEach(b => b.onclick = () => showTab(b.dataset.go));
+}
+
 /* ---------- boot ---------- */
 function fillCommon() {
   const cats = Object.entries(CAT_NAME).filter(([k]) => Object.values(DB.items).some(i => i.cat === k)).map(([k, v]) => [k, T(v)]).sort((a, b) => a[1].localeCompare(b[1]));
@@ -936,7 +982,8 @@ function fillCommon() {
 }
 function boot() {
   loadSet(); loadMarket(); loadLog(); applyStatic(); fillCommon(); bindSettings(); bindLog(); bindBonus(); renderAcct(); renderStatus();
-  $('#tabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b) showTab(b.dataset.tab); });
+  $('#tabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b && b.dataset.tab) showTab(b.dataset.tab); });
+  $('#tabMore').onclick = () => { const on = $('#tabs').classList.toggle('more'); $('#tabMore').textContent = on ? T('Menos ▴|Less ▴') : T('Más ▾|More ▾'); };
   $('#btnRefresh').onclick = async () => { const ids = new Set(Object.keys(MK.prices)); if (LAB.base) idsForVariant(LAB.base, LAB.e).forEach(x => ids.add(x)); if (!ids.size) return toast(T('Nada que actualizar aún: escanea o abre un ítem.|Nothing to refresh yet: scan or open an item.')); await marketFetch(Array.from(ids).slice(0, 2000), { hist: SCAN.rows.slice(0, 200).map(r => r.id) }); if (SCAN.rows.length) computeScan(scanFilters(), SCAN.rows.map(r => [r.base, r.e]), false); rerender(); };
   $('#btnStart').onclick = () => { showTab('scan'); if (!$('#sTier').value) $('#sTier').value = '6'; runScan(false); };
   $('#btnScan').onclick = () => runScan(false); $('#btnScanAll').onclick = () => { if (confirm(T('Escaneo completo T4.0–T8.4 (~6.000 variantes, 4–7 min). ¿Continuar?|Full scan T4.0–T8.4 (~6,000 variants, 4–7 min). Continue?'))) runScan(true); };
@@ -947,7 +994,7 @@ function boot() {
   ['rfKind', 'rfTier', 'rfEnch', 'rfCity', 'rfQty'].forEach(id => $('#' + id).addEventListener('change', renderRefine)); $('#btnRefine').onclick = () => refineRun(true);
   $('#btnPlan').onclick = renderPlan; ['plMin', 'plMax'].forEach(id => $('#' + id).addEventListener('input', renderPlan));
   $('#btnPlanBest').onclick = () => { const b = SCAN.rows.slice().sort((a, b) => b.total - a.total)[0]; if (!b) return toast(T('Primero ejecuta el scanner|Run the scanner first')); LAB = { base: b.base, e: b.e }; $('#labQ').value = `${nameOf(b.base)} [${b.base}]`; renderPlan(); };
-  let tab = 'dash'; try { tab = localStorage.getItem('ami3.tab') || 'dash'; } catch (e) { } showTab(tab);
+  let tab = 'today'; try { tab = localStorage.getItem('ami3.tab') || 'today'; } catch (e) { } if (tab === 'dash') tab = 'today'; showTab(tab);
   ['dyMode', 'dyTier', 'dyEnch', 'dyQ', 'dyCity', 'dyCat'].forEach(id => $('#' + id).addEventListener('input', renderDaily)); $('#dyCat').innerHTML = $('#sCat').innerHTML; $('#dyCity').innerHTML = `<option value="">${T('Todas|All')}</option>` + ALL.map(c => `<option value="${c}">${cn(c)}</option>`).join('');
   setInterval(renderStatus, 30000); initBot(); loadDaily();
 }
