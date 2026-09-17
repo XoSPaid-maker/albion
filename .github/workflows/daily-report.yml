@@ -17,7 +17,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120
     services:
       postgres:
         image: postgres:16
@@ -32,17 +32,29 @@ jobs:
       - name: Herramientas
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq postgresql-client python3-psycopg2
-      - name: ETL (descargar volcado AODP, restaurar, calcular)
-        run: python3 etl/build_report.py
-      - name: Guardar informe en el repositorio
+      - id: etl
+        name: ETL (descargar volcado AODP, restaurar, calcular)
+        shell: bash
         run: |
+          set -o pipefail
+          python3 -u etl/build_report.py 2>&1 | tee etl.log
+      - name: Guardar informe y log en el repositorio
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p docs/data
+          { echo "# run ${{ github.run_id }} · $(date -u +'%F %T') UTC · conclusión del ETL: ${{ steps.etl.outcome || 'ver arriba' }}"; tail -n 400 etl.log; } > docs/data/etl.log
           git config user.name "albion-bot" && git config user.email "bot@users.noreply.github.com"
-          git add docs/data/latest.json docs/data/market.json docs/data/report.md
+          git add -A docs/data
           git commit -m "Informe diario $(date -u +%F)" || echo "sin cambios"
-          git push
+          git pull --rebase origin "${{ github.ref_name }}" || true
+          git push origin "HEAD:${{ github.ref_name }}"
       - uses: actions/configure-pages@v5
+        if: github.ref == 'refs/heads/main'
         with: { enablement: true }
       - uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main'
         with: { path: docs }
       - id: deploy
+        if: github.ref == 'refs/heads/main'
         uses: actions/deploy-pages@v4

@@ -20,31 +20,63 @@ NOW = dt.datetime.utcnow()
 def log(*a): print("[etl]", *a, flush=True)
 
 # ---------- 1. download ----------
+UA = "Mozilla/5.0 (X11; Linux x86_64) AlbionMarketIntel/1.0 (+github actions)"
+
+def fetch(url, timeout=180):
+    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "*/*"})
+    return urllib.request.urlopen(req, timeout=timeout)
+
+def list_index(url):
+    """Lee un autoindex (nginx/apache) y devuelve [(nombre, fecha, tamaño)] tal como aparece."""
+    t0 = time.time()
+    page = fetch(url).read().decode("utf-8", "ignore")
+    log(f"índice {url}: {len(page)} bytes en {time.time() - t0:.1f}s")
+    rows = re.findall(r'href="([^"?]+)"[^\n]*?</a>\s*([0-9]{2}-\w{3}-[0-9]{4} [0-9:]+|[0-9-]+ [0-9:]+)?\s*([0-9.]+[KMGT]?|-)?', page)
+    if not rows:
+        rows = [(n, "", "") for n in re.findall(r'href="([^"?]+)"', page)]
+    return [(html.unescape(n), d or "", z or "") for n, d, z in rows]
+
 def latest_dump_url():
-    page = urllib.request.urlopen(BASE, timeout=60).read().decode("utf-8", "ignore")
-    names = sorted(set(re.findall(r'href="(db_backup_[^"]+\.tgz)"', page)))
-    if not names: raise SystemExit("No se encontró ningún db_backup_*.tgz en " + BASE)
-    return BASE + html.unescape(names[-1]), names[-1]
+    for url in (BASE, BASE.rstrip("/") + "/backup/"):
+        try:
+            rows = list_index(url)
+        except Exception as e:
+            log("no se pudo leer", url, "->", repr(e)); continue
+        dumps = sorted(r for r in rows if re.match(r"db_backup_.*\.tgz$", r[0]))
+        hist = sorted(r for r in rows if "market_history" in r[0])
+        log(f"{url}: {len(rows)} entradas; {len(dumps)} db_backup; {len(hist)} market_history")
+        for r in dumps[-5:]: log("  db_backup:", r)
+        for r in hist[-5:]: log("  market_history:", r)
+        others = [r for r in rows if r not in dumps and r not in hist][:15]
+        if others: log("  otros:", others)
+        if dumps:
+            name = dumps[-1][0]
+            return url + name, name
+    raise SystemExit("No se encontró ningún db_backup_*.tgz en " + BASE)
 
 def download(url, path):
     if os.path.exists(path) and os.path.getsize(path) > 1e6: log("ya descargado", path); return
+    sh("df -h . && free -m || true")
     log("descargando", url)
-    with urllib.request.urlopen(url, timeout=120) as r, open(path, "wb") as f:
-        while True:
-            b = r.read(1 << 20)
-            if not b: break
-            f.write(b)
-    log("descargado", os.path.getsize(path) // (1 << 20), "MB")
+    t0 = time.time()
+    sh(f"curl -fsSL --retry 3 --retry-delay 10 --connect-timeout 60 -A '{UA}' -o '{path}' '{url}'")
+    log("descargado", os.path.getsize(path) // (1 << 20), "MB en", round(time.time() - t0), "s")
+    sh("df -h . || true")
 
 # ---------- 2. restore ----------
 def sh(cmd, **kw):
-    log("$", cmd); return subprocess.run(cmd, shell=True, check=True, **kw)
+    log("$", cmd); return subprocess.run(cmd, shell=True, check=True, executable="/bin/bash", **kw)
 
 def restore(tgz):
     os.makedirs("dump", exist_ok=True)
-    with tarfile.open(tgz) as t: t.extractall("dump")
+    with tarfile.open(tgz) as t:
+        members = t.getmembers()
+        log("miembros del tar:", [(m.name, m.size) for m in members[:30]], "... total", len(members))
+        t.extractall("dump")
+    os.remove(tgz)  # liberar disco antes de restaurar
     files = [p for p in glob.glob("dump/**/*", recursive=True) if os.path.isfile(p)]
-    log("archivos en el volcado:", files[:20])
+    log("archivos en el volcado:", [(p, os.path.getsize(p)) for p in files[:20]])
+    sh("df -h . || true")
     env = dict(os.environ, PGPASSWORD=PG["password"])
     sh(f"psql -h {PG['host']} -U {PG['user']} -c 'DROP DATABASE IF EXISTS {PG['dbname']}' postgres", env=env)
     sh(f"psql -h {PG['host']} -U {PG['user']} -c 'CREATE DATABASE {PG['dbname']}' postgres", env=env)
