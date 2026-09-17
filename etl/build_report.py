@@ -102,7 +102,13 @@ def schema(cur):
     cur.execute("select table_name, column_name, data_type from information_schema.columns where table_schema='public' order by table_name, ordinal_position")
     s = defaultdict(list)
     for t, c, d in cur.fetchall(): s[t].append((c, d))
-    for t, cols in s.items(): log("tabla", t, [c for c, _ in cols])
+    for t, cols in s.items():
+        log("tabla", t, [(c, d) for c, d in cols])
+        try:
+            cur.execute(f"select reltuples::bigint from pg_class where relname = %s", (t,)); est = cur.fetchone()
+            cur.execute(f'select * from "{t}" limit 3'); log("  filas~", est[0] if est else "?", "muestra:", cur.fetchall())
+        except Exception as e:
+            log("  no se pudo muestrear", t, repr(e))
     return s
 
 def pick(cols, *cands):
