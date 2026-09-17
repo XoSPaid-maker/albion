@@ -21,7 +21,7 @@ MYARGS = f"-h{MY['host']} -P{MY['port']} -u{MY['user']} -p{MY['password']} --pro
 LOC = {"7": "Thetford", "1002": "Lymhurst", "2004": "Bridgewatch", "3003": "Black Market", "3005": "Caerleon", "3008": "Martlock",
        "4002": "Fort Sterling", "5003": "Brecilien", "FortSterling": "Fort Sterling", "BlackMarket": "Black Market"}
 CITIES = ["Bridgewatch", "Fort Sterling", "Lymhurst", "Martlock", "Thetford", "Caerleon", "Brecilien", "Black Market"]
-NOW = dt.datetime.utcnow()
+NOW = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
 
 def log(*a): print("[etl]", *a, flush=True)
 
@@ -76,6 +76,35 @@ def sh(cmd, **kw):
 def out(cmd):
     return subprocess.run(cmd, shell=True, check=True, executable="/bin/bash", capture_output=True, text=True).stdout
 
+def count_values(tuple_text):
+    """Cuenta los valores del primer (...) de un INSERT, respetando comillas."""
+    n, inq, depth = 1, False, 0
+    for i, ch in enumerate(tuple_text):
+        if inq:
+            if ch == "\\": continue
+            if ch == "'": inq = False
+        elif ch == "'": inq = True
+        elif ch == "(": depth += 1
+        elif ch == ")":
+            depth -= 1
+            if depth == 0: return n
+        elif ch == "," and depth == 1: n += 1
+    return n
+
+def sql_filter(n_orders):
+    """Filtro de streaming del mysqldump (MariaDB) para que cargue en MySQL 8:
+    - omite las órdenes expiradas (no se usan);
+    - la columna generada updated_at_bin usa unix_timestamp(), prohibido en columnas generadas de MySQL 8:
+      si el INSERT trae su valor se convierte en columna normal; si no, se reescribe con TIMESTAMPDIFF."""
+    import sys
+    inp, outp = sys.stdin.buffer, sys.stdout.buffer
+    for line in inp:
+        if line.startswith(b"INSERT INTO `market_orders_expired`"): continue
+        if line.startswith(b"  `updated_at_bin`"):
+            if n_orders >= 15: line = b"  `updated_at_bin` int(10) unsigned DEFAULT NULL,\n"
+            else: line = line.replace(b"unix_timestamp(`updated_at`)", b"TIMESTAMPDIFF(SECOND, '1970-01-01 00:00:00', `updated_at`)")
+        outp.write(line)
+
 def restore(tgz):
     listing = out(f"tar -tvzf '{tgz}'").strip().splitlines()
     log("miembros del tar:", listing[:30], "... total", len(listing))
@@ -83,15 +112,23 @@ def restore(tgz):
     sqls = [m for m in members if m.endswith(".sql")]
     if not sqls: raise SystemExit("El volcado no contiene ningún .sql: " + ", ".join(members[:20]))
     sql = sqls[0]
-    log("cabecera del .sql:\n" + out(f"tar -xOzf '{tgz}' '{sql}' | head -c 3000"))
-    log("sentencias CREATE TABLE:\n" + out(f"tar -xOzf '{tgz}' '{sql}' | grep -n -A40 '^CREATE TABLE' | grep -v '^[0-9]*-INSERT' | head -300"))
-    sh(f"mysql {MYARGS} -e \"SELECT VERSION(); SET GLOBAL innodb_flush_log_at_trx_commit=0; SET GLOBAL sync_binlog=0; SET GLOBAL max_allowed_packet=1073741824; DROP DATABASE IF EXISTS {MY['database']}; CREATE DATABASE {MY['database']} CHARACTER SET utf8mb4;\"")
+    log("sentencias CREATE TABLE:\n" + out(f"tar -xOzf '{tgz}' '{sql}' | grep -n -A24 '^CREATE TABLE' | grep -v '^[0-9]*-INSERT' | head -200"))
+    first = out(f"tar -xOzf '{tgz}' '{sql}' | grep -m1 '^INSERT INTO `market_orders` VALUES' | head -c 3000")
+    n_orders = count_values(first[first.index("(") :]) if "(" in first else 0
+    log("primer INSERT de market_orders:", first[:400].rstrip(), "| valores por fila:", n_orders)
+    sh(f"mysql {MYARGS} -e \"SELECT VERSION(); SET GLOBAL innodb_flush_log_at_trx_commit=0; SET GLOBAL sync_binlog=0; SET GLOBAL max_allowed_packet=1073741824; "
+       f"SET GLOBAL time_zone='+00:00'; DROP DATABASE IF EXISTS albion; DROP DATABASE IF EXISTS {MY['database']}; CREATE DATABASE {MY['database']} CHARACTER SET utf8mb4;\"")
     t0 = time.time()
-    # streaming: sin extraer a disco; se omiten las órdenes expiradas (no se usan)
-    sh(f"(echo 'SET sql_log_bin=0; SET unique_checks=0; SET foreign_key_checks=0;'; tar -xOzf '{tgz}' '{sql}' | grep -v '^INSERT INTO `market_orders_expired`') "
-       f"| mysql {MYARGS} --max_allowed_packet=1G --force {MY['database']} 2>&1 | tail -n 40")
+    # streaming: sin extraer a disco
+    sh(f"(echo 'SET sql_log_bin=0; SET unique_checks=0; SET foreign_key_checks=0; SET time_zone=\"+00:00\";'; tar -xOzf '{tgz}' '{sql}' | python3 {os.path.abspath(__file__)} --filter {n_orders}) "
+       f"| mysql {MYARGS} --max_allowed_packet=1G --force {MY['database']} 2>&1 | grep -v 'password on the command line' | head -n 60")
     log("carga terminada en", round(time.time() - t0), "s")
     sh("df -h . || true")
+    # el volcado hace CREATE DATABASE/USE con su propio nombre: se localiza la base que tiene el historial
+    db = out(f"mysql {MYARGS} -N -e \"select table_schema from information_schema.tables where table_name like '%history%' limit 1\" 2>/dev/null").strip()
+    if db: MY["database"] = db
+    log("base de datos con las tablas:", MY["database"])
+    log("tablas y filas:\n" + out(f"mysql {MYARGS} -e \"select table_name, table_rows, round(data_length/1048576) as mb from information_schema.tables where table_schema='{MY['database']}'\" 2>/dev/null"))
 
 # ---------- 3. compute ----------
 def connect():
@@ -144,9 +181,9 @@ def compute(cur, s):
     d30 = ref - dt.timedelta(days=30)
     scale_clause = ""
     if h_scale:
-        cur.execute(f"select `{h_scale}`, count(*), min(`{h_ts}`), max(`{h_ts}`) from `{hist_t}` where `{h_ts}` >= %s group by 1", (d30,)); rows = cur.fetchall(); log("timescales (últimos 30 d):", rows)
+        cur.execute(f"select `{h_scale}`, count(*), sum(`{h_amt}`), min(`{h_ts}`), max(`{h_ts}`) from `{hist_t}` where `{h_ts}` >= %s group by 1", (d30,)); rows = cur.fetchall(); log("niveles de agregación (últimos 30 d: nivel, filas, unidades, desde, hasta):", rows)
         if rows:
-            best = max(rows, key=lambda r: r[1])[0]; scale_clause = f"and `{h_scale}` = {int(best)}"; log("timescale elegido:", best)
+            best = max(rows, key=lambda r: float(r[2] or 0))[0]; scale_clause = f"and `{h_scale}` = {int(best)}"; log("nivel de agregación elegido (más unidades cubiertas):", best)
     cur.execute(f"select `{h_loc}`, count(*) from `{hist_t}` where `{h_ts}` >= %s group by 1 order by 2 desc limit 30", (d30,)); log("localizaciones historial:", cur.fetchall())
     ph = ",".join(["%s"] * len(CHEAP))
     div = detect_scale(cur, hist_t, f"select sum(`{h_sil}`)/sum(`{h_amt}`) from `{hist_t}` where `{h_ts}` >= %s and `{h_item}` in ({ph}) group by `{h_item}`, `{h_loc}` having sum(`{h_amt}`) > 0", (d30,))
@@ -176,12 +213,12 @@ def compute(cur, s):
     if ord_t:
         O = s[ord_t]
         o_item = pick(O, "item_id", "item"); o_loc = pick(O, "location", "city"); o_price = pick(O, "unit_price_silver", "price"); o_type = pick(O, "auction_type", "type")
-        o_upd = pick(O, "updated_at", "updated", "timestamp"); o_q = pick(O, "quality_level", "quality"); o_exp = pick(O, "expires")
+        o_upd = pick(O, "updated_at", "updated", "timestamp"); o_q = pick(O, "quality_level", "quality"); o_exp = pick(O, "expires"); o_del = pick(O, "deleted_at")
         log("mapeo órdenes:", dict(item=o_item, loc=o_loc, price=o_price, type=o_type, upd=o_upd, q=o_q, exp=o_exp))
         cur.execute(f"select max(`{o_upd}`), count(*) from `{ord_t}`"); oref, n = cur.fetchone(); log("órdenes:", n, "última actualización:", oref)
         oref = oref if isinstance(oref, dt.datetime) else ref
         cur.execute(f"select `{o_type}`, count(*) from `{ord_t}` group by 1"); log("tipos de orden:", cur.fetchall())
-        exp_clause = f"and (`{o_exp}` is null or `{o_exp}` > %s)" if o_exp else ""
+        exp_clause = (f"and (`{o_exp}` is null or `{o_exp}` > %s)" if o_exp else "") + (f" and `{o_del}` is null" if o_del else "")
         q_clause = f"and `{o_q}` in (1,2)" if o_q else ""
         odiv = detect_scale(cur, ord_t, f"select `{o_price}` from `{ord_t}` where `{o_type}` = 'offer' and `{o_upd}` >= %s and `{o_item}` in ({ph})", (oref - dt.timedelta(days=2),))
         params = (oref - dt.timedelta(days=2),) + ((oref,) if o_exp else ())
@@ -234,5 +271,7 @@ def line(i, r):
     return f"| {i} | `{r['item']}` | {f(r['u7'])} | {f(r['s7'])} | {f(r['avg7'])} | {r['top_city']} ({f(r['top_city_u7'])}) | {ch} | {de} | {f(r['bm_buy'])} | {('%+.1f%%' % r['trend']) if r['trend'] is not None else '—'} |"
 
 if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == "--filter":
+        sql_filter(int(sys.argv[2]) if len(sys.argv) > 2 else 0); sys.exit(0)
     url, name = latest_dump_url(); download(url, name); restore(name)
     con = connect(); cur = con.cursor(); s = schema(cur); items, ref = compute(cur, s); write(items, ref)
