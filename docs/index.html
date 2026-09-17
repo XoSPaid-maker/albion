@@ -157,6 +157,7 @@ details summary{cursor:pointer;color:var(--accent);font-weight:500;margin-block:
     <label><span data-t="Reducción de focus por spec %|Focus cost reduction (spec) %">Reducción de focus por spec %</span><input type="number" id="pFocusRed" value="0" min="0" max="90" step="5"></label>
     <label><span data-t="Capital disponible|Available silver">Capital disponible</span><input type="number" id="pCapital" value="10000000" min="0" step="100000"></label>
     <label><span data-t="Venta|Sell mode">Venta</span><select id="pSellMode"><option value="order" data-t="Orden de venta (undercut)|Sell order (undercut)">Orden de venta (undercut)</option><option value="instant" data-t="Instantánea a orden de compra|Instant to buy order">Instantánea a orden de compra</option></select></label>
+    <label><span data-t="Compra de materiales|Materials purchase">Compra de materiales</span><select id="pBuyMode"><option value="cheapest">Cada material en su ciudad más barata|Each material in its cheapest city</option><option value="single">Todo en una sola ciudad (la mejor)|Everything in one city (best one)</option><option value="Bridgewatch">Todo en Bridgewatch|All in Bridgewatch</option><option value="Fort Sterling">Todo en Fort Sterling|All in Fort Sterling</option><option value="Lymhurst">Todo en Lymhurst|All in Lymhurst</option><option value="Martlock">Todo en Martlock|All in Martlock</option><option value="Thetford">Todo en Thetford|All in Thetford</option><option value="Caerleon">Todo en Caerleon|All in Caerleon</option><option value="Brecilien">Todo en Brecilien|All in Brecilien</option></select></label>
     <label><span data-t="Antigüedad máx. de datos|Max data age">Antigüedad máx. de datos</span><select id="pMaxAge"><option value="2">2 h</option><option value="6" selected>6 h</option><option value="24">24 h</option><option value="72">72 h</option><option value="99999" data-t="Sin límite|No limit">Sin límite</option></select></label>
   </div>
   <div class="small" id="acctInfo" style="margin-top:8px"></div>
@@ -388,12 +389,12 @@ function icon(id, cl = '') { const s = cl.includes('lg') ? 128 : 64; return `<im
 function itemCell(id, extra = '') { return `<span class="item">${icon(id)}<span><span class="nm">${esc(nameOf(id))}</span><br><span class="meta">${tierBadge(id)} ${extra}</span></span></span>`; }
 
 /* ---------- settings ---------- */
-const SET = { premium: 1, focus: 1, focusAvail: 10000, focusRed: 0, capital: 10000000, sellMode: 'order', maxAge: 6, feeMode: 'nutrition', feeVal: 300, cap: 1500, trip: 0, q: [70, 20, 8, 2, 0], daily: null, lang: 'es', share: 25 };
+const SET = { premium: 1, focus: 1, focusAvail: 10000, focusRed: 0, capital: 10000000, sellMode: 'order', maxAge: 6, feeMode: 'nutrition', feeVal: 300, cap: 1500, trip: 0, q: [70, 20, 8, 2, 0], daily: null, lang: 'es', share: 25, buyMode: 'cheapest' };
 function loadSet() { try { Object.assign(SET, JSON.parse(localStorage.getItem('ami3.settings') || '{}')); } catch (e) { } LANG = SET.lang || 'es'; }
 function saveSet() { try { localStorage.setItem('ami3.settings', JSON.stringify(SET)); } catch (e) { } }
 function P() {
   const d = SET.daily && SET.daily.date === new Date().toISOString().slice(0, 10) ? SET.daily : null;
-  return { premium: !!SET.premium, focus: !!SET.premium && !!SET.focus, focusAvail: +SET.focusAvail || 0, focusRed: (+SET.focusRed || 0) / 100, capital: +SET.capital || 0, sellMode: SET.sellMode, maxAge: +SET.maxAge || 6, tax: SET.premium ? RULES.taxPremium : RULES.taxFree, feeMode: SET.feeMode, feeVal: +SET.feeVal || 0, cap: +SET.cap || 1, trip: +SET.trip || 0, q: SET.q, daily: d, share: (+SET.share || 25) / 100 };
+  return { premium: !!SET.premium, focus: !!SET.premium && !!SET.focus, focusAvail: +SET.focusAvail || 0, focusRed: (+SET.focusRed || 0) / 100, capital: +SET.capital || 0, sellMode: SET.sellMode, maxAge: +SET.maxAge || 6, tax: SET.premium ? RULES.taxPremium : RULES.taxFree, feeMode: SET.feeMode, feeVal: +SET.feeVal || 0, cap: +SET.cap || 1, trip: +SET.trip || 0, q: SET.q, daily: d, share: (+SET.share || 25) / 100, buyMode: !SET.buyMode || SET.buyMode === 'cheapest' ? 'cheapest' : 'single', buyCity: SET.buyMode && SET.buyMode !== 'cheapest' && SET.buyMode !== 'single' ? SET.buyMode : null };
 }
 
 /* ---------- market store ---------- */
@@ -513,16 +514,17 @@ function sellAt(id, city, p) {
   const fees = s * (p.tax + RULES.setupFee);
   return { city, gross: s, fees, net: s - fees, basis, age: o ? o.sellAge : null, demand, h7 };
 }
-function evaluate(base, e, craftCity, sellCity, p, buyMode = 'cheapest') {
-  const c = costOf(base, e, craftCity, p, buyMode); if (!c || !c.ok) return null;
+function evaluate(base, e, craftCity, sellCity, p, buyMode = p.buyMode || 'cheapest', singleCity = p.buyCity || null) {
+  const c = costOf(base, e, craftCity, p, buyMode, singleCity); if (!c || !c.ok) return null;
   const id = key(base, e); const s = sellAt(id, sellCity, p); if (!s) return null;
   const upt = Math.max(1, Math.floor(p.cap / Math.max(0.01, c.itemWeight))); const transItem = sellCity !== craftCity ? p.trip / upt : 0;
   const unitCost = c.unit + transItem; const profit = s.net - unitCost;
-  return { id, base, e, craftCity, sellCity, cost: c, sell: s, transItem, unitCost, profit, roi: profit / unitCost * 100, focus: c.focus, demand: s.demand, stale: Math.max(c.oldest, s.age || 0) };
+  return { id, base, e, craftCity, sellCity, buyMode, buyCity: buyMode === 'single' ? (singleCity || craftCity) : null, cost: c, sell: s, transItem, unitCost, profit, roi: profit / unitCost * 100, focus: c.focus, demand: s.demand, stale: Math.max(c.oldest, s.age || 0) };
 }
 function bestFor(base, e, p, f = {}) {
   let best = null; const cities = f.craftCity ? [f.craftCity] : CITIES; const sells = f.sellCity ? [f.sellCity] : ALL;
-  for (const cc of cities) { const c = costOf(base, e, cc, p); if (!c || !c.ok) continue; for (const sc of sells) { const r = evaluate(base, e, cc, sc, p); if (!r) continue; if (f.minDemand && r.demand < f.minDemand) continue; if (!best || r.profit > best.profit) best = r; } }
+  const buys = p.buyMode === 'single' ? (p.buyCity ? [p.buyCity] : CITIES) : [null];
+  for (const cc of cities) for (const bc of buys) { const c = costOf(base, e, cc, p, p.buyMode, bc); if (!c || !c.ok) continue; for (const sc of sells) { const r = evaluate(base, e, cc, sc, p, p.buyMode, bc); if (!r) continue; if (f.minDemand && r.demand < f.minDemand) continue; if (!best || r.profit > best.profit) best = r; } }
   return best;
 }
 function suggestQty(r, p, minQ = 1, maxQ = 500) {
@@ -588,7 +590,7 @@ function rerender() { renderStatus(); renderAcct(); renderTab(CUR_TAB); }
 
 /* ---------- account bar ---------- */
 function bindSettings() {
-  const map = { pFocusAvail: 'focusAvail', pFocusRed: 'focusRed', pCapital: 'capital', pSellMode: 'sellMode', pMaxAge: 'maxAge', pFeeMode: 'feeMode', pFeeVal: 'feeVal', pCap: 'cap', pTrip: 'trip', plShare: 'share' };
+  const map = { pFocusAvail: 'focusAvail', pFocusRed: 'focusRed', pCapital: 'capital', pSellMode: 'sellMode', pBuyMode: 'buyMode', pMaxAge: 'maxAge', pFeeMode: 'feeMode', pFeeVal: 'feeVal', pCap: 'cap', pTrip: 'trip', plShare: 'share' };
   for (const [id, k] of Object.entries(map)) { const el = $('#' + id); if (!el) continue; el.value = SET[k]; el.addEventListener('input', () => { SET[k] = el.type === 'number' ? +el.value : el.value; saveSet(); rerender(); }); }
   ['q1', 'q2', 'q3', 'q4', 'q5'].forEach((id, i) => { const el = $('#' + id); el.value = SET.q[i]; el.addEventListener('input', () => { SET.q[i] = +el.value || 0; saveSet(); rerender(); }); });
   const seg = (id, k) => { $$('#' + id + ' button').forEach(b => { b.classList.toggle('on', +b.dataset.v === +SET[k]); b.onclick = () => { SET[k] = +b.dataset.v; saveSet(); $$('#' + id + ' button').forEach(x => x.classList.toggle('on', x === b)); rerender(); }; }); };
@@ -686,7 +688,7 @@ function renderLab() {
   const p = P(); const { base, e } = l; const id = key(base, e); const it = DB.items[base];
   const cc = $('#labCity').value || null, sc = $('#labSell').value || null; const qty = Math.max(1, +$('#labQty').value || 1);
   const best = bestFor(base, e, p, { craftCity: cc, sellCity: sc }) || bestFor(base, e, p, { craftCity: cc, sellCity: sc, minDemand: 0 });
-  const cost = costOf(base, e, cc || (best ? best.craftCity : (it && bonusCityOfItem(base)) || 'Caerleon'), p);
+  const cost = costOf(base, e, cc || (best ? best.craftCity : (it && bonusCityOfItem(base)) || 'Caerleon'), p, p.buyMode, best ? best.buyCity : p.buyCity);
   let h = `<div class="card"><div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">${icon(id, 'lg')}<div style="flex:1;min-width:240px"><h2>${esc(nameOf(id))}</h2><div class="small">${esc(LANG === 'es' ? it.en : it.es)} · <b>${id}</b></div><div style="margin-top:6px">${tierBadge(id)} <span class="pill">${catName(it.cat)}</span>${it.artifact ? ' <span class="pill gold">' + T('Artefacto|Artifact') + '</span>' : ''} <span class="pill">${T('Bono de crafteo|Craft bonus')}: ${cost ? cost.bonusCity || '—' : '—'}</span> <span class="pill">${T('Peso|Weight')} ${it.w} kg</span></div><div class="chips">${variantsOf(base).map(v => `<button data-e="${v}" class="${v === e ? 'on' : ''}" style="${v === e ? 'border-color:var(--gold);color:var(--gold)' : ''}">${tierLabel(it.t, v)}</button>`).join('')}</div></div></div></div>`;
   if (!cost || !cost.ok) {
     h += `<div class="card" style="margin-top:14px"><h3>${T('Faltan precios frescos|Fresh prices missing')}</h3><p>${T('No hay precio fresco (≤|No fresh price (≤')} ${p.maxAge} h) ${T('para|for')}: ${(cost ? cost.missing : idsForVariant(base, e)).map(m => `<span class="pill bad">${esc(nameOf(m))}</span>`).join(' ')}. ${T('Pulsa "Consultar API" o amplía la antigüedad máxima.|Press "Query API" or raise the max data age.')}</p></div>`;
@@ -702,10 +704,12 @@ function renderLab() {
   // cost breakdown + buy options
   const single = {}; for (const c of CITIES) { const x = costOf(base, e, cost.craftCity, p, 'single', c); if (x && x.ok) single[c] = x.matCost; }
   const bestSingle = Object.entries(single).sort((a, b) => a[1] - b[1])[0];
+  const cheapestAlt = p.buyMode === 'single' ? costOf(base, e, cost.craftCity, p, 'cheapest') : null;
+  const singleMode = p.buyMode === 'single'; const buyCityUsed = cost.mats[0] ? cost.mats[0].city : (p.buyCity || cost.craftCity);
   h += `<div class="grid g2" style="margin-top:14px"><div class="card"><h3>${T('Materiales y dónde comprarlos|Materials & where to buy')}</h3><div class="tblwrap"><table><thead><tr><th>${T('Material|Material')}</th><th class="num">${T('Cant.|Qty')}</th><th class="num">${T('Efectiva|Effective')}</th><th>${T('Mejor ciudad|Best city')}</th><th class="num">${T('Precio|Price')}</th><th>${T('2ª opción|2nd option')}</th><th class="num">${T('Subtotal|Subtotal')}</th><th>${T('Dato|Data')}</th></tr></thead><tbody>` +
     cost.mats.map(m => `<tr><td><span class="item">${icon(m.mid, 'sm')}<span>${esc(nameOf(m.mid))}</span></span></td><td class="num">${m.cnt}</td><td class="num">${m.eff.toFixed(2)}</td><td><b>${esc(m.city)}</b></td><td class="num">${S(m.price)}</td><td class="small">${m.second ? esc(m.second.city) + ' ' + fmt(m.second.price) : '—'}</td><td class="num">${S(m.sub)}</td><td>${ageTxt(m.age)}</td></tr>`).join('') +
-    `<tr><td colspan="6"><b>${T('Materiales efectivos (opción A: cada uno en su ciudad más barata)|Effective materials (option A: each in its cheapest city)')}</b></td><td class="num"><b>${S(cost.matCost)}</b></td><td></td></tr></tbody></table></div>
-    <div class="kv" style="margin-top:10px"><b>${T('Opción B: todo en una sola ciudad|Option B: everything in one city')}</b><span>${bestSingle ? `<b>${bestSingle[0]}</b> ${S(bestSingle[1])} (${T('diferencia|difference')} <span class="${cls(cost.matCost - bestSingle[1])}">${S(bestSingle[1] - cost.matCost)}</span>)` : T('ninguna ciudad tiene todos los materiales frescos|no city has all materials fresh')}</span>${Object.entries(single).sort((a, b) => a[1] - b[1]).map(([c, v]) => `<b class="small">${c}</b><span class="small">${S(v)}</span>`).join('')}</div></div>`;
+    `<tr><td colspan="6"><b>${singleMode ? T('Materiales efectivos (modo activo: todo comprado en una sola ciudad,|Effective materials (active mode: everything bought in one city,') + ' ' + esc(buyCityUsed) + ')' : T('Materiales efectivos (modo activo: cada uno en su ciudad más barata)|Effective materials (active mode: each in its cheapest city)')}</b></td><td class="num"><b>${S(cost.matCost)}</b></td><td></td></tr></tbody></table></div>
+    <div class="kv" style="margin-top:10px">${singleMode ? `<b>${T('Alternativa: cada material en su ciudad más barata|Alternative: each material in its cheapest city')}</b><span>${cheapestAlt && cheapestAlt.ok ? `${S(cheapestAlt.matCost)} (${T('diferencia|difference')} <span class="${cls(cost.matCost - cheapestAlt.matCost)}">${S(cheapestAlt.matCost - cost.matCost)}</span>)` : '—'}</span><b>${T('Mejor ciudad única|Best single city')}</b>` : `<b>${T('Alternativa: todo en una sola ciudad|Alternative: everything in one city')}</b>`}<span>${bestSingle ? `<b>${bestSingle[0]}</b> ${S(bestSingle[1])} (${T('diferencia|difference')} <span class="${cls(cost.matCost - bestSingle[1])}">${S(bestSingle[1] - cost.matCost)}</span>)` : T('ninguna ciudad tiene todos los materiales frescos|no city has all materials fresh')}</span>${Object.entries(single).sort((a, b) => a[1] - b[1]).map(([c, v]) => `<b class="small">${c}</b><span class="small">${S(v)}</span>`).join('')}</div></div>`;
   // fees & transport & focus
   const upt = Math.max(1, Math.floor(p.cap / Math.max(0.01, it.w)));
   h += `<div class="card"><h3>${T('Fees, transporte y focus|Fees, transport & focus')}</h3><div class="kv">
@@ -741,7 +745,7 @@ function calcText(r, c, p) {
   const L = [];
   L.push(`${T('RETORNO DE RECURSOS|RESOURCE RETURN')}: base ${c.R.base * 100}% + ${T('bono ciudad|city bonus')} ${c.R.spec * 100}% + ${T('bono diario|daily bonus')} ${c.R.daily * 100}% + focus ${c.R.focus * 100}% = ${(c.R.total * 100).toFixed(0)}% → RRR = ${(c.R.total * 100).toFixed(0)} / (100 + ${(c.R.total * 100).toFixed(0)}) = ${(c.R.rrr * 100).toFixed(2)}%`);
   for (const m of c.mats) L.push(`${nameOf(m.mid)}: ${m.cnt}${m.art ? ' (' + T('artefacto, sin retorno|artifact, no return') + ')' : ' × (1 − ' + (c.R.rrr).toFixed(4) + ') = ' + m.eff.toFixed(3)} × ${fmt(m.price)} (${m.city}) = ${fmt(m.sub)}`);
-  L.push(`${T('MATERIALES EFECTIVOS|EFFECTIVE MATERIALS')} = ${fmt(c.matCost)}`);
+  L.push(`${T('MATERIALES EFECTIVOS|EFFECTIVE MATERIALS')} = ${fmt(c.matCost)} (${p.buyMode === 'single' ? T('todo comprado en una sola ciudad|everything bought in one city') + ': ' + (c.mats[0] ? c.mats[0].city : '') : T('cada material en su ciudad más barata|each material in its cheapest city')})`);
   L.push(c.nutrition != null ? `${T('STATION FEE|STATION FEE')} = ${T('valor ítem|item value')} ${c.iv} × 0.1125 = ${c.nutrition.toFixed(1)} ${T('nutrición|nutrition')} × ${p.feeVal}/100 = ${fmt(c.fee)}` : `${T('STATION FEE|STATION FEE')} (${T('fijo|flat')}) = ${fmt(c.fee)}`);
   L.push(`${T('TRANSPORTE MATERIALES|MATERIALS TRANSPORT')} = ${c.imported ? `${fmt(p.trip)} / ${c.unitsPerTrip} u/${T('viaje|trip')} = ${fmt(c.transMats)}` : '0'}`);
   if (r) L.push(`${T('TRANSPORTE PRODUCTO|PRODUCT TRANSPORT')} = ${r.transItem ? fmt(r.transItem) : '0'} (${r.craftCity} → ${cn(r.sellCity)})`);
