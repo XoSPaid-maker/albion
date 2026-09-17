@@ -2,7 +2,8 @@
 """
 Albion Market Intel — ETL diario.
 1) Descarga el último volcado diario de Albion Online Data Project (servidor Americas/west).
-2) Lo restaura en Postgres local.
+2) Lo restaura en MySQL local (tablas market_history, market_orders, market_stats).
+   El volcado es un mysqldump (.tgz con un .sql): se carga en el MySQL del runner por streaming.
 3) Calcula, para TODOS los ítems y TODAS las ciudades: unidades y plata negociadas (7 y 30 días),
    precio promedio, precio actual (orden de venta más barata / orden de compra más alta),
    ciudad más barata / más cara, tendencia. Genera docs/data/latest.json y docs/data/report.md.
@@ -13,7 +14,12 @@ from collections import defaultdict
 
 BASE = os.environ.get("AODP_DB_URL", "https://www.albion-online-data.com/database/")
 OUT = os.environ.get("OUT_DIR", "docs/data")
-PG = dict(host="localhost", port=5432, user="postgres", password="postgres", dbname="aodp")
+MY = dict(host=os.environ.get("MYSQL_HOST", "127.0.0.1"), port=int(os.environ.get("MYSQL_PORT", "3306")),
+          user=os.environ.get("MYSQL_USER", "root"), password=os.environ.get("MYSQL_PASSWORD", "root"), database="aodp")
+MYARGS = f"-h{MY['host']} -P{MY['port']} -u{MY['user']} -p{MY['password']} --protocol=tcp"
+# Ids de localización de AODP -> nombre de ciudad
+LOC = {"7": "Thetford", "1002": "Lymhurst", "2004": "Bridgewatch", "3003": "Black Market", "3005": "Caerleon", "3008": "Martlock",
+       "4002": "Fort Sterling", "5003": "Brecilien", "FortSterling": "Fort Sterling", "BlackMarket": "Black Market"}
 CITIES = ["Bridgewatch", "Fort Sterling", "Lymhurst", "Martlock", "Thetford", "Caerleon", "Brecilien", "Black Market"]
 NOW = dt.datetime.utcnow()
 
@@ -63,50 +69,43 @@ def download(url, path):
     log("descargado", os.path.getsize(path) // (1 << 20), "MB en", round(time.time() - t0), "s")
     sh("df -h . || true")
 
-# ---------- 2. restore ----------
+# ---------- 2. restore (MySQL) ----------
 def sh(cmd, **kw):
     log("$", cmd); return subprocess.run(cmd, shell=True, check=True, executable="/bin/bash", **kw)
 
+def out(cmd):
+    return subprocess.run(cmd, shell=True, check=True, executable="/bin/bash", capture_output=True, text=True).stdout
+
 def restore(tgz):
-    os.makedirs("dump", exist_ok=True)
-    with tarfile.open(tgz) as t:
-        members = t.getmembers()
-        log("miembros del tar:", [(m.name, m.size) for m in members[:30]], "... total", len(members))
-        t.extractall("dump")
-    os.remove(tgz)  # liberar disco antes de restaurar
-    files = [p for p in glob.glob("dump/**/*", recursive=True) if os.path.isfile(p)]
-    log("archivos en el volcado:", [(p, os.path.getsize(p)) for p in files[:20]])
+    listing = out(f"tar -tvzf '{tgz}'").strip().splitlines()
+    log("miembros del tar:", listing[:30], "... total", len(listing))
+    members = [l.split()[-1] for l in listing]
+    sqls = [m for m in members if m.endswith(".sql")]
+    if not sqls: raise SystemExit("El volcado no contiene ningún .sql: " + ", ".join(members[:20]))
+    sql = sqls[0]
+    log("cabecera del .sql:\n" + out(f"tar -xOzf '{tgz}' '{sql}' | head -c 3000"))
+    log("sentencias CREATE TABLE:\n" + out(f"tar -xOzf '{tgz}' '{sql}' | grep -n -A40 '^CREATE TABLE' | grep -v '^[0-9]*-INSERT' | head -300"))
+    sh(f"mysql {MYARGS} -e \"SELECT VERSION(); SET GLOBAL innodb_flush_log_at_trx_commit=0; SET GLOBAL sync_binlog=0; SET GLOBAL max_allowed_packet=1073741824; DROP DATABASE IF EXISTS {MY['database']}; CREATE DATABASE {MY['database']} CHARACTER SET utf8mb4;\"")
+    t0 = time.time()
+    # streaming: sin extraer a disco; se omiten las órdenes expiradas (no se usan)
+    sh(f"(echo 'SET sql_log_bin=0; SET unique_checks=0; SET foreign_key_checks=0;'; tar -xOzf '{tgz}' '{sql}' | grep -v '^INSERT INTO `market_orders_expired`') "
+       f"| mysql {MYARGS} --max_allowed_packet=1G --force {MY['database']} 2>&1 | tail -n 40")
+    log("carga terminada en", round(time.time() - t0), "s")
     sh("df -h . || true")
-    env = dict(os.environ, PGPASSWORD=PG["password"])
-    sh(f"psql -h {PG['host']} -U {PG['user']} -c 'DROP DATABASE IF EXISTS {PG['dbname']}' postgres", env=env)
-    sh(f"psql -h {PG['host']} -U {PG['user']} -c 'CREATE DATABASE {PG['dbname']}' postgres", env=env)
-    sqls = [f for f in files if f.endswith(".sql")]
-    dumps = [f for f in files if re.search(r"\.(dump|backup|pgdump|custom)$", f)]
-    tocs = [f for f in files if os.path.basename(f) == "toc.dat"]
-    if tocs:  # directory format
-        sh(f"pg_restore -h {PG['host']} -U {PG['user']} -d {PG['dbname']} --no-owner --no-privileges -j 4 {os.path.dirname(tocs[0])} || true", env=env)
-    elif dumps:
-        sh(f"pg_restore -h {PG['host']} -U {PG['user']} -d {PG['dbname']} --no-owner --no-privileges -j 4 {dumps[0]} || true", env=env)
-    elif sqls:
-        sh(f"psql -h {PG['host']} -U {PG['user']} -d {PG['dbname']} -q -f {sqls[0]}", env=env)
-    else:
-        # maybe a single custom-format file without extension
-        big = max(files, key=os.path.getsize)
-        sh(f"pg_restore -h {PG['host']} -U {PG['user']} -d {PG['dbname']} --no-owner --no-privileges {big} || psql -h {PG['host']} -U {PG['user']} -d {PG['dbname']} -q -f {big}", env=env)
 
 # ---------- 3. compute ----------
 def connect():
-    import psycopg2; return psycopg2.connect(**PG)
+    import pymysql; return pymysql.connect(**MY)
 
 def schema(cur):
-    cur.execute("select table_name, column_name, data_type from information_schema.columns where table_schema='public' order by table_name, ordinal_position")
+    cur.execute("select table_name, column_name, data_type from information_schema.columns where table_schema=%s order by table_name, ordinal_position", (MY["database"],))
     s = defaultdict(list)
     for t, c, d in cur.fetchall(): s[t].append((c, d))
     for t, cols in s.items():
         log("tabla", t, [(c, d) for c, d in cols])
         try:
-            cur.execute(f"select reltuples::bigint from pg_class where relname = %s", (t,)); est = cur.fetchone()
-            cur.execute(f'select * from "{t}" limit 3'); log("  filas~", est[0] if est else "?", "muestra:", cur.fetchall())
+            cur.execute("select table_rows from information_schema.tables where table_schema=%s and table_name=%s", (MY["database"], t)); est = cur.fetchone()
+            cur.execute(f"select * from `{t}` limit 3"); log("  filas~", est[0] if est else "?", "muestra:", cur.fetchall())
         except Exception as e:
             log("  no se pudo muestrear", t, repr(e))
     return s
@@ -120,60 +119,85 @@ def pick(cols, *cands):
             if c in n: return n
     return None
 
+CHEAP = ("T4_FIBER", "T4_ORE", "T4_WOOD", "T4_HIDE", "T4_ROCK", "T2_FIBER", "T3_ORE")
+def detect_scale(cur, label, sql, params=()):
+    """AODP guarda precios ×10000. Se comprueba con recursos baratos (< 1000 plata): sql debe devolver un precio unitario por fila."""
+    cur.execute(sql, tuple(params) + CHEAP)
+    vals = sorted(float(v[0]) for v in cur.fetchall() if v[0])
+    med = vals[len(vals) // 2] if vals else None
+    scale = 10000 if med and med > 5000 else 1
+    log(f"escala de precios en {label}: mediana {med} ({len(vals)} valores) -> ÷{scale}")
+    return scale
+
+def norm_loc(loc):
+    s = str(loc); return LOC.get(s, s)
+
 def compute(cur, s):
-    hist_t = next((t for t in s if "history" in t), None); ord_t = next((t for t in s if "order" in t), None)
+    hist_t = next((t for t in s if "history" in t), None); ord_t = next((t for t in s if t.endswith("orders")), None)
     if not hist_t: raise SystemExit("No encuentro la tabla de historial. Tablas: " + ", ".join(s))
     H = s[hist_t]
     h_item = pick(H, "item_id", "item"); h_loc = pick(H, "location", "city"); h_ts = pick(H, "timestamp", "date", "time")
     h_amt = pick(H, "item_amount", "amount", "count"); h_sil = pick(H, "silver_amount", "silver"); h_scale = pick(H, "timescale", "aggregation"); h_q = pick(H, "quality_level", "quality")
     log("mapeo historial:", dict(item=h_item, loc=h_loc, ts=h_ts, amt=h_amt, sil=h_sil, scale=h_scale, q=h_q))
-    scale_clause = f"and {h_scale} = (select max({h_scale}) from {hist_t})" if h_scale else ""
-    # distinct scales info
-    if h_scale:
-        cur.execute(f"select {h_scale}, count(*) from {hist_t} group by 1"); log("timescales:", cur.fetchall())
-    cur.execute(f"select max({h_ts}) from {hist_t}"); maxts = cur.fetchone()[0]; log("último timestamp historial:", maxts)
-    q = f"""
-      select {h_item}, {h_loc},
-        sum(case when {h_ts} >= %s then {h_amt} else 0 end) as u7, sum(case when {h_ts} >= %s then {h_sil} else 0 end) as s7,
-        sum({h_amt}) as u30, sum({h_sil}) as s30,
-        sum(case when {h_ts} >= %s then {h_amt} else 0 end) as u3, sum(case when {h_ts} >= %s then {h_sil} else 0 end) as s3,
-        sum(case when {h_ts} < %s and {h_ts} >= %s then {h_amt} else 0 end) as up, sum(case when {h_ts} < %s and {h_ts} >= %s then {h_sil} else 0 end) as sp
-      from {hist_t} where {h_ts} >= %s {scale_clause}
-      group by 1,2"""
+    cur.execute(f"select max(`{h_ts}`) from `{hist_t}`"); maxts = cur.fetchone()[0]; log("último timestamp historial:", maxts)
     ref = maxts if isinstance(maxts, dt.datetime) else NOW
-    d7, d30, d3, d4, d7b = ref - dt.timedelta(days=7), ref - dt.timedelta(days=30), ref - dt.timedelta(days=3), ref - dt.timedelta(days=4), ref - dt.timedelta(days=7)
-    cur.execute(q, (d7, d7, d3, d3, d4, d7b, d4, d7b, d30))
-    items = defaultdict(dict)
+    d30 = ref - dt.timedelta(days=30)
+    scale_clause = ""
+    if h_scale:
+        cur.execute(f"select `{h_scale}`, count(*), min(`{h_ts}`), max(`{h_ts}`) from `{hist_t}` where `{h_ts}` >= %s group by 1", (d30,)); rows = cur.fetchall(); log("timescales (últimos 30 d):", rows)
+        if rows:
+            best = max(rows, key=lambda r: r[1])[0]; scale_clause = f"and `{h_scale}` = {int(best)}"; log("timescale elegido:", best)
+    cur.execute(f"select `{h_loc}`, count(*) from `{hist_t}` where `{h_ts}` >= %s group by 1 order by 2 desc limit 30", (d30,)); log("localizaciones historial:", cur.fetchall())
+    ph = ",".join(["%s"] * len(CHEAP))
+    div = detect_scale(cur, hist_t, f"select sum(`{h_sil}`)/sum(`{h_amt}`) from `{hist_t}` where `{h_ts}` >= %s and `{h_item}` in ({ph}) group by `{h_item}`, `{h_loc}` having sum(`{h_amt}`) > 0", (d30,))
+    q = f"""
+      select `{h_item}`, `{h_loc}`,
+        sum(case when `{h_ts}` >= %s then `{h_amt}` else 0 end) as u7, sum(case when `{h_ts}` >= %s then `{h_sil}` else 0 end) as s7,
+        sum(`{h_amt}`) as u30, sum(`{h_sil}`) as s30,
+        sum(case when `{h_ts}` >= %s then `{h_amt}` else 0 end) as u3, sum(case when `{h_ts}` >= %s then `{h_sil}` else 0 end) as s3,
+        sum(case when `{h_ts}` < %s and `{h_ts}` >= %s then `{h_amt}` else 0 end) as up, sum(case when `{h_ts}` < %s and `{h_ts}` >= %s then `{h_sil}` else 0 end) as sp
+      from `{hist_t}` where `{h_ts}` >= %s {scale_clause}
+      group by 1,2"""
+    d7, d3, d4 = ref - dt.timedelta(days=7), ref - dt.timedelta(days=3), ref - dt.timedelta(days=4)
+    cur.execute(q, (d7, d7, d3, d3, d4, d7, d4, d7, d30))
+    items = defaultdict(dict); skipped = defaultdict(int)
     for item, loc, u7, s7, u30, s30, u3, s3, up, sp in cur.fetchall():
         loc = norm_loc(loc)
-        if loc not in CITIES or not u7 and not u30: continue
+        if loc not in CITIES: skipped[loc] += 1; continue
+        if not u7 and not u30: continue
+        u7, s7, u30, s30, u3, s3, up, sp = [float(x or 0) for x in (u7, s7, u30, s30, u3, s3, up, sp)]
+        s7, s30, s3, sp = s7 / div, s30 / div, s3 / div, sp / div
         a7 = (s7 / u7) if u7 else None; a30 = (s30 / u30) if u30 else None
         a3 = (s3 / u3) if u3 else None; ap = (sp / up) if up else None
-        items[item][loc] = dict(u7=int(u7 or 0), s7=int(s7 or 0), a7=round(a7) if a7 else None, u30=int(u30 or 0), s30=int(s30 or 0), a30=round(a30) if a30 else None,
+        items[item][loc] = dict(u7=int(u7), s7=int(s7), a7=round(a7) if a7 else None, u30=int(u30), s30=int(s30), a30=round(a30) if a30 else None,
                                 trend=round((a3 - ap) / ap * 100, 1) if a3 and ap else None)
-    log("ítems con historial:", len(items))
+    log("ítems con historial:", len(items), "| localizaciones descartadas:", dict(sorted(skipped.items(), key=lambda kv: -kv[1])[:15]))
     # current orders
     if ord_t:
         O = s[ord_t]
         o_item = pick(O, "item_id", "item"); o_loc = pick(O, "location", "city"); o_price = pick(O, "unit_price_silver", "price"); o_type = pick(O, "auction_type", "type")
-        o_upd = pick(O, "updated_at", "updated", "timestamp"); o_q = pick(O, "quality_level", "quality"); o_ench = pick(O, "enchantment_level", "enchant"); o_exp = pick(O, "expires")
-        log("mapeo órdenes:", dict(item=o_item, loc=o_loc, price=o_price, type=o_type, upd=o_upd, q=o_q, ench=o_ench, exp=o_exp))
-        exp_clause = f"and ({o_exp} is null or {o_exp} > now())" if o_exp else ""
-        q_clause = f"and {o_q} in (1,2)" if o_q else ""
-        cur.execute(f"""select {o_item}, {o_loc}, {o_type}, min({o_price}) filter (where {o_type} ilike 'offer'), max({o_price}) filter (where {o_type} ilike 'request'), max({o_upd})
-                        from {ord_t} where {o_upd} >= %s {exp_clause} {q_clause} group by 1,2,3""", (ref - dt.timedelta(days=2),))
-        for item, loc, typ, smin, bmax, upd in cur.fetchall():
+        o_upd = pick(O, "updated_at", "updated", "timestamp"); o_q = pick(O, "quality_level", "quality"); o_exp = pick(O, "expires")
+        log("mapeo órdenes:", dict(item=o_item, loc=o_loc, price=o_price, type=o_type, upd=o_upd, q=o_q, exp=o_exp))
+        cur.execute(f"select max(`{o_upd}`), count(*) from `{ord_t}`"); oref, n = cur.fetchone(); log("órdenes:", n, "última actualización:", oref)
+        oref = oref if isinstance(oref, dt.datetime) else ref
+        cur.execute(f"select `{o_type}`, count(*) from `{ord_t}` group by 1"); log("tipos de orden:", cur.fetchall())
+        exp_clause = f"and (`{o_exp}` is null or `{o_exp}` > %s)" if o_exp else ""
+        q_clause = f"and `{o_q}` in (1,2)" if o_q else ""
+        odiv = detect_scale(cur, ord_t, f"select `{o_price}` from `{ord_t}` where `{o_type}` = 'offer' and `{o_upd}` >= %s and `{o_item}` in ({ph})", (oref - dt.timedelta(days=2),))
+        params = (oref - dt.timedelta(days=2),) + ((oref,) if o_exp else ())
+        cur.execute(f"""select `{o_item}`, `{o_loc}`,
+                          min(case when `{o_type}` = 'offer' then `{o_price}` end), max(case when `{o_type}` = 'request' then `{o_price}` end), max(`{o_upd}`)
+                        from `{ord_t}` where `{o_upd}` >= %s {exp_clause} {q_clause} group by 1,2""", params)
+        n = 0
+        for item, loc, smin, bmax, upd in cur.fetchall():
             loc = norm_loc(loc)
             if loc not in CITIES: continue
             d = items[item].setdefault(loc, {})
-            if smin: d["sell"] = int(smin / 10000) if smin > 1e7 else int(smin)  # AODP guarda precios ×10000
-            if bmax: d["buy"] = int(bmax / 10000) if bmax > 1e7 else int(bmax)
-            d["upd"] = upd.isoformat() if hasattr(upd, "isoformat") else str(upd)
+            if smin: d["sell"] = int(float(smin) / odiv)
+            if bmax: d["buy"] = int(float(bmax) / odiv)
+            d["upd"] = upd.isoformat() if hasattr(upd, "isoformat") else str(upd); n += 1
+        log("precios actuales cargados:", n)
     return items, ref
-
-def norm_loc(loc):
-    m = {"FortSterling": "Fort Sterling", "BlackMarket": "Black Market", "3005": "Caerleon", "Caerleon": "Caerleon"}
-    s = str(loc); return m.get(s, s)
 
 # ---------- 4. write outputs ----------
 def write(items, ref):

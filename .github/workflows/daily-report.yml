@@ -18,20 +18,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 120
-    services:
-      postgres:
-        image: postgres:16
-        env:
-          POSTGRES_PASSWORD: postgres
-        ports: ["5432:5432"]
-        options: >-
-          --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 10
-          --shm-size=1g
     steps:
       - uses: actions/checkout@v4
-      - name: Herramientas
+      - name: Herramientas (MySQL del runner + pymysql)
         run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq postgresql-client python3-psycopg2
+          sudo systemctl start mysql || (sudo apt-get update -qq && sudo apt-get install -y -qq mysql-server && sudo systemctl start mysql)
+          sudo apt-get install -y -qq python3-pymysql || pip install pymysql
+          mysql -h127.0.0.1 -uroot -proot --protocol=tcp -e "SELECT VERSION();"
+          df -h / && free -m
       - id: etl
         name: ETL (descargar volcado AODP, restaurar, calcular)
         shell: bash
@@ -43,7 +37,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p docs/data
-          { echo "# run ${{ github.run_id }} · $(date -u +'%F %T') UTC · conclusión del ETL: ${{ steps.etl.outcome || 'ver arriba' }}"; tail -n 400 etl.log; } > docs/data/etl.log
+          { echo "# run ${{ github.run_id }} · $(date -u +'%F %T') UTC · conclusión del ETL: ${{ steps.etl.outcome }}"; head -n 250 etl.log; echo "[...]"; tail -n 250 etl.log; } > docs/data/etl.log
           git config user.name "albion-bot" && git config user.email "bot@users.noreply.github.com"
           git add -A docs/data
           git commit -m "Informe diario $(date -u +%F)" || echo "sin cambios"
