@@ -1,401 +1,502 @@
-# run 35170054694 · 2026-09-17 01:21:21 UTC · conclusión del ETL: failure
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1897: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15356670577,'T8_RUNE',1,...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1898: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15285002921,'T5_MAIN_SCI...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1899: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22413734894,'T6_SHOES_LE...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1900: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15343650953,'T5_CAPEITEM...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1901: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22359948472,'T8_MAIN_SPE...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1902: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15355326898,'UNIQUE_GVGT...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1903: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15361642495,'T7_WOOD_LEV...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1904: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15326860578,'T5_BAG_INSI...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1905: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15361861660,'T5_HIDE_LEV...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1906: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15362315042,'T7_ORE_LEVE...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1907: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15363046757,'T8_HEAD_PLA...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1908: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15362615863,'T5_2H_HOLYS...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1909: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15363149689,'T8_MEAL_STE...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1910: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15362845978,'T6_MEAL_SAL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1911: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15363323088,'T5_CAPE',2,...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1912: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15332480692,'T6_SHOES_CL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1913: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15290404483,'T6_ARMOR_CL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1914: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15320616517,'T4_ARMOR_CL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1915: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22419199453,'T6_SHOES_LE...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1916: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15336663228,'T4_2H_ROCKS...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1917: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15361144472,'T4_ARTEFACT...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1918: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15317641888,'T4_CAPEITEM...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1919: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15355549120,'TREASURE_KN...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1920: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15363399052,'T5_HEAD_LEA...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1921: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15297698462,'T4_CAPEITEM...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1922: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15362659057,'T4_ROCK_LEV...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1923: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15361123787,'T7_ARMOR_CL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1924: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15361737402,'T6_SHOES_LE...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1925: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15363747276,'T5_ORE',1,0...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1926: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15348288419,'T5_BAG_INSI...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1927: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22420033317,'T5_MAIN_HAM...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1928: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (50646396,'T5_CAPEITEM_FW...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1929: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22419495114,'T7_HEAD_PLA...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1930: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15361233821,'T8_MAIN_MAC...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1931: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15293942162,'T7_ARMOR_PL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1932: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15345056618,'T8_HEAD_PLA...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1933: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15284587641,'T7_SHOES_CL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1934: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15343148849,'T7_OFF_HORN...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1935: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22342302915,'T6_SHOES_CL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1936: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22420647898,'T7_ARMOR_CL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1937: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15363336213,'T6_2H_FIRES...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1938: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15359241540,'T7_ARMOR_CL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1939: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15308114653,'T6_2H_ARCAN...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1940: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15351009283,'T6_2H_AXE@1...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1941: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15341941646,'T6_HEAD_LEA...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1942: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15304068735,'T7_2H_DEMON...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1943: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15362324923,'T5_HEAD_PLA...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1944: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15321339375,'T6_ARMOR_LE...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1945: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15361462386,'T6_ARTEFACT...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1946: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15350334393,'T7_HEAD_PLA...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1947: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15363907261,'T7_HEAD_PLA...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1948: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22422058078,'T6_2H_HALBE...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1949: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15363819556,'T6_2H_LONGB...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1950: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15363990958,'T5_SOUL',1,...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1951: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22420986277,'T6_2H_DIVIN...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1952: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15361925806,'TREASURE_SI...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1953: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15364299265,'T2_HEAD_CLO...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1954: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15346035533,'T8_POTION_L...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1955: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15361879263,'T6_JOURNAL_...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1956: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15363755304,'T5_SHOES_CL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1957: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22422618886,'T5_2H_FIRES...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1958: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15363838391,'T7_ARTEFACT...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1959: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22423331924,'T5_OFF_SHIE...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1960: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15363886247,'T6_MAIN_DAG...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1961: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (51091791,'T5_MAIN_ARCANE...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1962: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15313644819,'T7_ARTEFACT...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1963: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15362236030,'T4_HEAD_CLO...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1964: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15364957265,'T5_HIDE_LEV...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1965: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15346376978,'T6_ARTEFACT...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1966: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15364806725,'T4_2H_KNUCK...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1967: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15317780731,'T4_HEAD_PLA...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1968: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15361437670,'T4_CAPEITEM...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1969: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15360748095,'T6_MAIN_CUR...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1970: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15295868836,'T6_CAPEITEM...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1971: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15362357609,'T7_MAIN_HOL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1972: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15352108272,'T6_2H_DOUBL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1973: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15324195243,'T6_2H_HAMME...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1974: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15320241653,'T6_SHOES_LE...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1975: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15275621847,'T6_2H_NATUR...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1976: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15347768050,'T6_2H_DUALS...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1977: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15358921775,'T6_ARMOR_CL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1978: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15332653944,'T4_ARMOR_CL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1979: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15297875037,'T5_MOUNT_OW...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1980: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15364451140,'T4_OFF_SHIE...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1981: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15364389280,'T4_HIDE',1,...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1982: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15365263601,'T2_ARMOR_CL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1983: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15364615028,'T4_PLANKS_L...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1984: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15364141345,'T4_CAPEITEM...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1985: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15365589391,'T4_FIBER',1...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1986: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15352579848,'T8_HIDE_LEV...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1987: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15363266513,'T5_MAIN_FIR...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1988: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15343398189,'T5_MAIN_SCI...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1989: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22426146038,'T8_MAIN_SWO...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1990: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15315948393,'T6_PLANKS_L...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1991: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22426574720,'T4_MAIN_1HC...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1992: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15328871895,'T6_ORE_LEVE...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1993: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15339456700,'TREASURE_TR...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1994: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15339129427,'T5_OFF_HORN...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1995: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15299362401,'T6_ARMOR_CL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1996: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15326109038,'T4_METALBAR...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1997: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15365246597,'T4_FIBER_LE...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1998: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15361903662,'T6_WOOD',1,...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:1999: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22426365860,'T6_MAIN_HOL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2000: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15326717247,'T5_2H_SKULL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2001: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22388510850,'T5_HEAD_PLA...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2002: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15355651007,'T5_JOURNAL_...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2003: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15311382142,'T3_MEAT',1,...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2004: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15366332945,'T4_RUNE',1,...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2005: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22355429276,'T4_2H_INFER...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2006: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22427022412,'T5_2H_WARBO...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2007: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15366291803,'T4_POTION_E...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2008: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15276349646,'T8_2H_MACE@...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2009: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15366412920,'T6_FIBER_LE...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2010: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15351945519,'T6_ARMOR_CL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2011: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15366185117,'T6_OFF_HORN...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2012: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22415863487,'T8_HEAD_PLA...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2013: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15350258078,'T5_FARM_DIR...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2014: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (22427682011,'T6_OFF_BOOK...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2015: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15366534979,'T6_FISH_FRE...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2016: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15366323080,'T6_SHOES_CL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2017: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15362715389,'T4_SHOES_PL...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2018: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `market_orders` VALUES (15365136362,'T4_2H_DUALS...
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2020: ERROR:  syntax error at or near "UNLOCK"
-LINE 1: UNLOCK TABLES;
-        ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2046: ERROR:  syntax error at or near "`"
-LINE 1: CREATE TABLE `market_orders_expired` (
-                     ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2053: ERROR:  syntax error at or near "`"
-LINE 1: LOCK TABLES `market_orders_expired` WRITE;
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2056: ERROR:  syntax error at or near "UNLOCK"
-LINE 1: UNLOCK TABLES;
-        ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2077: ERROR:  syntax error at or near "`"
-LINE 1: CREATE TABLE `market_stats` (
-                     ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2084: ERROR:  syntax error at or near "`"
-LINE 1: LOCK TABLES `market_stats` WRITE;
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2087: ERROR:  syntax error at or near "UNLOCK"
-LINE 1: UNLOCK TABLES;
-        ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2098: ERROR:  syntax error at or near "`"
-LINE 1: CREATE TABLE `schema_migrations` (
-                     ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2105: ERROR:  syntax error at or near "`"
-LINE 1: LOCK TABLES `schema_migrations` WRITE;
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2107: ERROR:  syntax error at or near "`"
-LINE 1: INSERT INTO `schema_migrations` VALUES ('20260704000001');
-                    ^
-psql:dump/backup_2026-09-16T03:00:32Z.sql:2109: ERROR:  syntax error at or near "UNLOCK"
-LINE 1: UNLOCK TABLES;
-        ^
+# run 35170496184 · 2026-09-17 01:45:38 UTC · conclusión del ETL: failure
+/home/runner/work/albion/albion/etl/build_report.py:24: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  NOW = dt.datetime.utcnow()
+[etl] índice https://www.albion-online-data.com/database/: 14871 bytes en 0.6s
+[etl] https://www.albion-online-data.com/database/: 111 entradas; 4 db_backup; 75 market_history
+[etl]   db_backup: ('db_backup_2026-09-13T03_01_28.tgz', '13-Sep-2026 03:01', '259822714')
+[etl]   db_backup: ('db_backup_2026-09-14T03_01_34.tgz', '14-Sep-2026 03:01', '261963041')
+[etl]   db_backup: ('db_backup_2026-09-15T03_01_32.tgz', '15-Sep-2026 03:01', '264655823')
+[etl]   db_backup: ('db_backup_2026-09-16T03_01_36.tgz', '16-Sep-2026 03:01', '267799760')
+[etl]   market_history: ('market_history_2025_11.sql.gz', '26-May-2026 11:08', '39456339')
+[etl]   market_history: ('market_history_2025_12.sql.gz', '21-Jun-2026 14:16', '48442099')
+[etl]   market_history: ('market_history_2026_01.sql.gz', '27-Jul-2026 12:33', '49530135')
+[etl]   market_history: ('market_history_2026_02.sql.gz', '24-Aug-2026 03:09', '46906353')
+[etl]   market_history: ('market_history_2026_03.sql.gz', '01-Sep-2026 11:39', '49980453')
+[etl]   otros: [('../', '', ''), ('backup/', '18-May-2024 14:27', '-'), ('%21README.txt', '18-May-2024 14:27', '933'), ('monthly_db_backup_2023-03.tgz', '18-May-2024 14:27', '1451631634'), ('monthly_db_backup_2023-04.tgz', '18-May-2024 14:27', '337674879'), ('monthly_db_backup_2023-05.tgz', '18-May-2024 14:27', '325744672'), ('monthly_db_backup_2023-06.tgz', '18-May-2024 14:27', '374976213'), ('monthly_db_backup_2023-07.tgz', '18-May-2024 14:27', '444488990'), ('monthly_db_backup_2023-08.tgz', '18-May-2024 14:27', '435653920'), ('monthly_db_backup_2023-09.tgz', '18-May-2024 14:27', '443617898'), ('monthly_db_backup_2023-10.tgz', '18-May-2024 14:27', '401605669'), ('monthly_db_backup_2023-11.tgz', '18-May-2024 14:27', '497230855'), ('monthly_db_backup_2024-01.tgz', '18-May-2024 14:27', '472581294'), ('monthly_db_backup_2024-02.tgz', '18-May-2024 14:27', '491627155'), ('monthly_db_backup_2024-04.tgz', '18-May-2024 14:27', '456789957')]
+[etl] $ df -h . && free -m || true
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root       145G   59G   86G  41% /
+               total        used        free      shared  buff/cache   available
+Mem:           15989        1602       11815          45        2940       14386
+Swap:           3071           0        3071
+[etl] descargando https://www.albion-online-data.com/database/db_backup_2026-09-16T03_01_36.tgz
+[etl] $ curl -fsSL --retry 3 --retry-delay 10 --connect-timeout 60 -A 'Mozilla/5.0 (X11; Linux x86_64) AlbionMarketIntel/1.0 (+github actions)' -o 'db_backup_2026-09-16T03_01_36.tgz' 'https://www.albion-online-data.com/database/db_backup_2026-09-16T03_01_36.tgz'
+[etl] descargado 255 MB en 14 s
+[etl] $ df -h . || true
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root       145G   59G   86G  41% /
+[etl] miembros del tar: ['drwxr-xr-x root/root         0 2026-09-16 03:00 ./', '-rw-r--r-- root/root 1940369878 2026-09-16 03:00 ./backup_2026-09-16T03:00:32Z.sql'] ... total 2
+[etl] cabecera del .sql:
+-- MariaDB dump 10.19  Distrib 10.6.12-MariaDB, for Linux (x86_64)
+--
+-- Host: 172.20.0.1    Database: albion
+-- ------------------------------------------------------
+-- Server version	10.6.14-MariaDB-1:10.6.14+maria~ubu2004
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `albion`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `albion` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+
+USE `albion`;
+
+--
+-- Table structure for table `ar_internal_metadata`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ar_internal_metadata` (
+  `key` varchar(255) NOT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ar_internal_metadata`
+--
+
+LOCK TABLES `ar_internal_metadata` WRITE;
+/*!40000 ALTER TABLE `ar_internal_metadata` DISABLE KEYS */;
+INSERT INTO `ar_internal_metadata` VALUES ('environment','production','2026-07-05 17:12:12.294821','2026-07-05 17:12:12.294823');
+/*!40000 ALTER TABLE `ar_internal_metadata` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `gold_prices`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `gold_prices` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `timestamp` timestamp NULL DEFAULT NULL,
+  `price` int(11) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_gold_prices_timestamp` (`timestamp`)
+) ENGINE=InnoDB AUTO_INCREMENT=72243 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `gold_prices`
+--
+
+LOCK TABLES `gold_prices` WRITE;
+/*!40000 ALTER TABLE `gold_prices` DISABLE KEYS */;
+INSERT INTO `gold_prices` VALUES (1,'2018-01-09 23:00:00',6370000),(2,'2018-01-09 22:00:00',6420000),(3,'2018-01-09 21:00:00',6420000),(4,'2018-01-09 20:00:00',6380000),(5,'2018-01-09 19:00:00',6370000),(6,'2018-01-09 18:00:00',6360000),(7,'2018-01-09 17:00:00',6310000),(8,'2018-01-09 16:00:00',6300000),(9,'2018-01-09 15:00:00',6290000),(10,'2018-01-09 14:00:00',6290000),(11,'2018-01-09 13:00:00',6270000),(12,'2018-01-09 12:00:00',6270000),(13,'2018-01-09 11:00:00',62
+[etl] sentencias CREATE TABLE:
+32:CREATE TABLE `ar_internal_metadata` (
+33-  `key` varchar(255) NOT NULL,
+34-  `value` varchar(255) DEFAULT NULL,
+35-  `created_at` datetime(6) NOT NULL,
+36-  `updated_at` datetime(6) NOT NULL,
+37-  PRIMARY KEY (`key`)
+38-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+39-/*!40101 SET character_set_client = @saved_cs_client */;
+40-
+41---
+42--- Dumping data for table `ar_internal_metadata`
+43---
+44-
+45-LOCK TABLES `ar_internal_metadata` WRITE;
+46-/*!40000 ALTER TABLE `ar_internal_metadata` DISABLE KEYS */;
+48-/*!40000 ALTER TABLE `ar_internal_metadata` ENABLE KEYS */;
+49-UNLOCK TABLES;
+50-
+51---
+52--- Table structure for table `gold_prices`
+53---
+54-
+55-/*!40101 SET @saved_cs_client     = @@character_set_client */;
+56-/*!40101 SET character_set_client = utf8 */;
+57:CREATE TABLE `gold_prices` (
+58-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+59-  `timestamp` timestamp NULL DEFAULT NULL,
+60-  `price` int(11) unsigned DEFAULT NULL,
+61-  PRIMARY KEY (`id`),
+62-  KEY `idx_gold_prices_timestamp` (`timestamp`)
+63-) ENGINE=InnoDB AUTO_INCREMENT=72243 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+64-/*!40101 SET character_set_client = @saved_cs_client */;
+65-
+66---
+67--- Dumping data for table `gold_prices`
+68---
+69-
+70-LOCK TABLES `gold_prices` WRITE;
+71-/*!40000 ALTER TABLE `gold_prices` DISABLE KEYS */;
+75-/*!40000 ALTER TABLE `gold_prices` ENABLE KEYS */;
+76-UNLOCK TABLES;
+77-
+78---
+79--- Table structure for table `market_history`
+80---
+81-
+82-/*!40101 SET @saved_cs_client     = @@character_set_client */;
+83-/*!40101 SET character_set_client = utf8 */;
+84:CREATE TABLE `market_history` (
+85-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+86-  `item_amount` bigint(20) unsigned NOT NULL,
+87-  `silver_amount` bigint(20) unsigned NOT NULL,
+88-  `item_id` varchar(128) NOT NULL,
+89-  `location` smallint(5) unsigned NOT NULL,
+90-  `quality` tinyint(3) unsigned NOT NULL,
+91-  `timestamp` datetime(6) NOT NULL,
+92-  `aggregation` tinyint(4) NOT NULL DEFAULT 6,
+93-  PRIMARY KEY (`id`),
+94-  UNIQUE KEY `Main` (`item_id`,`quality`,`location`,`timestamp`,`aggregation`),
+95-  KEY `Simple` (`item_id`,`timestamp`,`aggregation`),
+96-  KEY `Aggregation` (`aggregation`,`timestamp`) USING BTREE
+97-) ENGINE=InnoDB AUTO_INCREMENT=969322377 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+98-/*!40101 SET character_set_client = @saved_cs_client */;
+99-
+100---
+101--- Dumping data for table `market_history`
+102---
+103-
+104-LOCK TABLES `market_history` WRITE;
+105-/*!40000 ALTER TABLE `market_history` DISABLE KEYS */;
+--
+1846:CREATE TABLE `market_orders` (
+1847-  `albion_id` bigint(20) unsigned NOT NULL,
+1848-  `item_id` varchar(255) DEFAULT NULL,
+1849-  `quality_level` tinyint(3) unsigned DEFAULT NULL,
+1850-  `enchantment_level` tinyint(3) unsigned DEFAULT NULL,
+1851-  `price` bigint(20) unsigned DEFAULT NULL,
+1852-  `initial_amount` int(11) unsigned DEFAULT NULL,
+1853-  `amount` int(11) unsigned DEFAULT NULL,
+1854-  `auction_type` varchar(255) DEFAULT NULL,
+1855-  `expires` timestamp NULL DEFAULT NULL,
+1856-  `location` smallint(5) unsigned NOT NULL,
+1857-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+1858-  `created_at` timestamp NULL DEFAULT NULL,
+1859-  `updated_at` timestamp NULL DEFAULT NULL,
+1860-  `deleted_at` timestamp NULL DEFAULT NULL,
+1861-  `updated_at_bin` int(10) unsigned GENERATED ALWAYS AS (unix_timestamp(`updated_at`) DIV 300 * 300) STORED,
+1862-  PRIMARY KEY (`id`),
+1863-  UNIQUE KEY `uix_market_orders_albion_id` (`albion_id`),
+1864-  KEY `expired` (`deleted_at`,`expires`,`updated_at`),
+1865-  KEY `main` (`item_id`,`location`,`updated_at`,`deleted_at`),
+1866-  KEY `stats_bin` (`item_id`,`location`,`quality_level`,`auction_type`,`updated_at_bin`)
+1867-) ENGINE=InnoDB AUTO_INCREMENT=3236990932 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+1868-/*!40101 SET character_set_client = @saved_cs_client */;
+1869-
+1870---
+1871--- Dumping data for table `market_orders`
+1872---
+1873-
+1874-LOCK TABLES `market_orders` WRITE;
+1875-/*!40000 ALTER TABLE `market_orders` DISABLE KEYS */;
+--
+2028:CREATE TABLE `market_orders_expired` (
+2029-  `albion_id` bigint(20) unsigned NOT NULL,
+2030-  `item_id` varchar(255) DEFAULT NULL,
+2031-  `quality_level` tinyint(3) unsigned DEFAULT NULL,
+2032-  `enchantment_level` tinyint(3) unsigned DEFAULT NULL,
+2033-  `price` bigint(20) unsigned DEFAULT NULL,
+2034-  `initial_amount` int(11) unsigned DEFAULT NULL,
+2035-  `amount` int(11) unsigned DEFAULT NULL,
+2036-  `auction_type` varchar(255) DEFAULT NULL,
+2037-  `expires` timestamp NULL DEFAULT NULL,
+2038-  `location` smallint(5) unsigned NOT NULL,
+2039-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+2040-  `created_at` timestamp NULL DEFAULT NULL,
+2041-  `updated_at` timestamp NULL DEFAULT NULL,
+2042-  `deleted_at` timestamp NULL DEFAULT NULL,
+2043-  PRIMARY KEY (`id`),
+2044-  UNIQUE KEY `uix_market_orders_expired_albion_id` (`albion_id`),
+2045-  KEY `updated_at_expired` (`updated_at`)
+2046-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=DYNAMIC;
+2047-/*!40101 SET character_set_client = @saved_cs_client */;
+2048-
+2049---
+2050--- Dumping data for table `market_orders_expired`
+2051---
+2052-
+2053-LOCK TABLES `market_orders_expired` WRITE;
+2054-/*!40000 ALTER TABLE `market_orders_expired` DISABLE KEYS */;
+2055-/*!40000 ALTER TABLE `market_orders_expired` ENABLE KEYS */;
+2056-UNLOCK TABLES;
+2057-
+2058---
+2059--- Table structure for table `market_stats`
+2060---
+2061-
+2062-/*!40101 SET @saved_cs_client     = @@character_set_client */;
+2063-/*!40101 SET character_set_client = utf8 */;
+2064:CREATE TABLE `market_stats` (
+2065-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+2066-  `item_id` varchar(255) NOT NULL,
+2067-  `location` smallint(5) unsigned NOT NULL,
+2068-  `price_min` bigint(20) unsigned DEFAULT NULL,
+2069-  `price_max` bigint(20) unsigned DEFAULT NULL,
+2070-  `price_avg` decimal(10,0) DEFAULT NULL,
+2071-  `timestamp` timestamp NULL DEFAULT NULL,
+2072-  PRIMARY KEY (`id`),
+2073-  UNIQUE KEY `item_id_location_timestamp_unique` (`item_id`,`location`,`timestamp`) USING BTREE,
+2074-  KEY `item_id` (`item_id`),
+[...]
+
+LOCK TABLES `gold_prices` WRITE;
+/*!40000 ALTER TABLE `gold_prices` DISABLE KEYS */;
+INSERT INTO `gold_prices` VALUES (1,'2018-01-09 23:00:00',6370000),(2,'2018-01-09 22:00:00',6420000),(3,'2018-01-09 21:00:00',6420000),(4,'2018-01-09 20:00:00',6380000),(5,'2018-01-09 19:00:00',6370000),(6,'2018-01-09 18:00:00',6360000),(7,'2018-01-09 17:00:00',6310000),(8,'2018-01-09 16:00:00',6300000),(9,'2018-01-09 15:00:00',6290000),(10,'2018-01-09 14:00:00',6290000),(11,'2018-01-09 13:00:00',6270000),(12,'2018-01-09 12:00:00',6270000),(13,'2018-01-09 11:00:00',62
+[etl] sentencias CREATE TABLE:
+32:CREATE TABLE `ar_internal_metadata` (
+33-  `key` varchar(255) NOT NULL,
+34-  `value` varchar(255) DEFAULT NULL,
+35-  `created_at` datetime(6) NOT NULL,
+36-  `updated_at` datetime(6) NOT NULL,
+37-  PRIMARY KEY (`key`)
+38-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+39-/*!40101 SET character_set_client = @saved_cs_client */;
+40-
+41---
+42--- Dumping data for table `ar_internal_metadata`
+43---
+44-
+45-LOCK TABLES `ar_internal_metadata` WRITE;
+46-/*!40000 ALTER TABLE `ar_internal_metadata` DISABLE KEYS */;
+48-/*!40000 ALTER TABLE `ar_internal_metadata` ENABLE KEYS */;
+49-UNLOCK TABLES;
+50-
+51---
+52--- Table structure for table `gold_prices`
+53---
+54-
+55-/*!40101 SET @saved_cs_client     = @@character_set_client */;
+56-/*!40101 SET character_set_client = utf8 */;
+57:CREATE TABLE `gold_prices` (
+58-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+59-  `timestamp` timestamp NULL DEFAULT NULL,
+60-  `price` int(11) unsigned DEFAULT NULL,
+61-  PRIMARY KEY (`id`),
+62-  KEY `idx_gold_prices_timestamp` (`timestamp`)
+63-) ENGINE=InnoDB AUTO_INCREMENT=72243 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+64-/*!40101 SET character_set_client = @saved_cs_client */;
+65-
+66---
+67--- Dumping data for table `gold_prices`
+68---
+69-
+70-LOCK TABLES `gold_prices` WRITE;
+71-/*!40000 ALTER TABLE `gold_prices` DISABLE KEYS */;
+75-/*!40000 ALTER TABLE `gold_prices` ENABLE KEYS */;
+76-UNLOCK TABLES;
+77-
+78---
+79--- Table structure for table `market_history`
+80---
+81-
+82-/*!40101 SET @saved_cs_client     = @@character_set_client */;
+83-/*!40101 SET character_set_client = utf8 */;
+84:CREATE TABLE `market_history` (
+85-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+86-  `item_amount` bigint(20) unsigned NOT NULL,
+87-  `silver_amount` bigint(20) unsigned NOT NULL,
+88-  `item_id` varchar(128) NOT NULL,
+89-  `location` smallint(5) unsigned NOT NULL,
+90-  `quality` tinyint(3) unsigned NOT NULL,
+91-  `timestamp` datetime(6) NOT NULL,
+92-  `aggregation` tinyint(4) NOT NULL DEFAULT 6,
+93-  PRIMARY KEY (`id`),
+94-  UNIQUE KEY `Main` (`item_id`,`quality`,`location`,`timestamp`,`aggregation`),
+95-  KEY `Simple` (`item_id`,`timestamp`,`aggregation`),
+96-  KEY `Aggregation` (`aggregation`,`timestamp`) USING BTREE
+97-) ENGINE=InnoDB AUTO_INCREMENT=969322377 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+98-/*!40101 SET character_set_client = @saved_cs_client */;
+99-
+100---
+101--- Dumping data for table `market_history`
+102---
+103-
+104-LOCK TABLES `market_history` WRITE;
+105-/*!40000 ALTER TABLE `market_history` DISABLE KEYS */;
+--
+1846:CREATE TABLE `market_orders` (
+1847-  `albion_id` bigint(20) unsigned NOT NULL,
+1848-  `item_id` varchar(255) DEFAULT NULL,
+1849-  `quality_level` tinyint(3) unsigned DEFAULT NULL,
+1850-  `enchantment_level` tinyint(3) unsigned DEFAULT NULL,
+1851-  `price` bigint(20) unsigned DEFAULT NULL,
+1852-  `initial_amount` int(11) unsigned DEFAULT NULL,
+1853-  `amount` int(11) unsigned DEFAULT NULL,
+1854-  `auction_type` varchar(255) DEFAULT NULL,
+1855-  `expires` timestamp NULL DEFAULT NULL,
+1856-  `location` smallint(5) unsigned NOT NULL,
+1857-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+1858-  `created_at` timestamp NULL DEFAULT NULL,
+1859-  `updated_at` timestamp NULL DEFAULT NULL,
+1860-  `deleted_at` timestamp NULL DEFAULT NULL,
+1861-  `updated_at_bin` int(10) unsigned GENERATED ALWAYS AS (unix_timestamp(`updated_at`) DIV 300 * 300) STORED,
+1862-  PRIMARY KEY (`id`),
+1863-  UNIQUE KEY `uix_market_orders_albion_id` (`albion_id`),
+1864-  KEY `expired` (`deleted_at`,`expires`,`updated_at`),
+1865-  KEY `main` (`item_id`,`location`,`updated_at`,`deleted_at`),
+1866-  KEY `stats_bin` (`item_id`,`location`,`quality_level`,`auction_type`,`updated_at_bin`)
+1867-) ENGINE=InnoDB AUTO_INCREMENT=3236990932 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+1868-/*!40101 SET character_set_client = @saved_cs_client */;
+1869-
+1870---
+1871--- Dumping data for table `market_orders`
+1872---
+1873-
+1874-LOCK TABLES `market_orders` WRITE;
+1875-/*!40000 ALTER TABLE `market_orders` DISABLE KEYS */;
+--
+2028:CREATE TABLE `market_orders_expired` (
+2029-  `albion_id` bigint(20) unsigned NOT NULL,
+2030-  `item_id` varchar(255) DEFAULT NULL,
+2031-  `quality_level` tinyint(3) unsigned DEFAULT NULL,
+2032-  `enchantment_level` tinyint(3) unsigned DEFAULT NULL,
+2033-  `price` bigint(20) unsigned DEFAULT NULL,
+2034-  `initial_amount` int(11) unsigned DEFAULT NULL,
+2035-  `amount` int(11) unsigned DEFAULT NULL,
+2036-  `auction_type` varchar(255) DEFAULT NULL,
+2037-  `expires` timestamp NULL DEFAULT NULL,
+2038-  `location` smallint(5) unsigned NOT NULL,
+2039-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+2040-  `created_at` timestamp NULL DEFAULT NULL,
+2041-  `updated_at` timestamp NULL DEFAULT NULL,
+2042-  `deleted_at` timestamp NULL DEFAULT NULL,
+2043-  PRIMARY KEY (`id`),
+2044-  UNIQUE KEY `uix_market_orders_expired_albion_id` (`albion_id`),
+2045-  KEY `updated_at_expired` (`updated_at`)
+2046-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=DYNAMIC;
+2047-/*!40101 SET character_set_client = @saved_cs_client */;
+2048-
+2049---
+2050--- Dumping data for table `market_orders_expired`
+2051---
+2052-
+2053-LOCK TABLES `market_orders_expired` WRITE;
+2054-/*!40000 ALTER TABLE `market_orders_expired` DISABLE KEYS */;
+2055-/*!40000 ALTER TABLE `market_orders_expired` ENABLE KEYS */;
+2056-UNLOCK TABLES;
+2057-
+2058---
+2059--- Table structure for table `market_stats`
+2060---
+2061-
+2062-/*!40101 SET @saved_cs_client     = @@character_set_client */;
+2063-/*!40101 SET character_set_client = utf8 */;
+2064:CREATE TABLE `market_stats` (
+2065-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+2066-  `item_id` varchar(255) NOT NULL,
+2067-  `location` smallint(5) unsigned NOT NULL,
+2068-  `price_min` bigint(20) unsigned DEFAULT NULL,
+2069-  `price_max` bigint(20) unsigned DEFAULT NULL,
+2070-  `price_avg` decimal(10,0) DEFAULT NULL,
+2071-  `timestamp` timestamp NULL DEFAULT NULL,
+2072-  PRIMARY KEY (`id`),
+2073-  UNIQUE KEY `item_id_location_timestamp_unique` (`item_id`,`location`,`timestamp`) USING BTREE,
+2074-  KEY `item_id` (`item_id`),
+2075-  KEY `location` (`location`),
+2076-  KEY `timestamp` (`timestamp`)
+2077-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+2078-/*!40101 SET character_set_client = @saved_cs_client */;
+2079-
+2080---
+2081--- Dumping data for table `market_stats`
+2082---
+2083-
+2084-LOCK TABLES `market_stats` WRITE;
+2085-/*!40000 ALTER TABLE `market_stats` DISABLE KEYS */;
+2086-/*!40000 ALTER TABLE `market_stats` ENABLE KEYS */;
+2087-UNLOCK TABLES;
+2088-
+2089---
+2090--- Table structure for table `schema_migrations`
+2091---
+2092-
+2093-/*!40101 SET @saved_cs_client     = @@character_set_client */;
+2094-/*!40101 SET character_set_client = utf8 */;
+2095:CREATE TABLE `schema_migrations` (
+2096-  `version` varchar(255) NOT NULL,
+2097-  PRIMARY KEY (`version`)
+2098-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+2099-/*!40101 SET character_set_client = @saved_cs_client */;
+2100-
+2101---
+2102--- Dumping data for table `schema_migrations`
+2103---
+2104-
+2105-LOCK TABLES `schema_migrations` WRITE;
+2106-/*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
+2108-/*!40000 ALTER TABLE `schema_migrations` ENABLE KEYS */;
+2109-UNLOCK TABLES;
+2110-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+2111-
+2112-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+2113-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+2114-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+2115-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+2116-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+2117-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+2118-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+2119-
+2120--- Dump completed on 2026-09-16  3:00:57
+
+[etl] $ mysql -h127.0.0.1 -P3306 -uroot -proot --protocol=tcp -e "SELECT VERSION(); SET GLOBAL innodb_flush_log_at_trx_commit=0; SET GLOBAL sync_binlog=0; SET GLOBAL max_allowed_packet=1073741824; DROP DATABASE IF EXISTS aodp; CREATE DATABASE aodp CHARACTER SET utf8mb4;"
+mysql: [Warning] Using a password on the command line interface can be insecure.
+VERSION()
+8.0.46-0ubuntu0.24.04.4
+[etl] $ (echo 'SET sql_log_bin=0; SET unique_checks=0; SET foreign_key_checks=0;'; tar -xOzf 'db_backup_2026-09-16T03_01_36.tgz' './backup_2026-09-16T03:00:32Z.sql' | grep -v '^INSERT INTO `market_orders_expired`') | mysql -h127.0.0.1 -P3306 -uroot -proot --protocol=tcp --max_allowed_packet=1G --force aodp 2>&1 | tail -n 40
+ERROR 1146 (42S02) at line 1981: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1982: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1983: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1984: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1985: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1986: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1987: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1988: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1989: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1990: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1991: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1992: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1993: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1994: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1995: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1996: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1997: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1998: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 1999: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2000: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2001: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2002: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2003: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2004: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2005: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2006: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2007: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2008: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2009: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2010: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2011: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2012: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2013: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2014: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2015: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2016: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2017: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2018: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2019: Table 'albion.market_orders' doesn't exist
+ERROR 1146 (42S02) at line 2020: Table 'albion.market_orders' doesn't exist
+[etl] carga terminada en 952 s
+[etl] $ df -h . || true
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root       145G   65G   80G  45% /
 No encuentro la tabla de historial. Tablas: 
