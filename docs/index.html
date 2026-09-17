@@ -906,7 +906,7 @@ async function loadDaily() {
 }
 function log() { try { console.log('[ami]', ...arguments); } catch (e) { } }
 function renderDaily() {
-  const L = DAILY.latest; const out = $('#dailyOut'); if (!L) { out.innerHTML = `<div class="card empty">${T('Sin datos diarios. Esta pestaña se alimenta del informe generado por GitHub Actions (data/latest.json).|No daily data. This tab is fed by the GitHub Actions report (data/latest.json).')}</div>`; return; }
+  const L = DAILY.latest; if (!L) { $('#dyInfo').textContent = T('Sin datos diarios. Esta pestaña se alimenta del informe generado por GitHub Actions (data/latest.json).|No daily data. This tab is fed by the GitHub Actions report (data/latest.json).'); $('#tDaily').innerHTML = ''; return; }
   const mode = $('#dyMode').value, tier = $('#dyTier').value, ench = $('#dyEnch').value, q = $('#dyQ').value.trim().toLowerCase(), city = $('#dyCity').value, cat = $('#dyCat').value;
   let rows = (mode === 'silver' ? L.top_silver : L.top_units).slice();
   rows = rows.filter(r => { const { t, e } = tierOf(r.item); const b = DB.items[r.item.split('@')[0]]; if (tier && t !== +tier) return false; if (ench !== '' && e !== +ench) return false; if (cat && (!b || b.cat !== cat)) return false; if (q && !(r.item.toLowerCase().includes(q) || nameOf(r.item).toLowerCase().includes(q))) return false; if (city && !(r.cities && r.cities[city])) return false; return true; });
