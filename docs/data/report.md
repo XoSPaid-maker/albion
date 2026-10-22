@@ -1,72 +1,72 @@
-# Albion Market Intel — informe diario (2026-10-21 15:58 UTC)
-Servidor Americas · datos hasta 2026-10-21T02:00:00 · 4557 ítems con ventas en 7 días
+# Albion Market Intel — informe diario (2026-10-22 15:53 UTC)
+Servidor Americas · datos hasta 2026-10-22T02:00:00 · 4512 ítems con ventas en 7 días
 
 ## Top 30 por unidades vendidas (7 días)
 
 | # | Ítem | Uds 7d | Plata 7d | Precio prom. | Donde más se vende | Más barato ahora | Más caro ahora | Mercado Negro compra | Tendencia |
 |--|--|--:|--:|--:|--|--|--|--:|--:|
-| 1 | `T4_RUNE` | 52.169.481 | 629.655.310 | 12 | Lymhurst (12.979.578) | Brecilien 5 | Caerleon 14 | — | +20.7% |
-| 2 | `T5_RUNE` | 27.426.945 | 996.494.620 | 36 | Lymhurst (6.466.054) | Fort Sterling 30 | Caerleon 39 | — | +2.4% |
-| 3 | `T4_SOUL` | 22.818.863 | 1.749.625.260 | 77 | Lymhurst (5.092.994) | Caerleon 63 | Thetford 86 | — | +0.8% |
-| 4 | `T6_RUNE` | 13.380.013 | 2.257.679.042 | 169 | Lymhurst (2.737.755) | Fort Sterling 140 | Martlock 199 | — | -3.1% |
-| 5 | `T5_SOUL` | 10.689.699 | 2.184.138.343 | 204 | Brecilien (2.240.929) | Martlock 192 | Thetford 244 | — | +0.9% |
-| 6 | `T1_WOOD` | 9.338.283 | 293.680.845 | 31 | Lymhurst (4.598.773) | Lymhurst 22 | Martlock 52 | — | -9.9% |
-| 7 | `T4_RELIC` | 8.318.032 | 3.332.360.024 | 401 | Brecilien (1.953.433) | Caerleon 323 | Lymhurst 436 | — | +0.7% |
-| 8 | `T3_HIDE` | 7.905.803 | 848.492.364 | 107 | Bridgewatch (4.316.446) | Lymhurst 80 | Martlock 128 | — | -6.8% |
-| 9 | `T3_ORE` | 6.751.100 | 567.510.555 | 84 | Fort Sterling (4.754.636) | Fort Sterling 67 | Lymhurst 100 | — | -17.6% |
-| 10 | `T4_HIDE` | 6.336.141 | 736.828.340 | 116 | Bridgewatch (3.040.350) | Caerleon 91 | Martlock 140 | — | -6.6% |
-| 11 | `T3_FIBER` | 6.313.241 | 655.926.196 | 104 | Thetford (3.489.614) | Thetford 77 | Martlock 138 | — | +47.8% |
-| 12 | `T3_WOOD` | 5.642.865 | 609.912.802 | 108 | Lymhurst (3.648.619) | Martlock 84 | Brecilien 230 | — | +2.3% |
-| 13 | `T4_FIBER` | 5.294.277 | 598.924.299 | 113 | Thetford (2.586.460) | Brecilien 103 | Lymhurst 133 | — | -0.4% |
-| 14 | `T4_ORE` | 5.107.063 | 614.089.747 | 120 | Fort Sterling (3.027.065) | Lymhurst 101 | Thetford 128 | — | -13.3% |
-| 15 | `T1_FISHCHOPS` | 4.927.546 | 1.396.173.035 | 283 | Fort Sterling (1.507.829) | Thetford 283 | Martlock 300 | — | +2.9% |
-| 16 | `T2_FIBER` | 4.719.315 | 94.729.165 | 20 | Thetford (3.022.823) | Thetford 15 | Caerleon 55 | — | +7.0% |
-| 17 | `T5_RELIC` | 4.638.000 | 2.859.764.779 | 617 | Brecilien (969.419) | Lymhurst 613 | Caerleon 727 | — | +5.1% |
-| 18 | `T6_SOUL` | 4.466.488 | 3.225.575.226 | 722 | Brecilien (856.803) | Bridgewatch 695 | Thetford 865 | — | +2.0% |
-| 19 | `T4_WOOD` | 4.361.224 | 430.521.661 | 99 | Lymhurst (2.321.112) | Lymhurst 76 | Caerleon 109 | — | +0.5% |
-| 20 | `T4_LEATHER` | 4.204.773 | 1.340.495.355 | 319 | Martlock (1.831.708) | Martlock 290 | Brecilien 416 | — | -2.3% |
-| 21 | `T5_HIDE` | 4.192.636 | 2.529.551.460 | 603 | Bridgewatch (1.630.638) | Lymhurst 574 | Martlock 610 | — | -1.1% |
-| 22 | `T3_LEATHER` | 4.174.025 | 966.743.475 | 232 | Martlock (2.102.933) | Martlock 209 | Brecilien 436 | — | -5.2% |
-| 23 | `T4_METALBAR` | 4.111.555 | 1.109.841.500 | 270 | Thetford (1.870.532) | Martlock 239 | Lymhurst 286 | — | +1.4% |
-| 24 | `T1_CARROT` | 4.094.550 | 1.617.569.045 | 395 | Lymhurst (2.395.221) | Caerleon 339 | Fort Sterling 411 | — | +0.7% |
-| 25 | `T4_PLANKS` | 3.901.433 | 1.121.593.855 | 287 | Fort Sterling (1.735.618) | Fort Sterling 225 | Caerleon 390 | — | +3.0% |
-| 26 | `T4_STONEBLOCK` | 3.874.632 | 607.036.998 | 157 | Bridgewatch (1.277.997) | Bridgewatch 94 | Lymhurst 300 | — | +14.6% |
-| 27 | `T3_PLANKS` | 3.848.377 | 807.723.968 | 210 | Fort Sterling (2.238.175) | Fort Sterling 177 | Caerleon 390 | — | -2.6% |
-| 28 | `T2_ORE` | 3.805.289 | 79.362.977 | 21 | Fort Sterling (3.487.408) | Fort Sterling 16 | Brecilien 150 | — | -9.8% |
-| 29 | `T4_CLOTH` | 3.727.298 | 1.134.841.400 | 304 | Lymhurst (2.009.844) | Lymhurst 236 | Caerleon 471 | — | -3.1% |
-| 30 | `T3_CLOTH` | 3.268.255 | 617.582.656 | 189 | Lymhurst (2.435.972) | Bridgewatch 171 | Caerleon 306 | — | -0.9% |
+| 1 | `T4_RUNE` | 63.244.350 | 1.023.110.712 | 16 | Brecilien (13.859.029) | Brecilien 4 | Caerleon 10 | — | +151.7% |
+| 2 | `T5_RUNE` | 33.524.264 | 1.226.084.808 | 37 | Brecilien (7.146.973) | Fort Sterling 30 | Caerleon 36 | — | +19.2% |
+| 3 | `T4_SOUL` | 26.099.980 | 1.929.039.348 | 74 | Brecilien (6.626.830) | Brecilien 48 | Lymhurst 77 | — | +2.2% |
+| 4 | `T6_RUNE` | 14.545.146 | 2.423.275.404 | 167 | Brecilien (3.404.364) | Thetford 138 | Caerleon 198 | — | -2.9% |
+| 5 | `T1_WOOD` | 13.820.151 | 501.915.028 | 36 | Lymhurst (4.457.281) | Fort Sterling 25 | Caerleon 58 | — | -8.8% |
+| 6 | `T5_SOUL` | 13.621.143 | 2.804.357.243 | 206 | Brecilien (3.523.011) | Fort Sterling 193 | Brecilien 209 | — | +0.4% |
+| 7 | `T4_RELIC` | 10.082.864 | 4.023.125.597 | 399 | Brecilien (2.771.783) | Caerleon 329 | Thetford 461 | — | +0.4% |
+| 8 | `T3_HIDE` | 8.383.091 | 900.256.498 | 107 | Bridgewatch (4.554.808) | Lymhurst 80 | Caerleon 180 | — | -6.6% |
+| 9 | `T3_ORE` | 6.986.899 | 564.893.071 | 81 | Fort Sterling (4.875.226) | Fort Sterling 61 | Caerleon 165 | — | -10.3% |
+| 10 | `T4_HIDE` | 6.604.821 | 767.903.900 | 116 | Bridgewatch (3.065.161) | Caerleon 91 | Martlock 129 | — | -4.3% |
+| 11 | `T3_FIBER` | 6.242.002 | 643.481.655 | 103 | Thetford (3.384.349) | Thetford 76 | Caerleon 165 | — | -2.7% |
+| 12 | `T3_WOOD` | 6.011.457 | 643.075.225 | 107 | Lymhurst (3.507.333) | Bridgewatch 86 | Caerleon 249 | — | -13.7% |
+| 13 | `T4_ORE` | 5.527.354 | 642.553.608 | 116 | Fort Sterling (3.331.845) | Lymhurst 104 | Thetford 123 | — | -6.5% |
+| 14 | `T5_RELIC` | 5.500.437 | 3.417.802.262 | 621 | Brecilien (1.311.596) | Brecilien 597 | Thetford 689 | — | +3.0% |
+| 15 | `T6_SOUL` | 5.278.349 | 3.795.670.642 | 719 | Brecilien (1.355.319) | Lymhurst 679 | Bridgewatch 1.432 | — | -1.4% |
+| 16 | `T4_FIBER` | 5.046.493 | 568.631.109 | 113 | Thetford (2.406.529) | Martlock 99 | Caerleon 140 | — | +2.4% |
+| 17 | `T3_ROCK` | 4.683.698 | 320.339.732 | 68 | Martlock (3.004.279) | Thetford 69 | Caerleon 125 | — | -1.4% |
+| 18 | `T2_ORE` | 4.515.610 | 102.734.700 | 23 | Fort Sterling (3.363.834) | Fort Sterling 17 | Thetford 33 | — | -4.9% |
+| 19 | `T4_WOOD` | 4.493.895 | 437.704.223 | 97 | Lymhurst (2.194.428) | Lymhurst 71 | Caerleon 96 | — | -9.1% |
+| 20 | `T1_FISHCHOPS` | 4.464.567 | 1.269.929.773 | 284 | Fort Sterling (1.913.257) | Thetford 280 | Brecilien 335 | — | +3.9% |
+| 21 | `T2_FIBER` | 4.443.934 | 90.549.039 | 20 | Thetford (2.789.328) | Thetford 19 | Lymhurst 30 | — | +5.7% |
+| 22 | `T2_WOOD` | 4.275.959 | 123.649.482 | 29 | Lymhurst (2.269.783) | Lymhurst 23 | Fort Sterling 38 | — | -0.4% |
+| 23 | `T5_HIDE` | 4.247.540 | 2.563.203.905 | 603 | Bridgewatch (1.617.896) | Bridgewatch 577 | Martlock 618 | — | -0.5% |
+| 24 | `T4_LEATHER` | 4.150.726 | 1.335.627.067 | 322 | Martlock (1.823.756) | Martlock 288 | Caerleon 412 | — | -0.9% |
+| 25 | `T3_LEATHER` | 4.110.272 | 944.023.794 | 230 | Martlock (2.118.322) | Martlock 209 | Caerleon 329 | — | -3.7% |
+| 26 | `T1_ROCK` | 4.078.711 | 572.427.784 | 140 | Martlock (1.023.092) | Bridgewatch 131 | Caerleon 220 | — | +4.1% |
+| 27 | `T4_METALBAR` | 4.025.957 | 1.090.825.863 | 271 | Thetford (1.687.589) | Fort Sterling 243 | Caerleon 423 | — | +6.5% |
+| 28 | `T4_STONEBLOCK` | 3.997.270 | 670.458.714 | 168 | Bridgewatch (1.301.920) | Bridgewatch 105 | Lymhurst 337 | — | +23.7% |
+| 29 | `T3_PLANKS` | 3.877.765 | 810.998.080 | 209 | Fort Sterling (2.096.957) | Fort Sterling 175 | Caerleon 387 | — | -2.3% |
+| 30 | `T2_HIDE` | 3.765.395 | 230.943.626 | 61 | Bridgewatch (2.495.216) | Fort Sterling 60 | Martlock 87 | — | -5.4% |
 
 ## Top 30 por plata movida (7 días)
 
 | # | Ítem | Uds 7d | Plata 7d | Precio prom. | Donde más se vende | Más barato ahora | Más caro ahora | Mercado Negro compra | Tendencia |
 |--|--|--:|--:|--:|--|--|--|--:|--:|
-| 1 | `T4_SKILLBOOK_STANDARD` | 888.571 | 22.464.753.331 | 25.282 | Lymhurst (201.571) | Brecilien 19.976 | Thetford 25.500 | — | +0.9% |
-| 2 | `UNIQUE_GVGTOKEN_GENERIC` | 1.764.302 | 17.567.839.512 | 9.957 | Brecilien (346.965) | Fort Sterling 9.498 | Caerleon 10.924 | — | -0.6% |
-| 3 | `QUESTITEM_TOKEN_AVALON` | 1.554.031 | 10.268.256.293 | 6.607 | Brecilien (397.317) | Brecilien 6.435 | Caerleon 8.088 | — | +0.8% |
-| 4 | `T7_POTION_REVIVE` | 724.130 | 7.936.620.089 | 10.960 | Fort Sterling (162.532) | Brecilien 10.000 | Caerleon 12.000 | — | -0.0% |
-| 5 | `T8_MEAL_STEW@2` | 67.296 | 5.916.971.238 | 87.925 | Fort Sterling (15.079) | Martlock 82.725 | Caerleon 93.732 | — | +1.3% |
-| 6 | `T8_STONEBLOCK` | 126.261 | 3.961.325.104 | 31.374 | Bridgewatch (37.220) | Bridgewatch 31.085 | Brecilien 34.697 | — | -1.3% |
-| 7 | `T8_PLANKS` | 119.100 | 3.884.614.288 | 32.616 | Fort Sterling (52.599) | Lymhurst 32.790 | Brecilien 40.997 | — | +2.1% |
-| 8 | `T6_HIDE` | 2.210.556 | 3.667.704.429 | 1.659 | Bridgewatch (449.715) | Fort Sterling 1.416 | Lymhurst 1.663 | — | -2.8% |
-| 9 | `T6_RELIC` | 1.640.303 | 3.557.759.827 | 2.169 | Brecilien (479.567) | Fort Sterling 2.123 | Martlock 2.331 | — | +2.1% |
-| 10 | `T8_MEAL_STEW@3` | 12.898 | 3.510.535.942 | 272.177 | Fort Sterling (4.328) | Bridgewatch 251.970 | Caerleon 306.999 | — | -1.6% |
-| 11 | `T6_LEATHER` | 659.162 | 3.376.264.584 | 5.122 | Martlock (283.013) | Bridgewatch 4.990 | Caerleon 5.901 | — | -2.2% |
-| 12 | `T4_RELIC` | 8.318.032 | 3.332.360.024 | 401 | Brecilien (1.953.433) | Caerleon 323 | Lymhurst 436 | — | +0.7% |
-| 13 | `T6_BAG` | 71.872 | 3.310.503.900 | 46.061 | Black Market (46.615) | Brecilien 35.449 | Caerleon 64.922 | 47.400 | +5.9% |
-| 14 | `T6_SOUL` | 4.466.488 | 3.225.575.226 | 722 | Brecilien (856.803) | Bridgewatch 695 | Thetford 865 | — | +2.0% |
-| 15 | `T4_CAPEITEM_SMUGGLER@3` | 23.675 | 3.189.894.417 | 134.737 | Fort Sterling (6.477) | Caerleon 112.546 | Martlock 133.327 | 70.308 | -1.7% |
-| 16 | `TREASURE_RITUAL_RARITY3` | 150.529 | 3.158.631.663 | 20.984 | Lymhurst (48.789) | Fort Sterling 20.372 | Martlock 22.865 | — | -0.2% |
-| 17 | `T5_LEATHER` | 2.101.134 | 3.098.156.533 | 1.475 | Martlock (925.683) | Martlock 1.350 | Caerleon 1.950 | — | +0.1% |
-| 18 | `T8_MEAL_STEW@1` | 89.771 | 3.075.260.006 | 34.257 | Lymhurst (25.492) | Lymhurst 32.372 | Caerleon 38.896 | — | -0.3% |
-| 19 | `T7_MEAL_OMELETTE_AVALON@2` | 17.899 | 2.950.029.228 | 164.815 | Lymhurst (4.303) | Lymhurst 158.507 | Bridgewatch 169.971 | — | -0.5% |
-| 20 | `T8_POTION_COOLDOWN` | 237.298 | 2.888.384.868 | 12.172 | Lymhurst (51.850) | Brecilien 11.429 | Caerleon 13.677 | — | -0.8% |
-| 21 | `T5_RELIC` | 4.638.000 | 2.859.764.779 | 617 | Brecilien (969.419) | Lymhurst 613 | Caerleon 727 | — | +5.1% |
-| 22 | `T8_POTION_CLEANSE` | 234.829 | 2.778.270.998 | 11.831 | Lymhurst (54.062) | Brecilien 10.390 | Caerleon 12.300 | — | -3.3% |
-| 23 | `TREASURE_DECORATIVE_RARITY3` | 119.580 | 2.742.031.802 | 22.931 | Lymhurst (33.266) | Bridgewatch 22.495 | Fort Sterling 25.001 | — | -0.4% |
-| 24 | `T7_STONEBLOCK` | 404.872 | 2.683.705.839 | 6.629 | Bridgewatch (106.521) | Bridgewatch 6.607 | Thetford 6.904 | — | -2.0% |
-| 25 | `T8_LEATHER` | 71.473 | 2.670.280.481 | 37.361 | Martlock (28.026) | Martlock 36.880 | Brecilien 39.675 | — | -0.8% |
-| 26 | `TREASURE_CEREMONIAL_RARITY3` | 117.311 | 2.669.481.808 | 22.756 | Lymhurst (28.121) | Fort Sterling 23.000 | Brecilien 23.905 | — | -0.6% |
-| 27 | `T6_PLANKS` | 930.585 | 2.649.999.720 | 2.848 | Fort Sterling (409.723) | Fort Sterling 2.674 | Brecilien 3.870 | — | +1.6% |
-| 28 | `T7_BAG_INSIGHT` | 18.194 | 2.607.109.773 | 143.295 | Black Market (16.804) | Fort Sterling 121.081 | Caerleon 141.879 | 149.034 | -4.5% |
-| 29 | `T7_PLANKS` | 241.766 | 2.557.606.701 | 10.579 | Fort Sterling (123.450) | Fort Sterling 10.394 | Caerleon 14.900 | — | +2.8% |
-| 30 | `T5_HIDE` | 4.192.636 | 2.529.551.460 | 603 | Bridgewatch (1.630.638) | Lymhurst 574 | Martlock 610 | — | -1.1% |
+| 1 | `T4_SKILLBOOK_STANDARD` | 919.767 | 23.247.469.108 | 25.275 | Lymhurst (217.395) | Brecilien 19.984 | Bridgewatch 24.985 | — | +1.8% |
+| 2 | `UNIQUE_GVGTOKEN_GENERIC` | 1.636.773 | 16.308.441.872 | 9.964 | Brecilien (325.202) | Martlock 10.001 | Caerleon 10.946 | — | -1.1% |
+| 3 | `QUESTITEM_TOKEN_AVALON` | 1.404.621 | 9.281.916.008 | 6.608 | Brecilien (389.214) | Lymhurst 6.320 | Caerleon 7.978 | — | +0.5% |
+| 4 | `T7_POTION_REVIVE` | 684.589 | 7.501.836.716 | 10.958 | Fort Sterling (155.449) | Brecilien 10.432 | Caerleon 11.967 | — | -0.5% |
+| 5 | `T8_MEAL_STEW@2` | 61.330 | 5.454.931.582 | 88.944 | Lymhurst (14.163) | Thetford 85.600 | Caerleon 93.655 | — | -0.1% |
+| 6 | `TREASURE_RITUAL_RARITY3` | 219.925 | 4.610.736.710 | 20.965 | Fort Sterling (56.666) | Brecilien 16.598 | Caerleon 25.001 | — | -2.8% |
+| 7 | `T8_STONEBLOCK` | 132.390 | 4.135.851.809 | 31.240 | Bridgewatch (39.831) | Martlock 30.000 | Bridgewatch 31.024 | — | -1.7% |
+| 8 | `T6_RELIC` | 1.856.313 | 4.062.796.276 | 2.189 | Brecilien (468.112) | Martlock 2.096 | Fort Sterling 3.262 | — | +2.1% |
+| 9 | `T4_RELIC` | 10.082.864 | 4.023.125.597 | 399 | Brecilien (2.771.783) | Caerleon 329 | Thetford 461 | — | +0.4% |
+| 10 | `T6_SOUL` | 5.278.349 | 3.795.670.642 | 719 | Brecilien (1.355.319) | Lymhurst 679 | Bridgewatch 1.432 | — | -1.4% |
+| 11 | `T6_BAG` | 79.377 | 3.689.374.573 | 46.479 | Black Market (44.534) | Brecilien 40.929 | Caerleon 62.221 | 47.400 | +0.2% |
+| 12 | `T8_PLANKS` | 113.280 | 3.662.756.240 | 32.334 | Fort Sterling (53.541) | Fort Sterling 31.996 | Caerleon 39.998 | — | +2.2% |
+| 13 | `T4_CAPEITEM_SMUGGLER@3` | 25.952 | 3.554.036.505 | 136.947 | Martlock (5.544) | Lymhurst 115.180 | Martlock 133.320 | 70.308 | -8.0% |
+| 14 | `T6_HIDE` | 2.100.013 | 3.474.235.156 | 1.654 | Bridgewatch (439.447) | Fort Sterling 1.421 | Thetford 1.700 | — | -4.2% |
+| 15 | `T5_RELIC` | 5.500.437 | 3.417.802.262 | 621 | Brecilien (1.311.596) | Brecilien 597 | Thetford 689 | — | +3.0% |
+| 16 | `T6_LEATHER` | 639.519 | 3.262.249.875 | 5.101 | Martlock (273.915) | Bridgewatch 4.985 | Caerleon 5.901 | — | -2.3% |
+| 17 | `TREASURE_CEREMONIAL_RARITY3` | 142.576 | 3.222.387.786 | 22.601 | Lymhurst (34.936) | Caerleon 20.192 | Thetford 25.001 | — | -1.4% |
+| 18 | `T7_BAG_INSIGHT` | 22.483 | 3.133.983.324 | 139.393 | Black Market (18.403) | Martlock 113.932 | Caerleon 141.879 | 150.297 | +0.9% |
+| 19 | `T8_POTION_CLEANSE` | 254.107 | 2.979.727.050 | 11.726 | Lymhurst (58.449) | Brecilien 10.948 | Caerleon 12.292 | — | -4.1% |
+| 20 | `T8_MEAL_STEW@1` | 86.226 | 2.948.747.567 | 34.198 | Lymhurst (24.728) | Fort Sterling 31.999 | Caerleon 38.891 | — | -6.7% |
+| 21 | `TREASURE_DECORATIVE_RARITY3` | 127.030 | 2.903.167.453 | 22.854 | Lymhurst (28.359) | Bridgewatch 22.749 | Fort Sterling 25.086 | — | -0.4% |
+| 22 | `T8_POTION_COOLDOWN` | 237.920 | 2.903.138.871 | 12.202 | Lymhurst (55.916) | Brecilien 11.326 | Caerleon 13.618 | — | -1.1% |
+| 23 | `T8_MEAL_STEW@3` | 10.759 | 2.884.743.721 | 268.124 | Fort Sterling (3.890) | Lymhurst 258.937 | Thetford 287.975 | — | +0.4% |
+| 24 | `T5_LEATHER` | 1.955.587 | 2.873.519.571 | 1.469 | Martlock (843.660) | Martlock 1.385 | Caerleon 1.681 | — | -2.1% |
+| 25 | `T5_SOUL` | 13.621.143 | 2.804.357.243 | 206 | Brecilien (3.523.011) | Fort Sterling 193 | Brecilien 209 | — | +0.4% |
+| 26 | `TREASURE_SILVERWARE_RARITY3` | 115.538 | 2.660.203.991 | 23.024 | Fort Sterling (32.528) | Fort Sterling 23.137 | Lymhurst 25.001 | — | -0.2% |
+| 27 | `T7_STONEBLOCK` | 400.635 | 2.651.902.916 | 6.619 | Bridgewatch (119.116) | Martlock 5.998 | Bridgewatch 7.056 | — | -1.3% |
+| 28 | `T8_LEATHER` | 71.231 | 2.649.843.945 | 37.201 | Martlock (27.389) | Martlock 35.745 | Caerleon 46.497 | — | -0.1% |
+| 29 | `T7_MEAL_OMELETTE_AVALON@2` | 15.534 | 2.566.991.230 | 165.250 | Thetford (3.936) | Lymhurst 158.508 | Caerleon 220.000 | — | +0.2% |
+| 30 | `T5_HIDE` | 4.247.540 | 2.563.203.905 | 603 | Bridgewatch (1.617.896) | Bridgewatch 577 | Martlock 618 | — | -0.5% |
