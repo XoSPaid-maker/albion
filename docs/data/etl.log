@@ -1,11 +1,11 @@
-# run 42266653153 · 2026-11-06 18:18:02 UTC · conclusión del ETL: success
-[etl] índice https://www.albion-online-data.com/database/: 15277 bytes en 0.5s
+# run 42393338947 · 2026-11-07 17:08:58 UTC · conclusión del ETL: success
+[etl] índice https://www.albion-online-data.com/database/: 15277 bytes en 0.7s
 [etl] https://www.albion-online-data.com/database/: 114 entradas; 5 db_backup; 76 market_history
-[etl]   db_backup: ('db_backup_2026-11-02T03_01_38.tgz', '02-Nov-2026 03:01', '272884781')
 [etl]   db_backup: ('db_backup_2026-11-03T03_01_38.tgz', '03-Nov-2026 03:01', '275732806')
 [etl]   db_backup: ('db_backup_2026-11-04T03_01_37.tgz', '04-Nov-2026 03:01', '272691385')
 [etl]   db_backup: ('db_backup_2026-11-05T03_01_31.tgz', '05-Nov-2026 03:01', '276830092')
 [etl]   db_backup: ('db_backup_2026-11-06T03_01_37.tgz', '06-Nov-2026 03:01', '273683787')
+[etl]   db_backup: ('db_backup_2026-11-07T03_01_36.tgz', '07-Nov-2026 03:01', '274399309')
 [etl]   market_history: ('market_history_2025_12.sql.gz', '21-Jun-2026 14:16', '48442099')
 [etl]   market_history: ('market_history_2026_01.sql.gz', '27-Jul-2026 12:33', '49530135')
 [etl]   market_history: ('market_history_2026_02.sql.gz', '24-Aug-2026 03:09', '46906353')
@@ -16,15 +16,15 @@
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   59G   86G  41% /
                total        used        free      shared  buff/cache   available
-Mem:           15983        1369       13590          45        1357       14613
+Mem:           15983        1359       13600          45        1357       14624
 Swap:           3071           0        3071
-[etl] descargando https://www.albion-online-data.com/database/db_backup_2026-11-06T03_01_37.tgz
-[etl] $ curl -fsSL --retry 3 --retry-delay 10 --connect-timeout 60 -A 'Mozilla/5.0 (X11; Linux x86_64) AlbionMarketIntel/1.0 (+github actions)' -o 'db_backup_2026-11-06T03_01_37.tgz' 'https://www.albion-online-data.com/database/db_backup_2026-11-06T03_01_37.tgz'
-[etl] descargado 261 MB en 14 s
+[etl] descargando https://www.albion-online-data.com/database/db_backup_2026-11-07T03_01_36.tgz
+[etl] $ curl -fsSL --retry 3 --retry-delay 10 --connect-timeout 60 -A 'Mozilla/5.0 (X11; Linux x86_64) AlbionMarketIntel/1.0 (+github actions)' -o 'db_backup_2026-11-07T03_01_36.tgz' 'https://www.albion-online-data.com/database/db_backup_2026-11-07T03_01_36.tgz'
+[etl] descargado 261 MB en 23 s
 [etl] $ df -h . || true
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   59G   86G  41% /
-[etl] miembros del tar: ['drwxr-xr-x root/root         0 2026-11-06 03:00 ./', '-rw-r--r-- root/root 1985255266 2026-11-06 03:00 ./backup_2026-11-06T03:00:31Z.sql'] ... total 2
+[etl] miembros del tar: ['drwxr-xr-x root/root         0 2026-11-07 03:00 ./', '-rw-r--r-- root/root 1989842010 2026-11-07 03:00 ./backup_2026-11-07T03:00:37Z.sql'] ... total 2
 [etl] sentencias CREATE TABLE:
 32:CREATE TABLE `ar_internal_metadata` (
 33-  `key` varchar(255) NOT NULL,
@@ -56,7 +56,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 60-  `price` int(11) unsigned DEFAULT NULL,
 61-  PRIMARY KEY (`id`),
 62-  KEY `idx_gold_prices_timestamp` (`timestamp`)
-63-) ENGINE=InnoDB AUTO_INCREMENT=73467 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+63-) ENGINE=InnoDB AUTO_INCREMENT=73491 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 64-/*!40101 SET character_set_client = @saved_cs_client */;
 65-
 66---
@@ -86,7 +86,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 94-  UNIQUE KEY `Main` (`item_id`,`quality`,`location`,`timestamp`,`aggregation`),
 95-  KEY `Simple` (`item_id`,`timestamp`,`aggregation`),
 96-  KEY `Aggregation` (`aggregation`,`timestamp`) USING BTREE
-97-) ENGINE=InnoDB AUTO_INCREMENT=995370252 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+97-) ENGINE=InnoDB AUTO_INCREMENT=995745426 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 98-/*!40101 SET character_set_client = @saved_cs_client */;
 99-
 100---
@@ -96,116 +96,116 @@ Filesystem      Size  Used Avail Use% Mounted on
 104-LOCK TABLES `market_history` WRITE;
 105-/*!40000 ALTER TABLE `market_history` DISABLE KEYS */;
 --
-1959:CREATE TABLE `market_orders` (
-1960-  `albion_id` bigint(20) unsigned NOT NULL,
-1961-  `item_id` varchar(255) DEFAULT NULL,
-1962-  `quality_level` tinyint(3) unsigned DEFAULT NULL,
-1963-  `enchantment_level` tinyint(3) unsigned DEFAULT NULL,
-1964-  `price` bigint(20) unsigned DEFAULT NULL,
-1965-  `initial_amount` int(11) unsigned DEFAULT NULL,
-1966-  `amount` int(11) unsigned DEFAULT NULL,
-1967-  `auction_type` varchar(255) DEFAULT NULL,
-1968-  `expires` timestamp NULL DEFAULT NULL,
-1969-  `location` smallint(5) unsigned NOT NULL,
-1970-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-1971-  `created_at` timestamp NULL DEFAULT NULL,
-1972-  `updated_at` timestamp NULL DEFAULT NULL,
-1973-  `deleted_at` timestamp NULL DEFAULT NULL,
-1974-  `updated_at_bin` int(10) unsigned GENERATED ALWAYS AS (unix_timestamp(`updated_at`) DIV 300 * 300) STORED,
-1975-  PRIMARY KEY (`id`),
-1976-  UNIQUE KEY `uix_market_orders_albion_id` (`albion_id`),
-1977-  KEY `expired` (`deleted_at`,`expires`,`updated_at`),
-1978-  KEY `main` (`item_id`,`location`,`updated_at`,`deleted_at`),
-1979-  KEY `stats_bin` (`item_id`,`location`,`quality_level`,`auction_type`,`updated_at_bin`),
-1980-  KEY `orderbook` (`item_id`,`location`,`quality_level`,`auction_type`,`price`)
-1981-) ENGINE=InnoDB AUTO_INCREMENT=3285245628 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-1982-/*!40101 SET character_set_client = @saved_cs_client */;
-1983-
+1964:CREATE TABLE `market_orders` (
+1965-  `albion_id` bigint(20) unsigned NOT NULL,
+1966-  `item_id` varchar(255) DEFAULT NULL,
+1967-  `quality_level` tinyint(3) unsigned DEFAULT NULL,
+1968-  `enchantment_level` tinyint(3) unsigned DEFAULT NULL,
+1969-  `price` bigint(20) unsigned DEFAULT NULL,
+1970-  `initial_amount` int(11) unsigned DEFAULT NULL,
+1971-  `amount` int(11) unsigned DEFAULT NULL,
+1972-  `auction_type` varchar(255) DEFAULT NULL,
+1973-  `expires` timestamp NULL DEFAULT NULL,
+1974-  `location` smallint(5) unsigned NOT NULL,
+1975-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+1976-  `created_at` timestamp NULL DEFAULT NULL,
+1977-  `updated_at` timestamp NULL DEFAULT NULL,
+1978-  `deleted_at` timestamp NULL DEFAULT NULL,
+1979-  `updated_at_bin` int(10) unsigned GENERATED ALWAYS AS (unix_timestamp(`updated_at`) DIV 300 * 300) STORED,
+1980-  PRIMARY KEY (`id`),
+1981-  UNIQUE KEY `uix_market_orders_albion_id` (`albion_id`),
+1982-  KEY `expired` (`deleted_at`,`expires`,`updated_at`),
+1983-  KEY `main` (`item_id`,`location`,`updated_at`,`deleted_at`),
+1984-  KEY `stats_bin` (`item_id`,`location`,`quality_level`,`auction_type`,`updated_at_bin`),
+1985-  KEY `orderbook` (`item_id`,`location`,`quality_level`,`auction_type`,`price`)
+1986-) ENGINE=InnoDB AUTO_INCREMENT=3285904585 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+1987-/*!40101 SET character_set_client = @saved_cs_client */;
+1988-
 --
-2072:CREATE TABLE `market_orders_expired` (
-2073-  `albion_id` bigint(20) unsigned NOT NULL,
-2074-  `item_id` varchar(255) DEFAULT NULL,
-2075-  `quality_level` tinyint(3) unsigned DEFAULT NULL,
-2076-  `enchantment_level` tinyint(3) unsigned DEFAULT NULL,
-2077-  `price` bigint(20) unsigned DEFAULT NULL,
-2078-  `initial_amount` int(11) unsigned DEFAULT NULL,
-2079-  `amount` int(11) unsigned DEFAULT NULL,
-2080-  `auction_type` varchar(255) DEFAULT NULL,
-2081-  `expires` timestamp NULL DEFAULT NULL,
-2082-  `location` smallint(5) unsigned NOT NULL,
-2083-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-2084-  `created_at` timestamp NULL DEFAULT NULL,
-2085-  `updated_at` timestamp NULL DEFAULT NULL,
-2086-  `deleted_at` timestamp NULL DEFAULT NULL,
-2087-  PRIMARY KEY (`id`),
-2088-  UNIQUE KEY `uix_market_orders_expired_albion_id` (`albion_id`),
-2089-  KEY `updated_at_expired` (`updated_at`)
-2090-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=DYNAMIC;
-2091-/*!40101 SET character_set_client = @saved_cs_client */;
-2092-
-2093---
-2094--- Dumping data for table `market_orders_expired`
-2095---
-2096-
+2077:CREATE TABLE `market_orders_expired` (
+2078-  `albion_id` bigint(20) unsigned NOT NULL,
+2079-  `item_id` varchar(255) DEFAULT NULL,
+2080-  `quality_level` tinyint(3) unsigned DEFAULT NULL,
+2081-  `enchantment_level` tinyint(3) unsigned DEFAULT NULL,
+2082-  `price` bigint(20) unsigned DEFAULT NULL,
+2083-  `initial_amount` int(11) unsigned DEFAULT NULL,
+2084-  `amount` int(11) unsigned DEFAULT NULL,
+2085-  `auction_type` varchar(255) DEFAULT NULL,
+2086-  `expires` timestamp NULL DEFAULT NULL,
+2087-  `location` smallint(5) unsigned NOT NULL,
+2088-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+2089-  `created_at` timestamp NULL DEFAULT NULL,
+2090-  `updated_at` timestamp NULL DEFAULT NULL,
+2091-  `deleted_at` timestamp NULL DEFAULT NULL,
+2092-  PRIMARY KEY (`id`),
+2093-  UNIQUE KEY `uix_market_orders_expired_albion_id` (`albion_id`),
+2094-  KEY `updated_at_expired` (`updated_at`)
+2095-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=DYNAMIC;
+2096-/*!40101 SET character_set_client = @saved_cs_client */;
+2097-
+2098---
+2099--- Dumping data for table `market_orders_expired`
+2100---
+2101-
 --
-2108:CREATE TABLE `market_stats` (
-2109-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-2110-  `item_id` varchar(255) NOT NULL,
-2111-  `location` smallint(5) unsigned NOT NULL,
-2112-  `price_min` bigint(20) unsigned DEFAULT NULL,
-2113-  `price_max` bigint(20) unsigned DEFAULT NULL,
-2114-  `price_avg` decimal(10,0) DEFAULT NULL,
-2115-  `timestamp` timestamp NULL DEFAULT NULL,
-2116-  PRIMARY KEY (`id`),
-2117-  UNIQUE KEY `item_id_location_timestamp_unique` (`item_id`,`location`,`timestamp`) USING BTREE,
-2118-  KEY `item_id` (`item_id`),
-2119-  KEY `location` (`location`),
-2120-  KEY `timestamp` (`timestamp`)
-2121-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-2122-/*!40101 SET character_set_client = @saved_cs_client */;
-2123-
-2124---
-2125--- Dumping data for table `market_stats`
-2126---
-2127-
-2128-LOCK TABLES `market_stats` WRITE;
-2129-/*!40000 ALTER TABLE `market_stats` DISABLE KEYS */;
-2130-/*!40000 ALTER TABLE `market_stats` ENABLE KEYS */;
-2131-UNLOCK TABLES;
+2113:CREATE TABLE `market_stats` (
+2114-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+2115-  `item_id` varchar(255) NOT NULL,
+2116-  `location` smallint(5) unsigned NOT NULL,
+2117-  `price_min` bigint(20) unsigned DEFAULT NULL,
+2118-  `price_max` bigint(20) unsigned DEFAULT NULL,
+2119-  `price_avg` decimal(10,0) DEFAULT NULL,
+2120-  `timestamp` timestamp NULL DEFAULT NULL,
+2121-  PRIMARY KEY (`id`),
+2122-  UNIQUE KEY `item_id_location_timestamp_unique` (`item_id`,`location`,`timestamp`) USING BTREE,
+2123-  KEY `item_id` (`item_id`),
+2124-  KEY `location` (`location`),
+2125-  KEY `timestamp` (`timestamp`)
+2126-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+2127-/*!40101 SET character_set_client = @saved_cs_client */;
+2128-
+2129---
+2130--- Dumping data for table `market_stats`
+2131---
 2132-
+2133-LOCK TABLES `market_stats` WRITE;
+2134-/*!40000 ALTER TABLE `market_stats` DISABLE KEYS */;
+2135-/*!40000 ALTER TABLE `market_stats` ENABLE KEYS */;
+2136-UNLOCK TABLES;
+2137-
 --
-2139:CREATE TABLE `schema_migrations` (
-2140-  `version` varchar(255) NOT NULL,
-2141-  PRIMARY KEY (`version`)
-2142-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-2143-/*!40101 SET character_set_client = @saved_cs_client */;
-2144-
-2145---
-2146--- Dumping data for table `schema_migrations`
-2147---
-2148-
-2149-LOCK TABLES `schema_migrations` WRITE;
-2150-/*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
-2152-/*!40000 ALTER TABLE `schema_migrations` ENABLE KEYS */;
-2153-UNLOCK TABLES;
-2154-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-2155-
-2156-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-2157-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-2158-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-2159-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-2160-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-2161-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-2162-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-2163-
+2144:CREATE TABLE `schema_migrations` (
+2145-  `version` varchar(255) NOT NULL,
+2146-  PRIMARY KEY (`version`)
+2147-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+2148-/*!40101 SET character_set_client = @saved_cs_client */;
+2149-
+2150---
+2151--- Dumping data for table `schema_migrations`
+2152---
+2153-
+2154-LOCK TABLES `schema_migrations` WRITE;
+2155-/*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
+2157-/*!40000 ALTER TABLE `schema_migrations` ENABLE KEYS */;
+2158-UNLOCK TABLES;
+2159-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+2160-
+2161-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+2162-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+2163-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+2164-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+2165-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+2166-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+2167-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+2168-
 
-[etl] primer INSERT de market_orders: INSERT INTO `market_orders` VALUES (11374396383,'T8_BAG_INSIGHT@4',5,4,43737686,1,1,'request','2026-12-06 02:13:26',3003,1543187631,'2024-05-12 04:32:36','2026-11-06 02:13:26',NULL,1793931000),(13855348514,'T8_2H_SHAPESHIFTER_HELL@4',2,4,39524545,1,1,'request','2026-12-06 02:13:26',3003,1544293957,'2024-05-14 06:58:48','2026-11-06 02:13:26',NULL,1793931000),(4013397061,'T8_2H_NATURESTAFF_KEEPER',5 | valores por fila: 15
+[etl] primer INSERT de market_orders: INSERT INTO `market_orders` VALUES (11374396383,'T8_BAG_INSIGHT@4',5,4,43778109,1,1,'request','2026-12-07 02:35:05',3003,1543187631,'2024-05-12 04:32:36','2026-11-07 02:35:05',NULL,1794018900),(13855348514,'T8_2H_SHAPESHIFTER_HELL@4',2,4,39524545,1,1,'request','2026-12-07 02:35:05',3003,1544293957,'2024-05-14 06:58:48','2026-11-07 02:35:05',NULL,1794018900),(4013397061,'T8_2H_NATURESTAFF_KEEPER',5 | valores por fila: 15
 [etl] $ mysql -h127.0.0.1 -P3306 -uroot -proot --protocol=tcp -e "SELECT VERSION(); SET GLOBAL innodb_flush_log_at_trx_commit=0; SET GLOBAL sync_binlog=0; SET GLOBAL max_allowed_packet=1073741824; SET GLOBAL time_zone='+00:00'; DROP DATABASE IF EXISTS albion; DROP DATABASE IF EXISTS aodp; CREATE DATABASE aodp CHARACTER SET utf8mb4;"
 mysql: [Warning] Using a password on the command line interface can be insecure.
 VERSION()
 8.0.46-0ubuntu0.24.04.4
-[etl] $ (echo 'SET sql_log_bin=0; SET unique_checks=0; SET foreign_key_checks=0; SET time_zone="+00:00";'; tar -xOzf 'db_backup_2026-11-06T03_01_37.tgz' './backup_2026-11-06T03:00:31Z.sql' | python3 /home/runner/work/albion/albion/etl/build_report.py --filter 15) | mysql -h127.0.0.1 -P3306 -uroot -proot --protocol=tcp --max_allowed_packet=1G --force aodp 2>&1 | grep -v 'password on the command line' | head -n 60
-[etl] carga terminada en 869 s
+[etl] $ (echo 'SET sql_log_bin=0; SET unique_checks=0; SET foreign_key_checks=0; SET time_zone="+00:00";'; tar -xOzf 'db_backup_2026-11-07T03_01_36.tgz' './backup_2026-11-07T03:00:37Z.sql' | python3 /home/runner/work/albion/albion/etl/build_report.py --filter 15) | mysql -h127.0.0.1 -P3306 -uroot -proot --protocol=tcp --max_allowed_packet=1G --force aodp 2>&1 | grep -v 'password on the command line' | head -n 60
+[etl] carga terminada en 871 s
 [etl] $ df -h . || true
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   66G   79G  46% /
@@ -214,8 +214,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 TABLE_NAME	TABLE_ROWS	mb
 ar_internal_metadata	0	0
 gold_prices	73017	4
-market_history	22415236	1775
-market_orders	383326	40
+market_history	22181344	1800
+market_orders	398467	42
 market_orders_expired	0	0
 market_stats	0	0
 schema_migrations	0	0
@@ -225,9 +225,9 @@ schema_migrations	0	0
 [etl] tabla gold_prices [('id', 'bigint'), ('timestamp', 'timestamp'), ('price', 'int')]
 [etl]   filas~ 73017 muestra: ((1, datetime.datetime(2018, 1, 9, 23, 0), 6370000), (2, datetime.datetime(2018, 1, 9, 22, 0), 6420000), (3, datetime.datetime(2018, 1, 9, 21, 0), 6420000))
 [etl] tabla market_history [('id', 'bigint'), ('item_amount', 'bigint'), ('silver_amount', 'bigint'), ('item_id', 'varchar'), ('location', 'smallint'), ('quality', 'tinyint'), ('timestamp', 'datetime'), ('aggregation', 'tinyint')]
-[etl]   filas~ 22415236 muestra: ((869298568, 1, 618, 'PLAYERISLAND_FURNITUREITEM_STONE_WELL_A', 2004, 1, datetime.datetime(2026, 5, 1, 0, 0), 6), (869298942, 3, 12, 'UNIQUE_FURNITUREITEM_ADC_RUG_DIREBEAR', 2004, 1, datetime.datetime(2026, 5, 1, 0, 0), 6), (869310119, 1, 582013, 'T8_BAG@1', 5003, 3, datetime.datetime(2026, 5, 1, 0, 0), 6))
+[etl]   filas~ 22181344 muestra: ((869298568, 1, 618, 'PLAYERISLAND_FURNITUREITEM_STONE_WELL_A', 2004, 1, datetime.datetime(2026, 5, 1, 0, 0), 6), (869298942, 3, 12, 'UNIQUE_FURNITUREITEM_ADC_RUG_DIREBEAR', 2004, 1, datetime.datetime(2026, 5, 1, 0, 0), 6), (869310119, 1, 582013, 'T8_BAG@1', 5003, 3, datetime.datetime(2026, 5, 1, 0, 0), 6))
 [etl] tabla market_orders [('albion_id', 'bigint'), ('item_id', 'varchar'), ('quality_level', 'tinyint'), ('enchantment_level', 'tinyint'), ('price', 'bigint'), ('initial_amount', 'int'), ('amount', 'int'), ('auction_type', 'varchar'), ('expires', 'timestamp'), ('location', 'smallint'), ('id', 'bigint'), ('created_at', 'timestamp'), ('updated_at', 'timestamp'), ('deleted_at', 'timestamp'), ('updated_at_bin', 'int')]
-[etl]   filas~ 383326 muestra: ((11374396383, 'T8_BAG_INSIGHT@4', 5, 4, 43737686, 1, 1, 'request', datetime.datetime(2026, 12, 6, 2, 13, 26), 3003, 1543187631, datetime.datetime(2024, 5, 12, 4, 32, 36), datetime.datetime(2026, 11, 6, 2, 13, 26), None, 1793931000), (13855348514, 'T8_2H_SHAPESHIFTER_HELL@4', 2, 4, 39524545, 1, 1, 'request', datetime.datetime(2026, 12, 6, 2, 13, 26), 3003, 1544293957, datetime.datetime(2024, 5, 14, 6, 58, 48), datetime.datetime(2026, 11, 6, 2, 13, 26), None, 1793931000), (4013397061, 'T8_2H_NATURESTAFF_KEEPER', 5, 0, 3168060, 1, 1, 'request', datetime.datetime(2026, 12, 6, 2, 2, 15), 3003, 1544528977, datetime.datetime(2024, 5, 14, 20, 28, 16), datetime.datetime(2026, 11, 6, 2, 2, 15), None, 1793930400))
+[etl]   filas~ 398467 muestra: ((11374396383, 'T8_BAG_INSIGHT@4', 5, 4, 43778109, 1, 1, 'request', datetime.datetime(2026, 12, 7, 2, 35, 5), 3003, 1543187631, datetime.datetime(2024, 5, 12, 4, 32, 36), datetime.datetime(2026, 11, 7, 2, 35, 5), None, 1794018900), (13855348514, 'T8_2H_SHAPESHIFTER_HELL@4', 2, 4, 39524545, 1, 1, 'request', datetime.datetime(2026, 12, 7, 2, 35, 5), 3003, 1544293957, datetime.datetime(2024, 5, 14, 6, 58, 48), datetime.datetime(2026, 11, 7, 2, 35, 5), None, 1794018900), (4013397061, 'T8_2H_NATURESTAFF_KEEPER', 5, 0, 3168060, 1, 1, 'request', datetime.datetime(2026, 12, 6, 21, 15, 31), 3003, 1544528977, datetime.datetime(2024, 5, 14, 20, 28, 16), datetime.datetime(2026, 11, 6, 21, 15, 31), None, 1793999700))
 [etl] tabla market_orders_expired [('albion_id', 'bigint'), ('item_id', 'varchar'), ('quality_level', 'tinyint'), ('enchantment_level', 'tinyint'), ('price', 'bigint'), ('initial_amount', 'int'), ('amount', 'int'), ('auction_type', 'varchar'), ('expires', 'timestamp'), ('location', 'smallint'), ('id', 'bigint'), ('created_at', 'timestamp'), ('updated_at', 'timestamp'), ('deleted_at', 'timestamp')]
 [etl]   filas~ 0 muestra: ()
 [etl] tabla market_stats [('id', 'bigint'), ('item_id', 'varchar'), ('location', 'smallint'), ('price_min', 'bigint'), ('price_max', 'bigint'), ('price_avg', 'decimal'), ('timestamp', 'timestamp')]
@@ -235,27 +235,27 @@ schema_migrations	0	0
 [etl] tabla schema_migrations [('version', 'varchar')]
 [etl]   filas~ 0 muestra: (('20260704000001',), ('20260929050149',))
 [etl] mapeo historial: {'item': 'item_id', 'loc': 'location', 'ts': 'timestamp', 'amt': 'item_amount', 'sil': 'silver_amount', 'scale': 'aggregation', 'q': 'quality'}
-[etl] último timestamp historial: 2026-11-06 02:00:00
-[etl] niveles de agregación (últimos 30 d: nivel, filas, unidades, desde, hasta): ((1, 370777, Decimal('325750561'), datetime.datetime(2026, 10, 30, 3, 0), datetime.datetime(2026, 11, 6, 2, 0)), (6, 2096770, Decimal('2258234213'), datetime.datetime(2026, 10, 7, 6, 0), datetime.datetime(2026, 11, 6, 0, 0)))
+[etl] último timestamp historial: 2026-11-07 02:00:00
+[etl] niveles de agregación (últimos 30 d: nivel, filas, unidades, desde, hasta): ((1, 347660, Decimal('312619280'), datetime.datetime(2026, 10, 31, 3, 0), datetime.datetime(2026, 11, 7, 2, 0)), (6, 2072564, Decimal('2247244013'), datetime.datetime(2026, 10, 8, 6, 0), datetime.datetime(2026, 11, 7, 0, 0)))
 [etl] nivel de agregación elegido (más unidades cubiertas): 6
-[etl] localizaciones historial: ((3003, 485504), (1002, 447213), (4002, 365501), (2004, 277262), (3008, 258097), (5003, 232865), (7, 220962), (3005, 126709), (8, 23101), (4300, 9061), (1012, 5092), (2344, 3097), (321, 2302), (3357, 1599), (3306, 1120), (1312, 1114), (1348, 1030), (4006, 679), (349, 669), (3345, 479), (1006, 450), (1359, 423), (353, 419), (1323, 315), (3002, 268), (2002, 265), (4, 234), (341, 201), (3344, 195), (344, 182))
-[etl] escala de precios en market_history: mediana 89.556 (62 valores) -> ÷1
-[etl] ítems con historial: 7201 | localizaciones descartadas: {'8': 385, '4300': 267, '2344': 126, '1012': 82, '321': 80, '3357': 49, '1348': 27, '3345': 19, '1006': 17, '353': 17, '1359': 17, '4006': 11, '341': 10, '2002': 7, '1323': 7}
+[etl] localizaciones historial: ((3003, 476056), (1002, 438440), (4002, 356247), (2004, 275693), (3008, 251709), (5003, 230074), (7, 215273), (3005, 121780), (8, 22408), (4300, 9039), (1012, 4846), (2344, 4547), (321, 2188), (4006, 1968), (3357, 1520), (3306, 1120), (1312, 1114), (1348, 949), (349, 667), (3345, 467), (1339, 466), (1359, 419), (1006, 381), (353, 368), (1323, 287), (2002, 233), (4, 214), (3002, 213), (3344, 185), (344, 174))
+[etl] escala de precios en market_history: mediana 87.2999 (63 valores) -> ÷1
+[etl] ítems con historial: 7191 | localizaciones descartadas: {'8': 371, '4300': 265, '2344': 202, '1012': 80, '321': 79, '3357': 49, '1348': 26, '4006': 22, '3345': 19, '1006': 17, '353': 17, '1359': 17, '341': 10, '1312': 8, '2002': 7}
 [etl] mapeo órdenes: {'item': 'item_id', 'loc': 'location', 'price': 'price', 'type': 'auction_type', 'upd': 'updated_at', 'q': 'quality_level', 'exp': 'expires'}
-[etl] órdenes: 485828 última actualización: 2026-11-06 03:00:31
-[etl] tipos de orden: (('offer', 397574), ('request', 88254))
-[etl] escala de precios en market_orders: mediana 108.0 (2622 valores) -> ÷1
-[etl] precios actuales cargados: 13701
+[etl] órdenes: 482159 última actualización: 2026-11-07 03:00:36
+[etl] tipos de orden: (('offer', 373292), ('request', 108867))
+[etl] escala de precios en market_orders: mediana 104.0 (2499 valores) -> ÷1
+[etl] precios actuales cargados: 15170
 [etl] escrito docs/data/latest.json docs/data/market.json docs/data/report.md
-[names] 2378 nombres de 2599 ítems -> docs/data/names.json
+[names] 2302 nombres de 2523 ítems -> docs/data/names.json
 [...]
-[etl] índice https://www.albion-online-data.com/database/: 15277 bytes en 0.5s
+[etl] índice https://www.albion-online-data.com/database/: 15277 bytes en 0.7s
 [etl] https://www.albion-online-data.com/database/: 114 entradas; 5 db_backup; 76 market_history
-[etl]   db_backup: ('db_backup_2026-11-02T03_01_38.tgz', '02-Nov-2026 03:01', '272884781')
 [etl]   db_backup: ('db_backup_2026-11-03T03_01_38.tgz', '03-Nov-2026 03:01', '275732806')
 [etl]   db_backup: ('db_backup_2026-11-04T03_01_37.tgz', '04-Nov-2026 03:01', '272691385')
 [etl]   db_backup: ('db_backup_2026-11-05T03_01_31.tgz', '05-Nov-2026 03:01', '276830092')
 [etl]   db_backup: ('db_backup_2026-11-06T03_01_37.tgz', '06-Nov-2026 03:01', '273683787')
+[etl]   db_backup: ('db_backup_2026-11-07T03_01_36.tgz', '07-Nov-2026 03:01', '274399309')
 [etl]   market_history: ('market_history_2025_12.sql.gz', '21-Jun-2026 14:16', '48442099')
 [etl]   market_history: ('market_history_2026_01.sql.gz', '27-Jul-2026 12:33', '49530135')
 [etl]   market_history: ('market_history_2026_02.sql.gz', '24-Aug-2026 03:09', '46906353')
@@ -266,15 +266,15 @@ schema_migrations	0	0
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   59G   86G  41% /
                total        used        free      shared  buff/cache   available
-Mem:           15983        1369       13590          45        1357       14613
+Mem:           15983        1359       13600          45        1357       14624
 Swap:           3071           0        3071
-[etl] descargando https://www.albion-online-data.com/database/db_backup_2026-11-06T03_01_37.tgz
-[etl] $ curl -fsSL --retry 3 --retry-delay 10 --connect-timeout 60 -A 'Mozilla/5.0 (X11; Linux x86_64) AlbionMarketIntel/1.0 (+github actions)' -o 'db_backup_2026-11-06T03_01_37.tgz' 'https://www.albion-online-data.com/database/db_backup_2026-11-06T03_01_37.tgz'
-[etl] descargado 261 MB en 14 s
+[etl] descargando https://www.albion-online-data.com/database/db_backup_2026-11-07T03_01_36.tgz
+[etl] $ curl -fsSL --retry 3 --retry-delay 10 --connect-timeout 60 -A 'Mozilla/5.0 (X11; Linux x86_64) AlbionMarketIntel/1.0 (+github actions)' -o 'db_backup_2026-11-07T03_01_36.tgz' 'https://www.albion-online-data.com/database/db_backup_2026-11-07T03_01_36.tgz'
+[etl] descargado 261 MB en 23 s
 [etl] $ df -h . || true
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   59G   86G  41% /
-[etl] miembros del tar: ['drwxr-xr-x root/root         0 2026-11-06 03:00 ./', '-rw-r--r-- root/root 1985255266 2026-11-06 03:00 ./backup_2026-11-06T03:00:31Z.sql'] ... total 2
+[etl] miembros del tar: ['drwxr-xr-x root/root         0 2026-11-07 03:00 ./', '-rw-r--r-- root/root 1989842010 2026-11-07 03:00 ./backup_2026-11-07T03:00:37Z.sql'] ... total 2
 [etl] sentencias CREATE TABLE:
 32:CREATE TABLE `ar_internal_metadata` (
 33-  `key` varchar(255) NOT NULL,
@@ -306,7 +306,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 60-  `price` int(11) unsigned DEFAULT NULL,
 61-  PRIMARY KEY (`id`),
 62-  KEY `idx_gold_prices_timestamp` (`timestamp`)
-63-) ENGINE=InnoDB AUTO_INCREMENT=73467 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+63-) ENGINE=InnoDB AUTO_INCREMENT=73491 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 64-/*!40101 SET character_set_client = @saved_cs_client */;
 65-
 66---
@@ -336,7 +336,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 94-  UNIQUE KEY `Main` (`item_id`,`quality`,`location`,`timestamp`,`aggregation`),
 95-  KEY `Simple` (`item_id`,`timestamp`,`aggregation`),
 96-  KEY `Aggregation` (`aggregation`,`timestamp`) USING BTREE
-97-) ENGINE=InnoDB AUTO_INCREMENT=995370252 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+97-) ENGINE=InnoDB AUTO_INCREMENT=995745426 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 98-/*!40101 SET character_set_client = @saved_cs_client */;
 99-
 100---
@@ -346,116 +346,116 @@ Filesystem      Size  Used Avail Use% Mounted on
 104-LOCK TABLES `market_history` WRITE;
 105-/*!40000 ALTER TABLE `market_history` DISABLE KEYS */;
 --
-1959:CREATE TABLE `market_orders` (
-1960-  `albion_id` bigint(20) unsigned NOT NULL,
-1961-  `item_id` varchar(255) DEFAULT NULL,
-1962-  `quality_level` tinyint(3) unsigned DEFAULT NULL,
-1963-  `enchantment_level` tinyint(3) unsigned DEFAULT NULL,
-1964-  `price` bigint(20) unsigned DEFAULT NULL,
-1965-  `initial_amount` int(11) unsigned DEFAULT NULL,
-1966-  `amount` int(11) unsigned DEFAULT NULL,
-1967-  `auction_type` varchar(255) DEFAULT NULL,
-1968-  `expires` timestamp NULL DEFAULT NULL,
-1969-  `location` smallint(5) unsigned NOT NULL,
-1970-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-1971-  `created_at` timestamp NULL DEFAULT NULL,
-1972-  `updated_at` timestamp NULL DEFAULT NULL,
-1973-  `deleted_at` timestamp NULL DEFAULT NULL,
-1974-  `updated_at_bin` int(10) unsigned GENERATED ALWAYS AS (unix_timestamp(`updated_at`) DIV 300 * 300) STORED,
-1975-  PRIMARY KEY (`id`),
-1976-  UNIQUE KEY `uix_market_orders_albion_id` (`albion_id`),
-1977-  KEY `expired` (`deleted_at`,`expires`,`updated_at`),
-1978-  KEY `main` (`item_id`,`location`,`updated_at`,`deleted_at`),
-1979-  KEY `stats_bin` (`item_id`,`location`,`quality_level`,`auction_type`,`updated_at_bin`),
-1980-  KEY `orderbook` (`item_id`,`location`,`quality_level`,`auction_type`,`price`)
-1981-) ENGINE=InnoDB AUTO_INCREMENT=3285245628 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-1982-/*!40101 SET character_set_client = @saved_cs_client */;
-1983-
+1964:CREATE TABLE `market_orders` (
+1965-  `albion_id` bigint(20) unsigned NOT NULL,
+1966-  `item_id` varchar(255) DEFAULT NULL,
+1967-  `quality_level` tinyint(3) unsigned DEFAULT NULL,
+1968-  `enchantment_level` tinyint(3) unsigned DEFAULT NULL,
+1969-  `price` bigint(20) unsigned DEFAULT NULL,
+1970-  `initial_amount` int(11) unsigned DEFAULT NULL,
+1971-  `amount` int(11) unsigned DEFAULT NULL,
+1972-  `auction_type` varchar(255) DEFAULT NULL,
+1973-  `expires` timestamp NULL DEFAULT NULL,
+1974-  `location` smallint(5) unsigned NOT NULL,
+1975-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+1976-  `created_at` timestamp NULL DEFAULT NULL,
+1977-  `updated_at` timestamp NULL DEFAULT NULL,
+1978-  `deleted_at` timestamp NULL DEFAULT NULL,
+1979-  `updated_at_bin` int(10) unsigned GENERATED ALWAYS AS (unix_timestamp(`updated_at`) DIV 300 * 300) STORED,
+1980-  PRIMARY KEY (`id`),
+1981-  UNIQUE KEY `uix_market_orders_albion_id` (`albion_id`),
+1982-  KEY `expired` (`deleted_at`,`expires`,`updated_at`),
+1983-  KEY `main` (`item_id`,`location`,`updated_at`,`deleted_at`),
+1984-  KEY `stats_bin` (`item_id`,`location`,`quality_level`,`auction_type`,`updated_at_bin`),
+1985-  KEY `orderbook` (`item_id`,`location`,`quality_level`,`auction_type`,`price`)
+1986-) ENGINE=InnoDB AUTO_INCREMENT=3285904585 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+1987-/*!40101 SET character_set_client = @saved_cs_client */;
+1988-
 --
-2072:CREATE TABLE `market_orders_expired` (
-2073-  `albion_id` bigint(20) unsigned NOT NULL,
-2074-  `item_id` varchar(255) DEFAULT NULL,
-2075-  `quality_level` tinyint(3) unsigned DEFAULT NULL,
-2076-  `enchantment_level` tinyint(3) unsigned DEFAULT NULL,
-2077-  `price` bigint(20) unsigned DEFAULT NULL,
-2078-  `initial_amount` int(11) unsigned DEFAULT NULL,
-2079-  `amount` int(11) unsigned DEFAULT NULL,
-2080-  `auction_type` varchar(255) DEFAULT NULL,
-2081-  `expires` timestamp NULL DEFAULT NULL,
-2082-  `location` smallint(5) unsigned NOT NULL,
-2083-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-2084-  `created_at` timestamp NULL DEFAULT NULL,
-2085-  `updated_at` timestamp NULL DEFAULT NULL,
-2086-  `deleted_at` timestamp NULL DEFAULT NULL,
-2087-  PRIMARY KEY (`id`),
-2088-  UNIQUE KEY `uix_market_orders_expired_albion_id` (`albion_id`),
-2089-  KEY `updated_at_expired` (`updated_at`)
-2090-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=DYNAMIC;
-2091-/*!40101 SET character_set_client = @saved_cs_client */;
-2092-
-2093---
-2094--- Dumping data for table `market_orders_expired`
-2095---
-2096-
+2077:CREATE TABLE `market_orders_expired` (
+2078-  `albion_id` bigint(20) unsigned NOT NULL,
+2079-  `item_id` varchar(255) DEFAULT NULL,
+2080-  `quality_level` tinyint(3) unsigned DEFAULT NULL,
+2081-  `enchantment_level` tinyint(3) unsigned DEFAULT NULL,
+2082-  `price` bigint(20) unsigned DEFAULT NULL,
+2083-  `initial_amount` int(11) unsigned DEFAULT NULL,
+2084-  `amount` int(11) unsigned DEFAULT NULL,
+2085-  `auction_type` varchar(255) DEFAULT NULL,
+2086-  `expires` timestamp NULL DEFAULT NULL,
+2087-  `location` smallint(5) unsigned NOT NULL,
+2088-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+2089-  `created_at` timestamp NULL DEFAULT NULL,
+2090-  `updated_at` timestamp NULL DEFAULT NULL,
+2091-  `deleted_at` timestamp NULL DEFAULT NULL,
+2092-  PRIMARY KEY (`id`),
+2093-  UNIQUE KEY `uix_market_orders_expired_albion_id` (`albion_id`),
+2094-  KEY `updated_at_expired` (`updated_at`)
+2095-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=DYNAMIC;
+2096-/*!40101 SET character_set_client = @saved_cs_client */;
+2097-
+2098---
+2099--- Dumping data for table `market_orders_expired`
+2100---
+2101-
 --
-2108:CREATE TABLE `market_stats` (
-2109-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-2110-  `item_id` varchar(255) NOT NULL,
-2111-  `location` smallint(5) unsigned NOT NULL,
-2112-  `price_min` bigint(20) unsigned DEFAULT NULL,
-2113-  `price_max` bigint(20) unsigned DEFAULT NULL,
-2114-  `price_avg` decimal(10,0) DEFAULT NULL,
-2115-  `timestamp` timestamp NULL DEFAULT NULL,
-2116-  PRIMARY KEY (`id`),
-2117-  UNIQUE KEY `item_id_location_timestamp_unique` (`item_id`,`location`,`timestamp`) USING BTREE,
-2118-  KEY `item_id` (`item_id`),
-2119-  KEY `location` (`location`),
-2120-  KEY `timestamp` (`timestamp`)
-2121-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-2122-/*!40101 SET character_set_client = @saved_cs_client */;
-2123-
-2124---
-2125--- Dumping data for table `market_stats`
-2126---
-2127-
-2128-LOCK TABLES `market_stats` WRITE;
-2129-/*!40000 ALTER TABLE `market_stats` DISABLE KEYS */;
-2130-/*!40000 ALTER TABLE `market_stats` ENABLE KEYS */;
-2131-UNLOCK TABLES;
+2113:CREATE TABLE `market_stats` (
+2114-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+2115-  `item_id` varchar(255) NOT NULL,
+2116-  `location` smallint(5) unsigned NOT NULL,
+2117-  `price_min` bigint(20) unsigned DEFAULT NULL,
+2118-  `price_max` bigint(20) unsigned DEFAULT NULL,
+2119-  `price_avg` decimal(10,0) DEFAULT NULL,
+2120-  `timestamp` timestamp NULL DEFAULT NULL,
+2121-  PRIMARY KEY (`id`),
+2122-  UNIQUE KEY `item_id_location_timestamp_unique` (`item_id`,`location`,`timestamp`) USING BTREE,
+2123-  KEY `item_id` (`item_id`),
+2124-  KEY `location` (`location`),
+2125-  KEY `timestamp` (`timestamp`)
+2126-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+2127-/*!40101 SET character_set_client = @saved_cs_client */;
+2128-
+2129---
+2130--- Dumping data for table `market_stats`
+2131---
 2132-
+2133-LOCK TABLES `market_stats` WRITE;
+2134-/*!40000 ALTER TABLE `market_stats` DISABLE KEYS */;
+2135-/*!40000 ALTER TABLE `market_stats` ENABLE KEYS */;
+2136-UNLOCK TABLES;
+2137-
 --
-2139:CREATE TABLE `schema_migrations` (
-2140-  `version` varchar(255) NOT NULL,
-2141-  PRIMARY KEY (`version`)
-2142-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-2143-/*!40101 SET character_set_client = @saved_cs_client */;
-2144-
-2145---
-2146--- Dumping data for table `schema_migrations`
-2147---
-2148-
-2149-LOCK TABLES `schema_migrations` WRITE;
-2150-/*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
-2152-/*!40000 ALTER TABLE `schema_migrations` ENABLE KEYS */;
-2153-UNLOCK TABLES;
-2154-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-2155-
-2156-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-2157-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-2158-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-2159-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-2160-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-2161-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-2162-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-2163-
+2144:CREATE TABLE `schema_migrations` (
+2145-  `version` varchar(255) NOT NULL,
+2146-  PRIMARY KEY (`version`)
+2147-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+2148-/*!40101 SET character_set_client = @saved_cs_client */;
+2149-
+2150---
+2151--- Dumping data for table `schema_migrations`
+2152---
+2153-
+2154-LOCK TABLES `schema_migrations` WRITE;
+2155-/*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
+2157-/*!40000 ALTER TABLE `schema_migrations` ENABLE KEYS */;
+2158-UNLOCK TABLES;
+2159-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+2160-
+2161-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+2162-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+2163-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+2164-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+2165-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+2166-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+2167-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+2168-
 
-[etl] primer INSERT de market_orders: INSERT INTO `market_orders` VALUES (11374396383,'T8_BAG_INSIGHT@4',5,4,43737686,1,1,'request','2026-12-06 02:13:26',3003,1543187631,'2024-05-12 04:32:36','2026-11-06 02:13:26',NULL,1793931000),(13855348514,'T8_2H_SHAPESHIFTER_HELL@4',2,4,39524545,1,1,'request','2026-12-06 02:13:26',3003,1544293957,'2024-05-14 06:58:48','2026-11-06 02:13:26',NULL,1793931000),(4013397061,'T8_2H_NATURESTAFF_KEEPER',5 | valores por fila: 15
+[etl] primer INSERT de market_orders: INSERT INTO `market_orders` VALUES (11374396383,'T8_BAG_INSIGHT@4',5,4,43778109,1,1,'request','2026-12-07 02:35:05',3003,1543187631,'2024-05-12 04:32:36','2026-11-07 02:35:05',NULL,1794018900),(13855348514,'T8_2H_SHAPESHIFTER_HELL@4',2,4,39524545,1,1,'request','2026-12-07 02:35:05',3003,1544293957,'2024-05-14 06:58:48','2026-11-07 02:35:05',NULL,1794018900),(4013397061,'T8_2H_NATURESTAFF_KEEPER',5 | valores por fila: 15
 [etl] $ mysql -h127.0.0.1 -P3306 -uroot -proot --protocol=tcp -e "SELECT VERSION(); SET GLOBAL innodb_flush_log_at_trx_commit=0; SET GLOBAL sync_binlog=0; SET GLOBAL max_allowed_packet=1073741824; SET GLOBAL time_zone='+00:00'; DROP DATABASE IF EXISTS albion; DROP DATABASE IF EXISTS aodp; CREATE DATABASE aodp CHARACTER SET utf8mb4;"
 mysql: [Warning] Using a password on the command line interface can be insecure.
 VERSION()
 8.0.46-0ubuntu0.24.04.4
-[etl] $ (echo 'SET sql_log_bin=0; SET unique_checks=0; SET foreign_key_checks=0; SET time_zone="+00:00";'; tar -xOzf 'db_backup_2026-11-06T03_01_37.tgz' './backup_2026-11-06T03:00:31Z.sql' | python3 /home/runner/work/albion/albion/etl/build_report.py --filter 15) | mysql -h127.0.0.1 -P3306 -uroot -proot --protocol=tcp --max_allowed_packet=1G --force aodp 2>&1 | grep -v 'password on the command line' | head -n 60
-[etl] carga terminada en 869 s
+[etl] $ (echo 'SET sql_log_bin=0; SET unique_checks=0; SET foreign_key_checks=0; SET time_zone="+00:00";'; tar -xOzf 'db_backup_2026-11-07T03_01_36.tgz' './backup_2026-11-07T03:00:37Z.sql' | python3 /home/runner/work/albion/albion/etl/build_report.py --filter 15) | mysql -h127.0.0.1 -P3306 -uroot -proot --protocol=tcp --max_allowed_packet=1G --force aodp 2>&1 | grep -v 'password on the command line' | head -n 60
+[etl] carga terminada en 871 s
 [etl] $ df -h . || true
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   66G   79G  46% /
@@ -464,8 +464,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 TABLE_NAME	TABLE_ROWS	mb
 ar_internal_metadata	0	0
 gold_prices	73017	4
-market_history	22415236	1775
-market_orders	383326	40
+market_history	22181344	1800
+market_orders	398467	42
 market_orders_expired	0	0
 market_stats	0	0
 schema_migrations	0	0
@@ -475,9 +475,9 @@ schema_migrations	0	0
 [etl] tabla gold_prices [('id', 'bigint'), ('timestamp', 'timestamp'), ('price', 'int')]
 [etl]   filas~ 73017 muestra: ((1, datetime.datetime(2018, 1, 9, 23, 0), 6370000), (2, datetime.datetime(2018, 1, 9, 22, 0), 6420000), (3, datetime.datetime(2018, 1, 9, 21, 0), 6420000))
 [etl] tabla market_history [('id', 'bigint'), ('item_amount', 'bigint'), ('silver_amount', 'bigint'), ('item_id', 'varchar'), ('location', 'smallint'), ('quality', 'tinyint'), ('timestamp', 'datetime'), ('aggregation', 'tinyint')]
-[etl]   filas~ 22415236 muestra: ((869298568, 1, 618, 'PLAYERISLAND_FURNITUREITEM_STONE_WELL_A', 2004, 1, datetime.datetime(2026, 5, 1, 0, 0), 6), (869298942, 3, 12, 'UNIQUE_FURNITUREITEM_ADC_RUG_DIREBEAR', 2004, 1, datetime.datetime(2026, 5, 1, 0, 0), 6), (869310119, 1, 582013, 'T8_BAG@1', 5003, 3, datetime.datetime(2026, 5, 1, 0, 0), 6))
+[etl]   filas~ 22181344 muestra: ((869298568, 1, 618, 'PLAYERISLAND_FURNITUREITEM_STONE_WELL_A', 2004, 1, datetime.datetime(2026, 5, 1, 0, 0), 6), (869298942, 3, 12, 'UNIQUE_FURNITUREITEM_ADC_RUG_DIREBEAR', 2004, 1, datetime.datetime(2026, 5, 1, 0, 0), 6), (869310119, 1, 582013, 'T8_BAG@1', 5003, 3, datetime.datetime(2026, 5, 1, 0, 0), 6))
 [etl] tabla market_orders [('albion_id', 'bigint'), ('item_id', 'varchar'), ('quality_level', 'tinyint'), ('enchantment_level', 'tinyint'), ('price', 'bigint'), ('initial_amount', 'int'), ('amount', 'int'), ('auction_type', 'varchar'), ('expires', 'timestamp'), ('location', 'smallint'), ('id', 'bigint'), ('created_at', 'timestamp'), ('updated_at', 'timestamp'), ('deleted_at', 'timestamp'), ('updated_at_bin', 'int')]
-[etl]   filas~ 383326 muestra: ((11374396383, 'T8_BAG_INSIGHT@4', 5, 4, 43737686, 1, 1, 'request', datetime.datetime(2026, 12, 6, 2, 13, 26), 3003, 1543187631, datetime.datetime(2024, 5, 12, 4, 32, 36), datetime.datetime(2026, 11, 6, 2, 13, 26), None, 1793931000), (13855348514, 'T8_2H_SHAPESHIFTER_HELL@4', 2, 4, 39524545, 1, 1, 'request', datetime.datetime(2026, 12, 6, 2, 13, 26), 3003, 1544293957, datetime.datetime(2024, 5, 14, 6, 58, 48), datetime.datetime(2026, 11, 6, 2, 13, 26), None, 1793931000), (4013397061, 'T8_2H_NATURESTAFF_KEEPER', 5, 0, 3168060, 1, 1, 'request', datetime.datetime(2026, 12, 6, 2, 2, 15), 3003, 1544528977, datetime.datetime(2024, 5, 14, 20, 28, 16), datetime.datetime(2026, 11, 6, 2, 2, 15), None, 1793930400))
+[etl]   filas~ 398467 muestra: ((11374396383, 'T8_BAG_INSIGHT@4', 5, 4, 43778109, 1, 1, 'request', datetime.datetime(2026, 12, 7, 2, 35, 5), 3003, 1543187631, datetime.datetime(2024, 5, 12, 4, 32, 36), datetime.datetime(2026, 11, 7, 2, 35, 5), None, 1794018900), (13855348514, 'T8_2H_SHAPESHIFTER_HELL@4', 2, 4, 39524545, 1, 1, 'request', datetime.datetime(2026, 12, 7, 2, 35, 5), 3003, 1544293957, datetime.datetime(2024, 5, 14, 6, 58, 48), datetime.datetime(2026, 11, 7, 2, 35, 5), None, 1794018900), (4013397061, 'T8_2H_NATURESTAFF_KEEPER', 5, 0, 3168060, 1, 1, 'request', datetime.datetime(2026, 12, 6, 21, 15, 31), 3003, 1544528977, datetime.datetime(2024, 5, 14, 20, 28, 16), datetime.datetime(2026, 11, 6, 21, 15, 31), None, 1793999700))
 [etl] tabla market_orders_expired [('albion_id', 'bigint'), ('item_id', 'varchar'), ('quality_level', 'tinyint'), ('enchantment_level', 'tinyint'), ('price', 'bigint'), ('initial_amount', 'int'), ('amount', 'int'), ('auction_type', 'varchar'), ('expires', 'timestamp'), ('location', 'smallint'), ('id', 'bigint'), ('created_at', 'timestamp'), ('updated_at', 'timestamp'), ('deleted_at', 'timestamp')]
 [etl]   filas~ 0 muestra: ()
 [etl] tabla market_stats [('id', 'bigint'), ('item_id', 'varchar'), ('location', 'smallint'), ('price_min', 'bigint'), ('price_max', 'bigint'), ('price_avg', 'decimal'), ('timestamp', 'timestamp')]
@@ -485,16 +485,16 @@ schema_migrations	0	0
 [etl] tabla schema_migrations [('version', 'varchar')]
 [etl]   filas~ 0 muestra: (('20260704000001',), ('20260929050149',))
 [etl] mapeo historial: {'item': 'item_id', 'loc': 'location', 'ts': 'timestamp', 'amt': 'item_amount', 'sil': 'silver_amount', 'scale': 'aggregation', 'q': 'quality'}
-[etl] último timestamp historial: 2026-11-06 02:00:00
-[etl] niveles de agregación (últimos 30 d: nivel, filas, unidades, desde, hasta): ((1, 370777, Decimal('325750561'), datetime.datetime(2026, 10, 30, 3, 0), datetime.datetime(2026, 11, 6, 2, 0)), (6, 2096770, Decimal('2258234213'), datetime.datetime(2026, 10, 7, 6, 0), datetime.datetime(2026, 11, 6, 0, 0)))
+[etl] último timestamp historial: 2026-11-07 02:00:00
+[etl] niveles de agregación (últimos 30 d: nivel, filas, unidades, desde, hasta): ((1, 347660, Decimal('312619280'), datetime.datetime(2026, 10, 31, 3, 0), datetime.datetime(2026, 11, 7, 2, 0)), (6, 2072564, Decimal('2247244013'), datetime.datetime(2026, 10, 8, 6, 0), datetime.datetime(2026, 11, 7, 0, 0)))
 [etl] nivel de agregación elegido (más unidades cubiertas): 6
-[etl] localizaciones historial: ((3003, 485504), (1002, 447213), (4002, 365501), (2004, 277262), (3008, 258097), (5003, 232865), (7, 220962), (3005, 126709), (8, 23101), (4300, 9061), (1012, 5092), (2344, 3097), (321, 2302), (3357, 1599), (3306, 1120), (1312, 1114), (1348, 1030), (4006, 679), (349, 669), (3345, 479), (1006, 450), (1359, 423), (353, 419), (1323, 315), (3002, 268), (2002, 265), (4, 234), (341, 201), (3344, 195), (344, 182))
-[etl] escala de precios en market_history: mediana 89.556 (62 valores) -> ÷1
-[etl] ítems con historial: 7201 | localizaciones descartadas: {'8': 385, '4300': 267, '2344': 126, '1012': 82, '321': 80, '3357': 49, '1348': 27, '3345': 19, '1006': 17, '353': 17, '1359': 17, '4006': 11, '341': 10, '2002': 7, '1323': 7}
+[etl] localizaciones historial: ((3003, 476056), (1002, 438440), (4002, 356247), (2004, 275693), (3008, 251709), (5003, 230074), (7, 215273), (3005, 121780), (8, 22408), (4300, 9039), (1012, 4846), (2344, 4547), (321, 2188), (4006, 1968), (3357, 1520), (3306, 1120), (1312, 1114), (1348, 949), (349, 667), (3345, 467), (1339, 466), (1359, 419), (1006, 381), (353, 368), (1323, 287), (2002, 233), (4, 214), (3002, 213), (3344, 185), (344, 174))
+[etl] escala de precios en market_history: mediana 87.2999 (63 valores) -> ÷1
+[etl] ítems con historial: 7191 | localizaciones descartadas: {'8': 371, '4300': 265, '2344': 202, '1012': 80, '321': 79, '3357': 49, '1348': 26, '4006': 22, '3345': 19, '1006': 17, '353': 17, '1359': 17, '341': 10, '1312': 8, '2002': 7}
 [etl] mapeo órdenes: {'item': 'item_id', 'loc': 'location', 'price': 'price', 'type': 'auction_type', 'upd': 'updated_at', 'q': 'quality_level', 'exp': 'expires'}
-[etl] órdenes: 485828 última actualización: 2026-11-06 03:00:31
-[etl] tipos de orden: (('offer', 397574), ('request', 88254))
-[etl] escala de precios en market_orders: mediana 108.0 (2622 valores) -> ÷1
-[etl] precios actuales cargados: 13701
+[etl] órdenes: 482159 última actualización: 2026-11-07 03:00:36
+[etl] tipos de orden: (('offer', 373292), ('request', 108867))
+[etl] escala de precios en market_orders: mediana 104.0 (2499 valores) -> ÷1
+[etl] precios actuales cargados: 15170
 [etl] escrito docs/data/latest.json docs/data/market.json docs/data/report.md
-[names] 2378 nombres de 2599 ítems -> docs/data/names.json
+[names] 2302 nombres de 2523 ítems -> docs/data/names.json
